@@ -16,8 +16,7 @@ public class WordGrabber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
+        
            PointerEventData pointerData = new PointerEventData(EventSystem.current);
  
              pointerData.position = Camera.main.WorldToScreenPoint(flower.transform.position);
@@ -29,7 +28,7 @@ public class WordGrabber : MonoBehaviour
             {
                 results[0].gameObject.GetComponent<GrabbableWord>().GrabItem(flower.transform);
             }
-        }
+        
 
     }
 }

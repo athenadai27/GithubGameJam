@@ -45,6 +45,15 @@ public class StemController : MonoBehaviour
 
     [SerializeField]
     private float lineWidth;
+
+    [SerializeField]
+    private float stemLimit;
+    [SerializeField]
+    private float currentStemLength;
+    [SerializeField]
+    private LayerMask wordMask;
+    [SerializeField]
+    private CircleCollider2D flowerCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -85,44 +94,40 @@ public class StemController : MonoBehaviour
                     }
                     return;
                 }
-                //linePoints[0] = transform.position;
-                // lineRenderer.SetPosition(0, transform.position);
 
                 Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
-                // Vector3 mouseDir = mousePos - previousMousePos;
                 Vector3 mouseDir = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0) * sensitivity;
 
-                if (mouseDir != Vector3.zero)
+                if (mouseDir != Vector3.zero && currentStemLength < stemLimit)
                 {
                     Vector3 secondFromEndPoint = linePoints[linePoints.Count - 2];
-                 //   Debug.DrawRay(linePoints[linePoints.Count - 1] + mouseDir * .1f, mouseDir * 100f, Color.red);
                     RaycastHit2D leftRaycast = Physics2D.Raycast((Vector2)linePoints[linePoints.Count - 1] + (Vector2)mouseDir*.01f + Vector2.Perpendicular(mouseDir).normalized*lineWidth, mouseDir, .5f, collisionMask);
                     RaycastHit2D rightRaycast = Physics2D.Raycast((Vector2)linePoints[linePoints.Count - 1] + (Vector2)mouseDir*.01f - Vector2.Perpendicular(mouseDir).normalized*lineWidth, mouseDir, .5f, collisionMask);
                     RaycastHit2D midRaycast = Physics2D.Raycast(linePoints[linePoints.Count - 1] + mouseDir*.01f, mouseDir, .5f, collisionMask);
                     if (!leftRaycast && !rightRaycast && !midRaycast)
                     {
                         flower.transform.position = linePoints[linePoints.Count - 1] + mouseDir;
-
-                        linePoints[linePoints.Count - 1] = linePoints[linePoints.Count - 1] + mouseDir;
-                        // if (Vector3.Distance(linePoints[linePoints.Count - 1], secondFromEndPoint) <= minDistanceForNextPoint)
-                        // {
-                        //     linePoints.RemoveAt(linePoints.Count - 1);
-                        //     Debug.Log("remove");
+                        // Collider2D flowerHit = Physics2D.OverlapCircle(flowerCollider.bounds.center,flowerCollider.radius,wordMask);
+                        // if(flowerHit){
+                        //     flowerHit.gameObject.GetComponent<GrabbableWord>().GrabItem(flower.transform);
                         // }
-                        // else 
+                        linePoints[linePoints.Count - 1] = linePoints[linePoints.Count - 1] + mouseDir;
+
                         if (Vector3.Distance(linePoints[linePoints.Count - 1], secondFromEndPoint) > minDistanceForNextPoint)
                         {
+                            currentStemLength += Vector3.Distance(linePoints[linePoints.Count-1],linePoints[linePoints.Count-2]);
                             linePoints.Add(linePoints[linePoints.Count - 1]);
-
+                            
 
                         }
                         lineRenderer.positionCount = linePoints.Count;
                         lineRenderer.SetPositions(linePoints.ToArray());
                         Vector2[] edgePoints = new Vector2[linePoints.Count];
+                        
                         for (int i = 0; i < linePoints.Count; i++)
                         {
-
+                            
                             edgePoints[i].x = linePoints[i].x - lineRenderer.transform.position.x;
                             edgePoints[i].y = linePoints[i].y - lineRenderer.transform.position.y;
 
@@ -158,6 +163,7 @@ public class StemController : MonoBehaviour
 
                         if (linePoints.Count > 2)
                         {
+                            
                             linePoints.RemoveAt(linePoints.Count - 1);
                             lineRenderer.positionCount--;
                             startPos = linePoints[linePoints.Count - 1];
@@ -176,6 +182,7 @@ public class StemController : MonoBehaviour
                         else
                         {
                             flower.transform.position = flowerHolder.position;
+                            
                             //endPos = flowerHolder.position;
                         }
                     }
@@ -187,15 +194,16 @@ public class StemController : MonoBehaviour
                         grabbedWord.SpawnItem();
                         grabbedWord = null;
                     }
-
+                    currentStemLength = 0;
                     playerState = PlayerStates.nothing;
                 }
                 break;
 
             case PlayerStates.nothing:
 
-                if (Input.GetKeyDown(KeyCode.L))
+                if (Input.GetMouseButtonDown(1))
                 {
+                    Debug.Log("go");
                     Vector3 mousePosInit = mainCam.ScreenToWorldPoint(Input.mousePosition);
                     mousePosInit.z = 0;
                     previousMousePos = mousePosInit;
