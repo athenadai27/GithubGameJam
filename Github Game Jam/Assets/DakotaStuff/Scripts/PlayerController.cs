@@ -5,10 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public Rigidbody2D myRigidbody;
     public Transform groundTransform;
 
-    //public CircleCollider2D groundCollider;
     public BoxCollider2D groundCollider;
     public CapsuleCollider2D bodyCollider;
     public bool grounded;
@@ -88,8 +86,7 @@ public class PlayerController : MonoBehaviour
                         if (currentScale.x != transform.localScale.x)
                         {
                             Physics2D.SyncTransforms();
-                            myRigidbody.MovePosition(myRigidbody.position + Vector2.left * (groundCollider.bounds.center.x - currentBoundsPos.x));
-                            //transform.position += Vector3.left * (groundCollider.bounds.center.x - currentBoundsPos.x);
+                            transform.position += Vector3.left * (groundCollider.bounds.center.x - currentBoundsPos.x);
                         }
 
                     }
@@ -99,8 +96,7 @@ public class PlayerController : MonoBehaviour
                         if (currentScale.x != transform.localScale.x)
                         {
                             Physics2D.SyncTransforms();
-                            myRigidbody.MovePosition(myRigidbody.position + Vector2.left * (groundCollider.bounds.center.x - currentBoundsPos.x));
-                            //transform.position += Vector3.left * (groundCollider.bounds.center.x - currentBoundsPos.x);
+                            transform.position += Vector3.left * (groundCollider.bounds.center.x - currentBoundsPos.x);
                         }
 
                     }
@@ -114,8 +110,7 @@ public class PlayerController : MonoBehaviour
                         if (currentScale.x != transform.localScale.x)
                         {
                             Physics2D.SyncTransforms();
-                            myRigidbody.MovePosition(myRigidbody.position + Vector2.left * (groundCollider.bounds.center.x - currentBoundsPos.x));
-                            //transform.position += Vector3.left * (groundCollider.bounds.center.x - currentBoundsPos.x);
+                            transform.position += Vector3.left * (groundCollider.bounds.center.x - currentBoundsPos.x);
                         }
 
                     }
@@ -125,8 +120,7 @@ public class PlayerController : MonoBehaviour
                         if (currentScale.x != transform.localScale.x)
                         {
                             Physics2D.SyncTransforms();
-                            myRigidbody.MovePosition(myRigidbody.position + Vector2.left * (groundCollider.bounds.center.x - currentBoundsPos.x));
-                            //transform.position += Vector3.left * (groundCollider.bounds.center.x - currentBoundsPos.x);
+                            transform.position += Vector3.left * (groundCollider.bounds.center.x - currentBoundsPos.x);
                         }
 
                     }
@@ -265,8 +259,7 @@ void FixedUpdate()
                 myAnim.SetBool("GoingDown", false);
                 if (startJump)
                 {
-                    myRigidbody.MovePosition(myRigidbody.position + Vector2.up * jumpHeight * Time.fixedDeltaTime);
-                    //transform.position += Vector3.up * jumpHeight * Time.fixedDeltaTime;
+                    transform.position += Vector3.up * jumpHeight * Time.fixedDeltaTime;
                     startJump = false;
                 }
                 else
@@ -338,24 +331,16 @@ public void HorizontalMove(Vector3 updatedMoveDir, float updatedMoveSpeed)
             }
             if (canMoveDirection)
             {
-                //           Debug.Log("swag");
-                //                            Debug.Log(updatedMoveDir);
-                //     Debug.Log(travelDistance);
-                myRigidbody.MovePosition(myRigidbody.position + (Vector2)updatedMoveDir * travelDistance);
-                //transform.position += updatedMoveDir * travelDistance;
+                transform.position += updatedMoveDir * travelDistance;
             }
             else
             {
-                //    Debug.Log("swag");
-                myRigidbody.MovePosition(myRigidbody.position + (Vector2)updatedMoveDir * travelDistance);
-                //transform.position += updatedMoveDir * travelDistance;
+                transform.position += updatedMoveDir * travelDistance;
             }
         }
         else
         {
-            //   Debug.Log("swag");
-            myRigidbody.MovePosition(myRigidbody.position + (Vector2)updatedMoveDir * updatedMoveSpeed * Time.fixedDeltaTime);
-           // transform.position += updatedMoveDir * updatedMoveSpeed * Time.fixedDeltaTime;
+            transform.position += updatedMoveDir * updatedMoveSpeed * Time.fixedDeltaTime;
         }
         Physics2D.SyncTransforms();
         RaycastHit2D[] verticalCheck;
@@ -368,11 +353,7 @@ public void HorizontalMove(Vector3 updatedMoveDir, float updatedMoveSpeed)
             {
                 if (Mathf.Abs(verticalCheck[i].normal.x) > 0f && ((updatedMoveDir.x > 0 && verticalCheck[i].point.x > transform.position.x) || (updatedMoveDir.x < 0 && verticalCheck[i].point.x < transform.position.x)))
                 {
-                    Debug.DrawRay(verticalCheck[i].point, verticalCheck[i].normal, Color.blue);
-                    Debug.Log(verticalCheck[i].normal);
-                    Debug.Log(verticalCheck[i].distance);
-                    myRigidbody.MovePosition(myRigidbody.position + Vector2.up * (groundCollider.size.y - verticalCheck[i].distance));
-                    //transform.position += Vector3.up * (groundCollider.size.y - verticalCheck[i].distance);
+                    transform.position += Vector3.up * (groundCollider.size.y - verticalCheck[i].distance);
                     Physics.SyncTransforms();
                     break;
                 }
@@ -387,9 +368,7 @@ public void HorizontalMove(Vector3 updatedMoveDir, float updatedMoveSpeed)
             {
                 if (Mathf.Abs(verticalCheck[i].normal.x) > 0f && ((updatedMoveDir.x > 0 && verticalCheck[i].point.x > transform.position.x) || (updatedMoveDir.x < 0 && verticalCheck[i].point.x < transform.position.x)))
                 {
-                    Debug.Log(verticalCheck[i].distance);
-                    myRigidbody.MovePosition(myRigidbody.position + Vector2.up * (groundCollider.size.y - verticalCheck[i].distance));
-                    //transform.position += Vector3.up * (groundCollider.size.y - verticalCheck[i].distance);
+                    transform.position += Vector3.up * (groundCollider.size.y - verticalCheck[i].distance);
                     Physics.SyncTransforms();
                     break;
                 }
@@ -406,7 +385,7 @@ public void HorizontalMove(Vector3 updatedMoveDir, float updatedMoveSpeed)
 
 public void VerticalMove()
 {
-    customGravity += (Physics2D.gravity.y * Physics2D.gravity.y) * Time.fixedDeltaTime;
+    customGravity += (Physics2D.gravity.y * Physics2D.gravity.y)*.5f * Time.fixedDeltaTime;
     if (customGravity > maxGravity)
     {
         customGravity = maxGravity;
@@ -424,17 +403,12 @@ public void VerticalMove()
             {
                 float yPos = (groundCollider.bounds.center - Vector3.up * groundCollider.bounds.extents.y).y;
                 float yDif = yPos - fallingCheck[i].point.y;
-                myRigidbody.MovePosition(myRigidbody.position +  Vector2.down * yDif);
-                //transform.position += Vector3.down * yDif;
+                transform.position += Vector3.down * yDif;
                 transform.SetParent(fallingCheck[i].collider.transform);
                 grounded = true;
                 myAnim.SetBool("Grounded", true);
 
                 doubleJumpOnCooldown = false;
-                // if(fallingCheck[i].collider.gameObject.name.Contains("Pumpkin")){
-                //     bouncing = true;
-                //     bounceTime = Time.time + customGravity/120;
-                // }
                 isJumping = false;
                 customGravity = 0f;
                 changePosition = false;
@@ -447,16 +421,12 @@ public void VerticalMove()
         }
         if (changePosition)
         {
-            //                Debug.Log("droppin");
-            myRigidbody.MovePosition(myRigidbody.position + (Vector2)fallingVector);
-           // transform.position += fallingVector;
+            transform.position += fallingVector;
         }
     }
     else
     {
-        myRigidbody.MovePosition(myRigidbody.position + Vector2.down * customGravity * Time.fixedDeltaTime);
-        //transform.position += Vector3.down * customGravity * Time.fixedDeltaTime;
-        //                    Debug.Log("call this");
+        transform.position += Vector3.down * customGravity * Time.fixedDeltaTime;
     }
 }
 
@@ -474,20 +444,17 @@ public void JumpCheck()
             if (verticalCheck[i].collider.gameObject.GetComponent<PlatformEffector2D>() == null && verticalCheck[i].normal.y < 0)
             {
                 canMoveUp = false;
-                myRigidbody.MovePosition(myRigidbody.position + Vector2.up * verticalCheck[i].distance);
-                //transform.position += Vector3.up * verticalCheck[i].distance;
+                transform.position += Vector3.up * verticalCheck[i].distance;
             }
         }
         if (canMoveUp)
         {
-            myRigidbody.MovePosition(myRigidbody.position + Vector2.up * jumpHeight * Time.fixedDeltaTime);
-            //transform.position += Vector3.up * jumpHeight * Time.fixedDeltaTime;
+            transform.position += Vector3.up * jumpHeight * Time.fixedDeltaTime;
         }
     }
     else
     {
-        myRigidbody.MovePosition(myRigidbody.position + Vector2.up * jumpHeight * Time.fixedDeltaTime);
-        //transform.position += Vector3.up * jumpHeight * Time.fixedDeltaTime;
+        transform.position += Vector3.up * jumpHeight * Time.fixedDeltaTime;
     }
 }
 
