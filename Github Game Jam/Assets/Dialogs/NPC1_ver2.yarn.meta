@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 17288ea5fd468744392f2558abf2c5a7
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-US
+  stringIDs: []
+  compilationStatus: 0
+  isSuccesfullyCompiled: 0
+  compilationErrorMessage: "Error on line 9 at position 20:\nextraneous input ' rude'
+    expecting ']]'\r\n[[Say nothing |Been rude]]\r\n                   ^^^^^"
+  baseLanguage: {instanceID: 0}
+  localizations: []

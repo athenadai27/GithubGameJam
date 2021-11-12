@@ -1,0 +1,13 @@
+title: NPC1.Start
+tags: 
+colorID: 0
+position: 900,421
+---
+NPC1: Hello
+-> What r u doing?
+    NPC1: Just vibin'.
+-> Hello back.
+    NPC1: ...?
+NPC1: See ya.
+See ya.
+===
