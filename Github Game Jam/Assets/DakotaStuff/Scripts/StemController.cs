@@ -78,7 +78,7 @@ public class StemController : MonoBehaviour
         switch (playerState)
         {
             case PlayerStates.drawing:
-                if (Input.GetKeyDown(KeyCode.R))
+                if (Input.GetMouseButtonDown(1))
                 {
                     playerState = PlayerStates.retracting;
                     lerpToPoint = 0;
@@ -97,21 +97,18 @@ public class StemController : MonoBehaviour
 
                 Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
-                Vector3 mouseDir = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0) * sensitivity;
+                Vector3 mouseDir = new Vector3(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"), 0) * sensitivity;
 
                 if (mouseDir != Vector3.zero && currentStemLength < stemLimit)
                 {
                     Vector3 secondFromEndPoint = linePoints[linePoints.Count - 2];
-                    RaycastHit2D leftRaycast = Physics2D.Raycast((Vector2)linePoints[linePoints.Count - 1] + (Vector2)mouseDir*.01f + Vector2.Perpendicular(mouseDir).normalized*lineWidth, mouseDir, .5f, collisionMask);
-                    RaycastHit2D rightRaycast = Physics2D.Raycast((Vector2)linePoints[linePoints.Count - 1] + (Vector2)mouseDir*.01f - Vector2.Perpendicular(mouseDir).normalized*lineWidth, mouseDir, .5f, collisionMask);
-                    RaycastHit2D midRaycast = Physics2D.Raycast(linePoints[linePoints.Count - 1] + mouseDir*.01f, mouseDir, .5f, collisionMask);
+                    RaycastHit2D leftRaycast = Physics2D.Raycast((Vector2)linePoints[linePoints.Count - 1] + (Vector2)mouseDir*.01f + Vector2.Perpendicular(mouseDir).normalized*lineWidth, mouseDir, .1f, collisionMask);
+                    RaycastHit2D rightRaycast = Physics2D.Raycast((Vector2)linePoints[linePoints.Count - 1] + (Vector2)mouseDir*.01f - Vector2.Perpendicular(mouseDir).normalized*lineWidth, mouseDir, .1f, collisionMask);
+                    RaycastHit2D midRaycast = Physics2D.Raycast(linePoints[linePoints.Count - 1] + mouseDir*.01f, mouseDir, .1f, collisionMask);
                     if (!leftRaycast && !rightRaycast && !midRaycast)
                     {
                         flower.transform.position = linePoints[linePoints.Count - 1] + mouseDir;
-                        // Collider2D flowerHit = Physics2D.OverlapCircle(flowerCollider.bounds.center,flowerCollider.radius,wordMask);
-                        // if(flowerHit){
-                        //     flowerHit.gameObject.GetComponent<GrabbableWord>().GrabItem(flower.transform);
-                        // }
+
                         linePoints[linePoints.Count - 1] = linePoints[linePoints.Count - 1] + mouseDir;
 
                         if (Vector3.Distance(linePoints[linePoints.Count - 1], secondFromEndPoint) > minDistanceForNextPoint)
@@ -201,7 +198,7 @@ public class StemController : MonoBehaviour
 
             case PlayerStates.nothing:
 
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonDown(0))
                 {
                     Debug.Log("go");
                     Vector3 mousePosInit = mainCam.ScreenToWorldPoint(Input.mousePosition);
