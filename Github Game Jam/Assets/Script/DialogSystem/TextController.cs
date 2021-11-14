@@ -66,7 +66,7 @@ public class TextController : MonoBehaviour
             Vector3 newDest = relativeWordCloudCenter;
             newDest.x = destX;
             block.SetDest(newDest);
-            block.Launch();
+            block.Launch(gameObject.transform.position);
         }
     }
 

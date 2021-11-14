@@ -8,25 +8,44 @@ public class WordBlock : MonoBehaviour
 {
     public TextMeshProUGUI textBox;
     public float linearSpeed = 5.0f;
+    public Vector3 destination;
+
+    private bool arrived = false;
 
     public void PutWord(string word)
     {
-        throw new NotImplementedException();
+        textBox.text = word;
     }
 
     public void SetDest(Vector3 destPos)
     {
-        throw new NotImplementedException();
+        destination = destPos;
     }
 
-    public void Launch()
+    public void Launch(Vector3 launchingPoint)
     {
-        throw new NotImplementedException();
+        gameObject.SetActive(true);
+        transform.position = launchingPoint;
+        arrived = false;
     }
 
     private void Update()
     {
-        // TODO: word block should control its own movement behavior here
+        // word block should control its own movement behavior here
+        if (!arrived)
+        {
+            Vector3 movement = destination - transform.position;
 
+            if (movement.magnitude <= linearSpeed * Time.deltaTime)
+            {
+                transform.position = destination;
+                arrived = true;
+            }
+            else
+            {
+                movement = movement.normalized * linearSpeed * Time.deltaTime;
+                transform.position += movement;
+            }
+        }
     }
 }
