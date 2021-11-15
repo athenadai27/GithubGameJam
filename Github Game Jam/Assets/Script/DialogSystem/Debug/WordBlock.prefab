@@ -130,7 +130,9 @@ MonoBehaviour:
   textBox: {fileID: 2421338707675947788}
   linearSpeed: 5
   destination: {x: 0, y: 0, z: 0}
+  refHeightRandomizationFactor: 0.3
   amplitude: 0.2
+  amplitudeRandomizeFactor: 0.4
   speedFactor: 2
 --- !u!1 &2421338707675947793
 GameObject:
