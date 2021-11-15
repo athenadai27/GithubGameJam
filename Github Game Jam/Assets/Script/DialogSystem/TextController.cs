@@ -22,7 +22,12 @@ public class TextController : MonoBehaviour
     // configurable settings
     [SerializeField]
     Vector3 relativeWordCloudCenter;
+    [SerializeField]
+    float pauseBetweenLaunch = 1.0f;
 
+    /// <summary>
+    /// very dangerous and evil, delete after testing
+    /// </summary>
     private void Start()
     {
         ShowLine("some line here");
@@ -54,13 +59,18 @@ public class TextController : MonoBehaviour
             }
         }
 
-        // set destination for each block
+        StartCoroutine(LaunchSequence(newlyActivated));
+    }
+
+    private IEnumerator LaunchSequence(List<WordBlock> newlyActivated)
+    {
         float totalWidth = 0;
         foreach (WordBlock block in newlyActivated)
         {
             totalWidth += block.textBox.preferredWidth * block.transform.localScale.x;
+            block.gameObject.SetActive(false);
         }
-        
+
         float tentativeTotalWidth = 0;
         foreach (WordBlock block in newlyActivated)
         {
@@ -73,6 +83,14 @@ public class TextController : MonoBehaviour
             newDest.x = destX;
             block.SetDest(newDest);
             block.Launch(gameObject.transform.position);
+
+            // wait lock
+            float timeElapsed = 0;
+            while (timeElapsed < pauseBetweenLaunch)
+            {
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
         }
     }
 

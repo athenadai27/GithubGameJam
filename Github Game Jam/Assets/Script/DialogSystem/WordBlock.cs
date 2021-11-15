@@ -15,6 +15,7 @@ public class WordBlock : MonoBehaviour
     public void PutWord(string word)
     {
         textBox.text = word;
+        textBox.text += " ";
     }
 
     public void SetDest(Vector3 destPos)
