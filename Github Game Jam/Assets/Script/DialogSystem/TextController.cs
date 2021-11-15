@@ -30,7 +30,7 @@ public class TextController : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        ShowLine("some line here");
+        ShowLine("some line here word word word word word word");
     }
 
     public void ShowLine(string line)
