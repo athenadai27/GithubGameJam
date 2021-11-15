@@ -23,7 +23,7 @@ public class GrabbableWord : MonoBehaviour
     }
 
     public void GrabItem(Transform parentTransform){
-      transform.parent.SetParent(parentTransform);
+      transform.SetParent(parentTransform);
       stemController.grabbedWord = this;
       //  GameObject newObject = Instantiate(objectToSpawn,parentTransform.position,objectToSpawn.transform.rotation,parentTransform);
        // gameObject.SetActive(false);
