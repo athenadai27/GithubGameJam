@@ -76,6 +76,12 @@ public class PlayerController : MonoBehaviour
         {
             default:
 
+                if(Input.GetKeyDown(KeyCode.C) || Input.GetKey(KeyCode.C)){
+                    myAnim.SetBool("Crouching",true);
+                } else if(Input.GetKeyUp(KeyCode.C)){
+                    myAnim.SetBool("Crouching",false);
+                }
+
                 Vector3 currentScale = transform.localScale;
                 Vector3 currentBoundsPos = groundCollider.bounds.center;
                 if (moveDir > 0)
@@ -177,7 +183,7 @@ public class PlayerController : MonoBehaviour
                     //        Debug.Log(transform.position.y);
                     isJumping = false;
                     customGravity = 0f;
-                    myAnim.SetBool("GoingDown", true);
+                    
                     //      Debug.Log("no longer jumping");
                 }
             }
@@ -185,13 +191,13 @@ public class PlayerController : MonoBehaviour
             {
                 isJumping = false;
                 customGravity = 0f;
-                myAnim.SetBool("GoingDown", true);
+                
             }
             else
             {
                 isJumping = false;
                 customGravity = 0f;
-                myAnim.SetBool("GoingDown", true);
+                
             }
         }
 
@@ -256,7 +262,7 @@ void FixedUpdate()
             if (grounded)
             {
                 rightDirection = Quaternion.Euler(0, 0, -transform.lossyScale.x * 90) * hitGroundRay.normal;
-                myAnim.SetBool("GoingDown", false);
+                
                 if (startJump)
                 {
                     transform.position += Vector3.up * jumpHeight * Time.fixedDeltaTime;
