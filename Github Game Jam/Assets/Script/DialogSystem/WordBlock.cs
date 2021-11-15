@@ -10,7 +10,11 @@ public class WordBlock : MonoBehaviour
     public float linearSpeed = 5.0f;
     public Vector3 destination;
 
+    public float amplitude = 1.0f;
+    public float speedFactor = 1.0f;
+
     private bool arrived = false;
+    private float phase = 0;
 
     public void PutWord(string word)
     {
@@ -57,6 +61,14 @@ public class WordBlock : MonoBehaviour
                 movement = movement.normalized * linearSpeed * Time.deltaTime;
                 transform.position += movement;
             }
+        }
+        else
+        {
+            Vector3 cachedPosition = transform.position;
+            cachedPosition.y = destination.y + Mathf.Sin(phase) * amplitude;
+            transform.position = cachedPosition;
+
+            phase += Time.deltaTime * speedFactor;
         }
     }
 }
