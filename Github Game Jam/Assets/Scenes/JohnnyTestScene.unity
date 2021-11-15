@@ -406,6 +406,7 @@ MonoBehaviour:
   wordBlockPrefab: {fileID: 2421338707633369312, guid: 2fe6f45f3140b1440a08776880baeaef,
     type: 3}
   relativeWordCloudCenter: {x: 0, y: 5, z: 0}
+  pauseBetweenLaunch: 0.2
 --- !u!1 &2128593307
 GameObject:
   m_ObjectHideFlags: 0

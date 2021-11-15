@@ -67,14 +67,14 @@ public class TextController : MonoBehaviour
         float totalWidth = 0;
         foreach (WordBlock block in newlyActivated)
         {
-            totalWidth += block.textBox.preferredWidth * block.transform.localScale.x;
+            totalWidth += block.CalculateWidthEstimate();
             block.gameObject.SetActive(false);
         }
 
         float tentativeTotalWidth = 0;
         foreach (WordBlock block in newlyActivated)
         {
-            float width = block.textBox.preferredWidth * block.transform.localScale.x;
+            float width = block.CalculateWidthEstimate();
             float destX = 0 - totalWidth / 2 + tentativeTotalWidth + width / 2;
             tentativeTotalWidth += width;
 

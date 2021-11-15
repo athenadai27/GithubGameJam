@@ -15,7 +15,17 @@ public class WordBlock : MonoBehaviour
     public void PutWord(string word)
     {
         textBox.text = word;
-        textBox.text += " ";
+    }
+
+    public float CalculateWidthEstimate()
+    {
+        float shorter = textBox.preferredWidth;
+        string word = textBox.text;
+        textBox.text += " " + word;
+        float longer = textBox.preferredWidth;
+
+        textBox.text = word;
+        return (longer - shorter) * transform.localScale.x;
     }
 
     public void SetDest(Vector3 destPos)
