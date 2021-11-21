@@ -11,26 +11,43 @@ using UnityEngine.UI;
 public class TextController : MonoBehaviour
 {
     [SerializeField]
-    DialogueRunner runner;
+    protected DialogueRunner runner;
 
     // word block pooling
     [SerializeField]
     GameObject wordBlockPrefab;
+    [SerializeField]
+    GameObject clickableBlockPrefab;
     Queue<WordBlock> idleBlockPool = new Queue<WordBlock>();
     Queue<WordBlock> activeBlockPool = new Queue<WordBlock>();
+
+    Queue<ClickableBlock> idleClickablePool = new Queue<ClickableBlock>();
+    Queue<ClickableBlock> activeClickablePool = new Queue<ClickableBlock>();
 
     // configurable settings
     [SerializeField]
     Vector3 relativeWordCloudCenter;
     [SerializeField]
     float pauseBetweenLaunch = 1.0f;
+    [SerializeField]
+    YarnProgram linesForThisCharacter;
 
-    /// <summary>
-    /// very dangerous and evil, delete after testing
-    /// </summary>
+    // runtime only
+    HashSet<string> keywords = new HashSet<string>();
+
+    bool trigger = false;
+
     private void Start()
     {
-        ShowLine("some line here word word word word word word");
+        // actual logic
+        runner.AddCommandHandler("Keyword", HandleKeyword);
+        runner.Add(linesForThisCharacter);
+
+        // test
+        if (!trigger)
+            runner.StartDialogue("TrivialStart");
+
+        trigger = true;
     }
 
     public void ShowLine(string line)
@@ -42,20 +59,42 @@ public class TextController : MonoBehaviour
         // JIT creation of objects (might make some sense in terms of performance since NPCs repeate their speech)
         foreach (string word in words) 
         {
-            if (idleBlockPool.Count <= 0)
-            {
-                GameObject newBlock = Instantiate(wordBlockPrefab);
-                WordBlock newBlockScript = newBlock.GetComponent<WordBlock>();
-                newBlockScript.PutWord(word);
-                activeBlockPool.Enqueue(newBlockScript);
-                newlyActivated.Add(newBlockScript);
+            // TODO: there's code copying probably refactor it somewhere
+
+            if (!keywords.Contains(word)) { 
+                if (idleBlockPool.Count <= 0)
+                {
+                    GameObject newBlock = Instantiate(wordBlockPrefab);
+                    WordBlock newBlockScript = newBlock.GetComponent<WordBlock>();
+                    newBlockScript.PutWord(word);
+                    activeBlockPool.Enqueue(newBlockScript);
+                    newlyActivated.Add(newBlockScript);
+                }
+                else
+                {
+                    WordBlock block = idleBlockPool.Dequeue();
+                    block.PutWord(word);
+                    activeBlockPool.Enqueue(block);
+                    newlyActivated.Add(block);
+                }
             }
             else
             {
-                WordBlock block = idleBlockPool.Dequeue();
-                block.PutWord(word);
-                activeBlockPool.Enqueue(block);
-                newlyActivated.Add(block);
+                if (idleClickablePool.Count <= 0)
+                {
+                    GameObject newBlock = Instantiate(clickableBlockPrefab);
+                    ClickableBlock newClickableScript = newBlock.GetComponent<ClickableBlock>();
+                    newClickableScript.PutWord(word);
+                    activeClickablePool.Enqueue(newClickableScript);
+                    newlyActivated.Add(newClickableScript);
+                }
+                else
+                {
+                    ClickableBlock block = idleClickablePool.Dequeue();
+                    block.PutWord(word);
+                    activeClickablePool.Enqueue(block);
+                    newlyActivated.Add(block);
+                }
             }
         }
 
@@ -112,6 +151,25 @@ public class TextController : MonoBehaviour
 
             if (encounters.Contains(top))
                 break;
+        }
+
+        TriggerDialogue();
+    }
+
+    protected virtual void TriggerDialogue()
+    {
+    }
+
+    private void HandleKeyword(string[] args)
+    {
+        if (args == null || args.Length < 1)
+        {
+            throw new UnityException("Keyword command error: expecting arguments but given none.");
+        }
+
+        foreach (string arg in args)
+        {
+            keywords.Add(arg);
         }
     }
 }
