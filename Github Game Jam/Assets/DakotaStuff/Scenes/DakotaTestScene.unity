@@ -1252,6 +1252,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &138987148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4385821461413538717, guid: f05c9c29d1185b94f982348e7d3e2f8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4385821460956210137}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &192535011
 GameObject:
   m_ObjectHideFlags: 0
@@ -24881,6 +24887,11 @@ PrefabInstance:
       propertyPath: sonicWavesHolder
       value: 
       objectReference: {fileID: 1233170353}
+    - target: {fileID: 4385821461185735198, guid: f05c9c29d1185b94f982348e7d3e2f8e,
+        type: 3}
+      propertyPath: dialogueContainer
+      value: 
+      objectReference: {fileID: 138987148}
     - target: {fileID: 4385821461185735198, guid: f05c9c29d1185b94f982348e7d3e2f8e,
         type: 3}
       propertyPath: midpointTransform

@@ -59,6 +59,10 @@ public class FrogMiniboss : MonoBehaviour
     public bool cameraShaking;
     public bool waiting;
     public Transform croakTransform;
+
+    // PUT THE CANVAS HEREREREREREREE
+    public GameObject dialogueContainer = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -247,11 +251,12 @@ public class FrogMiniboss : MonoBehaviour
                 if (playerTransform.position.x > transform.position.x)
                 {
                     transform.localScale = new Vector3(-1, 1, 1);
-
+                    dialogueContainer.transform.localScale = new Vector3(-1, 1, 1);
                 }
                 else if (playerTransform.position.x < transform.position.x)
                 {
                     transform.localScale = Vector3.one;
+                    dialogueContainer.transform.localScale = new Vector3(1, 1, 1);
                 }
                 tongueScript.tongue.transform.localScale = transform.localScale;
                 canvas.transform.localScale = transform.localScale;
