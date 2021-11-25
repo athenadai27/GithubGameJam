@@ -24826,6 +24826,16 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1821488296}
+    - target: {fileID: 4385821461185735185, guid: f05c9c29d1185b94f982348e7d3e2f8e,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.5197887
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385821461185735185, guid: f05c9c29d1185b94f982348e7d3e2f8e,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 2.8557854
+      objectReference: {fileID: 0}
     - target: {fileID: 4385821461185735194, guid: f05c9c29d1185b94f982348e7d3e2f8e,
         type: 3}
       propertyPath: m_Name
@@ -24835,6 +24845,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385821461185735194, guid: f05c9c29d1185b94f982348e7d3e2f8e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4385821461185735198, guid: f05c9c29d1185b94f982348e7d3e2f8e,
         type: 3}
@@ -24899,7 +24914,7 @@ PrefabInstance:
     - target: {fileID: 4385821461185735199, guid: f05c9c29d1185b94f982348e7d3e2f8e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.712306
+      value: -10.52
       objectReference: {fileID: 0}
     - target: {fileID: 4385821461185735199, guid: f05c9c29d1185b94f982348e7d3e2f8e,
         type: 3}
@@ -25173,7 +25188,7 @@ PrefabInstance:
     - target: {fileID: 5106314169357870880, guid: fd70f3add568e49419e9f346b3361201,
         type: 3}
       propertyPath: collisionMask.m_Bits
-      value: 131072
+      value: 147456
       objectReference: {fileID: 0}
     - target: {fileID: 5106314169357870880, guid: fd70f3add568e49419e9f346b3361201,
         type: 3}

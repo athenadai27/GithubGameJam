@@ -522,6 +522,8 @@ public class PlayerController : MonoBehaviour
             for(int i = 0; i < colliders.Count;i++){
                 if(colliders[i].gameObject.CompareTag("Toxic")){
                     Kill();
+                } else if(colliders[i].gameObject.CompareTag("Enemy")){
+                    Kill();
                 }
             }
 
@@ -603,6 +605,7 @@ public class PlayerController : MonoBehaviour
 
     public void Reset(){
         playerState = PlayerStates.normal;
+        myAnim.Rebind();
         stemController.Reset();
     }
 

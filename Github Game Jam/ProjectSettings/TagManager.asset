@@ -11,6 +11,7 @@ TagManager:
   - Shield
   - Tongue
   - Toxic
+  - Enemy
   layers:
   - Default
   - TransparentFX

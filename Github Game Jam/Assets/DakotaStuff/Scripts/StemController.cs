@@ -94,14 +94,13 @@ public class StemController : MonoBehaviour
         switch (playerState)
         {
             case PlayerStates.drawing:
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonDown(0))
                 {
                     Retract();
 
                     return;
-                }
-
-                Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+                }else if(Input.GetMouseButton(0)){
+                     Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
                 Vector3 mouseDir = new Vector3(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"), 0) * sensitivity;
 
@@ -149,6 +148,9 @@ public class StemController : MonoBehaviour
 
                 previousMousePos = mousePos;
 
+                }
+
+               
                 break;
             case PlayerStates.retracting:
 

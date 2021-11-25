@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626f07e8f46289e478213c88a2fea1e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 5
   boxCollider: {fileID: 9189749906560964920}
   hitMask:
     serializedVersion: 2

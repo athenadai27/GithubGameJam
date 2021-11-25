@@ -99,10 +99,12 @@ public class FrogGruntAttackTest : MonoBehaviour
                         tongueHit.collider.gameObject.GetComponent<ItemScript>().Break();
                     } else if(tongueHit.collider.gameObject.GetComponent<PlayerController>()){
                         tongueHit.collider.gameObject.GetComponent<PlayerController>().Capture();
+                        tongueHit.collider.gameObject.GetComponent<PlayerController>().Kill();
                         capturedPlayer = true;
+
                     }
                     
-                
+                    
                     lerp = 0;
                     endPos = playerTransform.position;
                     
@@ -134,7 +136,7 @@ public class FrogGruntAttackTest : MonoBehaviour
 
     public void ActivateTongue()
     {
-        tongue.gameObject.SetActive(true);
+        
         endPos = playerTransform.position + Vector3.up;
         outDistanceFromEndStart = Vector3.Distance(endPos,tongue.transform.position);
         distanceFromEndStart = outDistanceFromEndStart;
@@ -142,6 +144,10 @@ public class FrogGruntAttackTest : MonoBehaviour
         lerp = 0;
         targetPos = tongue.transform.position;
         attacking = true;
+        for(int i = 0; i < tongue.positionCount;i++){
+            tongue.SetPosition(i,tongue.transform.position);
+        }
+        tongue.gameObject.SetActive(true);
     }
 
     public void Retract(){

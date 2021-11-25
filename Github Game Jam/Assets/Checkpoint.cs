@@ -45,6 +45,10 @@ public class Checkpoint : MonoBehaviour
         frogMinibossTransform.localScale = Vector3.one;
         lerp = 0f;
         Debug.Log("Here");
+        ItemScript[] items = FindObjectsOfType<ItemScript>();
+        for(int i = 0; i < items.Length;i++){
+            items[i].Break();
+        }
         while(lerp < 1f){
             lerp += Time.deltaTime;
             Color overlayColor = overlayImage.color;

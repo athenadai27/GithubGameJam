@@ -74,28 +74,8 @@ public class FrogMiniboss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            if (bossState == BossStates.leapUp)
-            {
-                Fall();
-            }
-            else
-            {
-                myAnim.SetBool("Jumping", true);
-                //Leap();
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-
-
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-
-
-        }
+        canvas.transform.localScale = transform.localScale;
+        
         switch (bossState)
         {
             case BossStates.leapUp:
@@ -248,10 +228,12 @@ public class FrogMiniboss : MonoBehaviour
                 {
                     transform.localScale = new Vector3(-1, 1, 1);
 
+
                 }
                 else if (playerTransform.position.x < transform.position.x)
                 {
                     transform.localScale = Vector3.one;
+
                 }
                 tongueScript.tongue.transform.localScale = transform.localScale;
                 canvas.transform.localScale = transform.localScale;
@@ -521,7 +503,6 @@ public class FrogMiniboss : MonoBehaviour
 
     public void Leap()
     {
-        smokeCloud.SetActive(true);
         fallCircle.transform.position = new Vector3(transform.position.x, -3.21f, 0f);
 
         fallCircle.gameObject.SetActive(true);
@@ -716,6 +697,7 @@ public class FrogMiniboss : MonoBehaviour
         {
             sonicWavesHolder.transform.GetChild(i).gameObject.SetActive(false);
         }
+        
         cameraShaking = false;
         currentPhase = BossStates.phase1;
         bossState = BossStates.phase1;
