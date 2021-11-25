@@ -26,9 +26,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _GlowThickness: 1
+    - _Hiding: 0
     - _LaserEdgeSmoothness: 13.77
     - _LaserThickness: 1.49
     - _StemEdgeSmoothness: 10
     - _StemThickness: 21.31
     m_Colors:
+    - Color_1B597E7E: {r: 0, g: 0, b: 0, a: 1}
+    - Color_70C674AB: {r: 0.6448206, g: 1, b: 0.5707547, a: 0.03529412}
     - _StemColor: {r: 0.62651277, g: 0.8301887, b: 0.39551443, a: 1}

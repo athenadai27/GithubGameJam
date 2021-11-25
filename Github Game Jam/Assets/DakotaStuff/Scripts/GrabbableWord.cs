@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class GrabbableWord : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject objectToSpawn;
+    public GameObject objectToSpawn;
 
-    [SerializeField]
-    private StemController stemController;
-
+    public StemController stemController;
+    Transform parentTransform;
     // Start is called before the first frame update
     void Start()
     {
-        
+        parentTransform = transform.parent;
     }
 
     // Update is called once per frame
@@ -29,8 +27,16 @@ public class GrabbableWord : MonoBehaviour
        // gameObject.SetActive(false);
     }
 
-    public void SpawnItem(){
+    public GameObject SpawnItem(){
         GameObject newObject = Instantiate(objectToSpawn,transform.parent.parent.position,objectToSpawn.transform.rotation,transform.parent.parent);
-        gameObject.SetActive(false);
+        return newObject;
+    }
+
+    public void Reset(){
+        
+        transform.SetParent(parentTransform);
+        transform.position = parentTransform.position;
+        
+        transform.parent.gameObject.SetActive(false);
     }
 }

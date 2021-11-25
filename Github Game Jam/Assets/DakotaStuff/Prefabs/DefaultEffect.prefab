@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3693385837704486791}
   - component: {fileID: 3693385837704486790}
   - component: {fileID: 3693385837704486809}
+  - component: {fileID: 6888251372561612572}
   m_Layer: 0
   m_Name: DefaultEffect
   m_TagString: Untagged
@@ -4753,3 +4754,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &6888251372561612572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3693385837704486808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 905e7cd7bf1a3e746ab467362351b271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burnableMask:
+    serializedVersion: 2
+    m_Bits: 2048

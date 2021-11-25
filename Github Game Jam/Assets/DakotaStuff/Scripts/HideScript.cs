@@ -14,6 +14,8 @@ public class HideScript : MonoBehaviour
     private bool hidden;
     [SerializeField]
     private Vector3 playerGoToPosition;
+    [SerializeField]
+    SpriteRenderer playerSprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class HideScript : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             if (hidden)
             {

@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - AlertLight
+  - HeldItem
+  - Weapon
+  - Ground
+  - Shield
+  - Tongue
+  - Toxic
   layers:
   - Default
   - TransparentFX
@@ -17,13 +23,13 @@ TagManager:
   - Player
   - Stem
   - Hide
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Burnable
+  - Needle
+  - Ground
+  - Enemy
+  - Item
+  - Projectile
+  - Puddle
   - 
   - 
   - 

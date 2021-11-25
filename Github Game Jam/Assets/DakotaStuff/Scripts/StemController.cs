@@ -37,6 +37,7 @@ public class StemController : MonoBehaviour
     private Transform flowerHolder;
 
     public GrabbableWord grabbedWord;
+    public GameObject grabbedItem;
 
     [SerializeField]
     private float sensitivity;
@@ -54,6 +55,12 @@ public class StemController : MonoBehaviour
     private LayerMask wordMask;
     [SerializeField]
     private CircleCollider2D flowerCollider;
+
+    [SerializeField]
+    Transform handTransform;
+
+    public PlayerController playerController;
+    public Transform playerTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +69,8 @@ public class StemController : MonoBehaviour
         playerState = PlayerStates.nothing;
         edgeCollider2D = lineRenderer.GetComponent<EdgeCollider2D>();
         edgeCollider2D.points = new Vector2[lineRenderer.positionCount];
-        for(int i = 0; i < lineRenderer.positionCount;i++){
+        for (int i = 0; i < lineRenderer.positionCount; i++)
+        {
             edgeCollider2D.points[i] = (Vector2)lineRenderer.GetPosition(i);
         }
     }
@@ -70,28 +78,26 @@ public class StemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lineRenderer.SetPosition(0, lineRenderer.transform.position);
-        linePoints[0] = lineRenderer.transform.position;
-        lineRenderer.SetPosition(1, flowerHolder.transform.position);
-        linePoints[1] = flowerHolder.transform.position;
-
+        transform.localScale = playerTransform.localScale;
+        lineRenderer.SetPosition(0, Vector3.zero);
+        linePoints[0] = Vector3.zero;
+        lineRenderer.SetPosition(1, transform.InverseTransformPoint(flowerHolder.transform.position));
+        linePoints[1] = transform.InverseTransformPoint(flowerHolder.transform.position);
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (grabbedItem != null)
+            {
+                grabbedItem.GetComponent<ItemScript>().Drop();
+                grabbedItem = null;
+            }
+        }
         switch (playerState)
         {
             case PlayerStates.drawing:
                 if (Input.GetMouseButtonDown(1))
                 {
-                    playerState = PlayerStates.retracting;
-                    lerpToPoint = 0;
-                    startPos = linePoints[linePoints.Count - 1];
+                    Retract();
 
-                    if (linePoints.Count > 1)
-                    {
-                        endPos = linePoints[linePoints.Count - 2];
-                    }
-                    else
-                    {
-                        endPos = Vector3.zero;
-                    }
                     return;
                 }
 
@@ -102,31 +108,31 @@ public class StemController : MonoBehaviour
                 if (mouseDir != Vector3.zero && currentStemLength < stemLimit)
                 {
                     Vector3 secondFromEndPoint = linePoints[linePoints.Count - 2];
-                    RaycastHit2D leftRaycast = Physics2D.Raycast((Vector2)linePoints[linePoints.Count - 1] + (Vector2)mouseDir*.01f + Vector2.Perpendicular(mouseDir).normalized*lineWidth, mouseDir, .1f, collisionMask);
-                    RaycastHit2D rightRaycast = Physics2D.Raycast((Vector2)linePoints[linePoints.Count - 1] + (Vector2)mouseDir*.01f - Vector2.Perpendicular(mouseDir).normalized*lineWidth, mouseDir, .1f, collisionMask);
-                    RaycastHit2D midRaycast = Physics2D.Raycast(linePoints[linePoints.Count - 1] + mouseDir*.01f, mouseDir, .1f, collisionMask);
+                    RaycastHit2D leftRaycast = Physics2D.Raycast(transform.TransformPoint((Vector2)linePoints[linePoints.Count - 1] + (Vector2)mouseDir * .01f + Vector2.Perpendicular(mouseDir).normalized * lineWidth), mouseDir, .1f, collisionMask);
+                    RaycastHit2D rightRaycast = Physics2D.Raycast(transform.TransformPoint((Vector2)linePoints[linePoints.Count - 1] + (Vector2)mouseDir * .01f - Vector2.Perpendicular(mouseDir).normalized * lineWidth), mouseDir, .1f, collisionMask);
+                    RaycastHit2D midRaycast = Physics2D.Raycast(transform.TransformPoint(linePoints[linePoints.Count - 1] + mouseDir * .01f), mouseDir, .1f, collisionMask);
                     if (!leftRaycast && !rightRaycast && !midRaycast)
                     {
-                        flower.transform.position = linePoints[linePoints.Count - 1] + mouseDir;
+                        flower.transform.position = transform.TransformPoint(linePoints[linePoints.Count - 1] + mouseDir);
 
                         linePoints[linePoints.Count - 1] = linePoints[linePoints.Count - 1] + mouseDir;
 
                         if (Vector3.Distance(linePoints[linePoints.Count - 1], secondFromEndPoint) > minDistanceForNextPoint)
                         {
-                            currentStemLength += Vector3.Distance(linePoints[linePoints.Count-1],linePoints[linePoints.Count-2]);
+                            currentStemLength += Vector3.Distance(linePoints[linePoints.Count - 1], linePoints[linePoints.Count - 2]);
                             linePoints.Add(linePoints[linePoints.Count - 1]);
-                            
+
 
                         }
                         lineRenderer.positionCount = linePoints.Count;
                         lineRenderer.SetPositions(linePoints.ToArray());
                         Vector2[] edgePoints = new Vector2[linePoints.Count];
-                        
+
                         for (int i = 0; i < linePoints.Count; i++)
                         {
-                            
-                            edgePoints[i].x = linePoints[i].x - lineRenderer.transform.position.x;
-                            edgePoints[i].y = linePoints[i].y - lineRenderer.transform.position.y;
+
+                            edgePoints[i].x = linePoints[i].x;
+                            edgePoints[i].y = linePoints[i].y;
 
 
                         }
@@ -149,12 +155,16 @@ public class StemController : MonoBehaviour
 
                 if (flower.transform.position != flowerHolder.position)
                 {
+                    
                     lerpToPoint += Time.deltaTime * retractSpeed;
-                    flower.transform.position = Vector3.Lerp(startPos, endPos, lerpToPoint);
-                    linePoints[linePoints.Count - 1] = flower.transform.position;
-                    lineRenderer.SetPosition(lineRenderer.positionCount - 1, flower.transform.position);
-                    if (flower.transform.position == endPos)
+                    flower.transform.position = transform.TransformPoint(Vector3.Lerp(startPos, endPos, lerpToPoint));
+                    linePoints[linePoints.Count - 1] = transform.InverseTransformPoint(flower.transform.position);
+                    lineRenderer.SetPosition(lineRenderer.positionCount - 1, transform.InverseTransformPoint(flower.transform.position));
+                    Debug.Log(transform.InverseTransformPoint(flower.transform.position));
+                    Debug.Log(endPos);
+                    if (Vector3.Distance(transform.InverseTransformPoint(flower.transform.position), endPos) < .1f)
                     {
+                         
                         lerpToPoint = 0;
 
 
@@ -165,32 +175,40 @@ public class StemController : MonoBehaviour
                             lineRenderer.positionCount--;
                             startPos = linePoints[linePoints.Count - 1];
                             endPos = linePoints[linePoints.Count - 2];
-                             Vector2[] edgePoints = new Vector2[linePoints.Count];
-                        for (int i = 0; i < linePoints.Count; i++)
-                        {
+                            Vector2[] edgePoints = new Vector2[linePoints.Count];
+                            for (int i = 0; i < linePoints.Count; i++)
+                            {
 
-                            edgePoints[i].x = linePoints[i].x - lineRenderer.transform.position.x;
-                            edgePoints[i].y = linePoints[i].y - lineRenderer.transform.position.y;
+                                edgePoints[i].x = linePoints[i].x;
+                                edgePoints[i].y = linePoints[i].y;
 
 
-                        }
-                        edgeCollider2D.points = edgePoints;
+                            }
+                            edgeCollider2D.points = edgePoints;
                         }
                         else
                         {
+                            
                             flower.transform.position = flowerHolder.position;
                             
                             //endPos = flowerHolder.position;
                         }
+                        
                     }
                 }
                 else
                 {
+                    
                     if (grabbedWord != null)
                     {
-                        grabbedWord.SpawnItem();
+                        
+                        grabbedItem = grabbedWord.SpawnItem();
+                        grabbedItem.SetActive(true);
+                        
+                        grabbedWord.Reset();
                         grabbedWord = null;
                     }
+                    playerController.Uproot();
                     currentStemLength = 0;
                     playerState = PlayerStates.nothing;
                 }
@@ -198,19 +216,58 @@ public class StemController : MonoBehaviour
 
             case PlayerStates.nothing:
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && playerController.grounded)
                 {
                     Debug.Log("go");
                     Vector3 mousePosInit = mainCam.ScreenToWorldPoint(Input.mousePosition);
                     mousePosInit.z = 0;
                     previousMousePos = mousePosInit;
                     playerState = PlayerStates.drawing;
-                    linePoints[0] = transform.position;
-                    linePoints[1] = flowerHolder.position;
+                    linePoints[0] = Vector3.zero; ;
+                    linePoints[1] = transform.InverseTransformPoint(flowerHolder.position);
 
                     lineRenderer.SetPositions(linePoints.ToArray());
+
+                    playerController.Plant();
+                    // playerScale = playerController.transform.localScale;
                 }
                 break;
         }
+    }
+
+    public void Retract()
+    {
+        playerState = PlayerStates.retracting;
+        lerpToPoint = 0;
+        startPos = linePoints[linePoints.Count - 1];
+
+        if (linePoints.Count > 1)
+        {
+            endPos = linePoints[linePoints.Count - 2];
+        }
+        else
+        {
+            endPos = Vector3.zero;
+        }
+    }
+
+    public void Reset(){
+        playerState = PlayerStates.nothing;
+        if(grabbedItem != null){
+            Destroy(grabbedItem);
+            grabbedItem = null;
+        }
+        if(grabbedWord != null){
+            grabbedWord.Reset();
+        }
+        linePoints.Clear();
+        linePoints.Add(Vector3.zero);
+        linePoints.Add(transform.InverseTransformPoint(flowerHolder.transform.position));
+        lineRenderer.positionCount = 2;
+       lineRenderer.SetPosition(0, Vector3.zero);
+ 
+        lineRenderer.SetPosition(1, transform.InverseTransformPoint(flowerHolder.transform.position));
+        flower.transform.position = flowerHolder.transform.position;
+
     }
 }
