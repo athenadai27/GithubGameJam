@@ -23,24 +23,38 @@ public class BombScript : MonoBehaviour
         if (!exploding)
         {
             Collider2D bombHit = Physics2D.OverlapBox(bombCollider.bounds.center, bombCollider.bounds.size, 0, bombMask);
-            if (bombHit || Time.time > lifeTime)
+            if (exploding)
             {
-                myAnim.SetTrigger("Explode");
-                exploding = true;
                 Collider2D explosionHit = Physics2D.OverlapCircle(explosionCollider.bounds.center, explosionCollider.radius, explosionMask);
-                if(explosionHit){
-                    if(explosionHit.gameObject.CompareTag("Player")){
+                if (explosionHit)
+                {
+                    if (explosionHit.gameObject.CompareTag("Player"))
+                    {
 
-                    } else if(explosionHit.gameObject.GetComponentInParent<EnemyHealth>()){
+                    }
+                    else if (explosionHit.gameObject.GetComponentInParent<EnemyHealth>())
+                    {
                         explosionHit.gameObject.GetComponentInParent<EnemyHealth>().Damage(3f);
-                        if(explosionHit.gameObject.GetComponentInParent<FrogKingScript>()){
-                            if(explosionHit.gameObject.GetComponentInParent<FrogKingScript>().bossState == FrogKingScript.BossStates.leapDown){
+                        if (explosionHit.gameObject.GetComponentInParent<FrogKingScript>())
+                        {
+                            if (explosionHit.gameObject.GetComponentInParent<FrogKingScript>().bossState == FrogKingScript.BossStates.leapDown)
+                            {
                                 explosionHit.gameObject.GetComponentInParent<FrogKingScript>().ItemHit();
                             }
                         }
                     }
                 }
             }
+            else
+            {
+                if (bombHit || Time.time > lifeTime)
+                {
+                    myAnim.SetTrigger("Explode");
+                    exploding = true;
+
+                }
+            }
+
         }
 
 

@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //  Application.targetFrameRate = 30;
+        Cursor.lockState =  CursorLockMode.Confined;
         myAnim = GetComponent<Animator>();
         if (PlayerPrefs.GetInt("HealthStars") == 0)
         {

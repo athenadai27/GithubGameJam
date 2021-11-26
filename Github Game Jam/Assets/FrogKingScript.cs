@@ -817,6 +817,8 @@ public class FrogKingScript : MonoBehaviour
     {
         leftFissure.transform.position = leftFissureTransform.position;
         rightFissure.transform.position = rightFissureTransform.position;
+        leftFissure.transform.localScale = leftFissureTransform.localScale;
+        rightFissure.transform.localScale = rightFissureTransform.localScale;
         leftFissure.SetActive(true);
         rightFissure.SetActive(true);
     }

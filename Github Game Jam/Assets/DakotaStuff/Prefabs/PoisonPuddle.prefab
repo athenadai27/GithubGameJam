@@ -144,3 +144,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shrinkSpeed: 0.15
   startShrinkSpeed: 0
+  boxCollider: {fileID: 5891554975249950570}
