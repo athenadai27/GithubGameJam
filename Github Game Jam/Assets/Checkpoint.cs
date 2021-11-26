@@ -39,10 +39,13 @@ public class Checkpoint : MonoBehaviour
         frogMinibossTransform.position = frogMinibossPosition;
         frogMinibossTransform.localScale = Vector3.one;
         // lerp = 0f;
-        Debug.Log("Here");
         ItemScript[] items = FindObjectsOfType<ItemScript>();
         for(int i = 0; i < items.Length;i++){
             items[i].Break();
+        }
+        PuddleScript[] puddles = FindObjectsOfType<PuddleScript>();
+        for(int i = 0; i < puddles.Length;i++){
+            Destroy(puddles[i].gameObject);
         }
         //StartCoroutine(ResetRoutine());
     }

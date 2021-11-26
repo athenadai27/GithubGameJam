@@ -115,13 +115,12 @@ public class FrogKingScript : MonoBehaviour
                     if (fallCast.collider.CompareTag("Player") && !resetting)
                     {
                         resetting = true;
-                        checkpoint.Reset();
+                        //checkpoint.Reset();
 
                     }
                     else if (fallCast.collider.CompareTag("Ground"))
                     {
                         myAnim.SetBool("Jumping", false);
-                        Debug.Log("shake");
                         if (!camFollow.cameraShaking && !cameraShaking)
                         {
                             StartCoroutine(camFollow.CameraShake(.5f, .1f));
@@ -178,11 +177,16 @@ public class FrogKingScript : MonoBehaviour
                             sonicWavesHolder.transform.GetChild(i).transform.position.y > areaBounds.bounds.min.y)
                             {
                                 allOffScreen = false;
+                            } else{
+                                
+                                sonicWavesHolder.transform.GetChild(i).gameObject.SetActive(false);
+                                sonicWavesHolder.transform.GetChild(i).transform.position = croakTransform.position;
                             }
                         }
                     }
                     if (allOffScreen)
                     {
+                        Debug.Log("all off screen");
                         doneCroaking = false;
                         bossState = currentPhase;
                     }
@@ -322,23 +326,30 @@ public class FrogKingScript : MonoBehaviour
                     delayTime = Time.time + 3f;
                     return;
                 }
-                float useTongue = Random.Range(0f, 1f);
-                if (chances[0] >= 2)
+                List<int> randomChances = new List<int>();
+                if (chances[0] < 1)
                 {
-                    useTongue = .51f;
+                    randomChances.Add(0);
                 }
-                else if (chances[1] >= 2)
+                if (chances[1] < 1)
                 {
-                    useTongue = .5f;
+                    randomChances.Add(1);
                 }
-                int chosenIndex = 0;
-                if (useTongue <= .5f)
+                if (chances[2] < 1)
                 {
+                    randomChances.Add(2);
+                }
+                if (chances[3] < 1)
+                {
+                    randomChances.Add(3);
+                }
+                int randomIndex = Random.Range(0, randomChances.Count);
 
-                    delayTime = Time.time + 3f;
-                    bossState = BossStates.prepareToTongue;
-
+                if (randomChances[randomIndex] == 0)
+                {
                     chances[0]++;
+                    bossState = BossStates.prepareToTongue;
+                    delayTime = Time.time + 3f;
                     if (previousSimilarTextChosen == 0)
                     {
                         ActivateTextController(tongueTexts[1]);
@@ -349,17 +360,12 @@ public class FrogKingScript : MonoBehaviour
                         ActivateTextController(tongueTexts[0]);
                         previousSimilarTextChosen = 0;
                     }
-
-
                 }
-                else
+                else if (randomChances[randomIndex] == 1)
                 {
-                    chosenIndex = 1;
                     chances[1]++;
-                    bossState = BossStates.prepareToJump;
                     delayTime = Time.time + 3f;
-                    float randomChance = Random.Range(0f, 1f);
-
+                    bossState = BossStates.prepareToJump;
                     if (previousSimilarTextChosen == 0)
                     {
                         ActivateTextController(jumpTexts[1]);
@@ -371,13 +377,55 @@ public class FrogKingScript : MonoBehaviour
                         previousSimilarTextChosen = 0;
                     }
                 }
+                else if (randomChances[randomIndex] == 2)
+                {
+                    chances[2]++;
+                    delayTime = Time.time + 3f;
+                    bossState = BossStates.prepareForCroaking;
+                    if (previousSimilarTextChosen == 0)
+                    {
+                        ActivateTextController(sonicTexts[1]);
+                        previousSimilarTextChosen = 1;
+                    }
+                    else
+                    {
+                        ActivateTextController(sonicTexts[0]);
+                        previousSimilarTextChosen = 0;
+                    }
+                }
+                else if (randomChances[randomIndex] == 3)
+                {
+                    chances[3]++;
+                    float thisOrThat1 = Random.Range(0f, 1f);
+                    bossState = BossStates.prepareForSliming;
+                    delayTime = Time.time + 3f;
+                    if (previousSimilarTextChosen == 0)
+                    {
+                        ActivateTextController(diceTexts[1]);
+                        previousSimilarTextChosen = 1;
+                    }
+                    else
+                    {
+                        ActivateTextController(diceTexts[0]);
+                        previousSimilarTextChosen = 0;
+                    }
+                }
+                bool everyOptionChosen = true;
                 for (int i = 0; i < chances.Count; i++)
                 {
-                    if (i != chosenIndex)
+                    if (chances[i] == 0)
+                    {
+                        everyOptionChosen = false;
+                    }
+                }
+                if (everyOptionChosen)
+                {
+                    for (int i = 0; i < chances.Count; i++)
                     {
                         chances[i] = 0;
                     }
                 }
+
                 break;
             case BossStates.changingPhases:
                 if (Time.time > delayTime && waiting)
@@ -425,31 +473,29 @@ public class FrogKingScript : MonoBehaviour
                     delayTime = Time.time + 6f;
                     return;
                 }
-                float randomAbilityChance = Random.Range(0f, 1f);
-                List<int> randomChances = new List<int>();
+                List<int> randomPhase2Chances = new List<int>();
                 if (chances[0] < 1)
                 {
-                    randomChances.Add(0);
+                    randomPhase2Chances.Add(0);
                 }
                 if (chances[1] < 1)
                 {
-                    randomChances.Add(1);
+                    randomPhase2Chances.Add(1);
                 }
                 if (chances[2] < 1)
                 {
-                    randomChances.Add(2);
+                    randomPhase2Chances.Add(2);
                 }
                 if (chances[3] < 1)
                 {
-                    randomChances.Add(3);
+                    randomPhase2Chances.Add(3);
                 }
-                int randomIndex = Random.Range(0, randomChances.Count);
+                int randomPhase2Index = Random.Range(0, randomPhase2Chances.Count);
 
-                int chosenPhase2Index = 0;
 
                 // //change this after testing
-                //  randomChances[randomIndex] = 3;
-                if (randomChances[randomIndex] == 0)
+                //  randomPhase2Chances[randomPhase2Index] = 3;
+                if (randomPhase2Chances[randomPhase2Index] == 0)
                 {
                     chances[0]++;
 
@@ -457,72 +503,69 @@ public class FrogKingScript : MonoBehaviour
                     float thisOrThat1 = Random.Range(0f, 1f);
                     if (thisOrThat1 >= 50)
                     {
-                       bossState = BossStates.prepareToTongue;
+                        bossState = BossStates.prepareToTongue;
                     }
                     else
                     {
-                      bossState = BossStates.prepareForCroaking;
+                        bossState = BossStates.prepareForCroaking;
                     }
-                   // bossState = BossStates.prepareForTongueOrCroak;
+                    // bossState = BossStates.prepareForTongueOrCroak;
                     ActivateTextController(tongueOrCroakText);
                 }
-                else if (randomChances[randomIndex] == 1)
+                else if (randomPhase2Chances[randomPhase2Index] == 1)
                 {
                     chances[1]++;
-                    chosenPhase2Index = 1;
                     delayTime = Time.time + 3f;
 
                     float thisOrThat1 = Random.Range(0f, 1f);
                     if (thisOrThat1 >= 50)
                     {
-                       bossState = BossStates.prepareToTongue;
+                        bossState = BossStates.prepareToTongue;
                     }
                     else
                     {
-                      bossState = BossStates.prepareForSliming;
+                        bossState = BossStates.prepareForSliming;
                     }
                     ActivateTextController(tongueOrShakeText);
                 }
-                else if (randomChances[randomIndex] == 2)
+                else if (randomPhase2Chances[randomPhase2Index] == 2)
                 {
                     chances[2]++;
-                    chosenPhase2Index = 2;
                     delayTime = Time.time + 3f;
                     float thisOrThat1 = Random.Range(0f, 1f);
                     if (thisOrThat1 >= 50)
                     {
-                       bossState = BossStates.prepareForCroaking;
+                        bossState = BossStates.prepareForCroaking;
                     }
                     else
                     {
-                      bossState = BossStates.prepareToJump;
+                        bossState = BossStates.prepareToJump;
                     }
                     ActivateTextController(croakOrJumpText);
                 }
-                else if (randomChances[randomIndex] == 3)
+                else if (randomPhase2Chances[randomPhase2Index] == 3)
                 {
                     chances[3]++;
-                    chosenPhase2Index = 3;
                     float thisOrThat1 = Random.Range(0f, 1f);
                     if (thisOrThat1 >= 50)
                     {
-                       bossState = BossStates.prepareToJump;
+                        bossState = BossStates.prepareToJump;
                     }
                     else
                     {
-                      bossState = BossStates.prepareForSliming;
+                        bossState = BossStates.prepareForSliming;
                     }
                     ActivateTextController(jumpOrShakeText);
                 }
-                bool everyOptionChosen = true;
+                bool phase2EveryOptionChosen = true;
                 for (int i = 0; i < chances.Count; i++)
                 {
                     if (chances[i] == 0)
                     {
-                        everyOptionChosen = false;
+                        phase2EveryOptionChosen = false;
                     }
                 }
-                if (everyOptionChosen)
+                if (phase2EveryOptionChosen)
                 {
                     for (int i = 0; i < chances.Count; i++)
                     {
@@ -553,8 +596,15 @@ public class FrogKingScript : MonoBehaviour
 
     public void Fall()
     {
-
+        
         transform.position = new Vector3(playerTransform.position.x, transform.position.y, 0);
+        float minX = areaBounds.bounds.min.x + boxCollider.bounds.extents.x + boxCollider.offset.x;
+        float maxX = areaBounds.bounds.max.x - boxCollider.bounds.extents.x + boxCollider.offset.x;
+        if(transform.position.x < minX){
+            transform.position = new Vector3(minX,transform.position.y,0);
+        } else if(transform.position.x > maxX){
+            transform.position = new Vector3(maxX,transform.position.y,0);
+        }
         fallCircle.transform.position = new Vector3(transform.position.x, -3.21f, 0f);
 
         fallCircle.gameObject.SetActive(true);
@@ -594,6 +644,7 @@ public class FrogKingScript : MonoBehaviour
         float angleChange = Random.Range(-45f, 45f);
         Vector3 vectorDif = playerTransform.position - (croakTransform.position);
         float radialDifference = 360 / numWavesPerCroak;
+        
         for (int i = 0; i < numWavesPerCroak; i++)
         {
             Vector3 newVector = Quaternion.Euler(0, 0, radialDifference * i + angleChange) * vectorDif;
@@ -609,7 +660,6 @@ public class FrogKingScript : MonoBehaviour
         if (croakTracker >= numCroaks)
         {
             myAnim.SetBool("Croaking", false);
-            bossState = currentPhase;
             //bossState = BossStates.phase2;
             doneCroaking = true;
 
@@ -691,10 +741,12 @@ public class FrogKingScript : MonoBehaviour
 
     public void ActivateTextController(GameObject sentTextController)
     {
+        Debug.Log(sentTextController.name);
         if (activeTextController != null)
         {
             if (activeTextController != sentTextController)
             {
+                textControllerScript.FadeText();
                 activeTextController.SetActive(false);
             }
         }
@@ -736,6 +788,7 @@ public class FrogKingScript : MonoBehaviour
         }
         if (textControllerScript != null)
         {
+            Debug.Log("fade text");
             textControllerScript.FadeText();
             textControllerScript = null;
         }
@@ -747,13 +800,17 @@ public class FrogKingScript : MonoBehaviour
         {
             sonicWavesHolder.transform.GetChild(i).gameObject.SetActive(false);
         }
-
+        Debug.Log("reset");
         cameraShaking = false;
         currentPhase = BossStates.phase1;
         bossState = BossStates.phase1;
         myAnim.Rebind();
+        tongueScript.Reset();
         tongueScript.tongue.gameObject.SetActive(false);
+        leftFissure.SetActive(false);
+        rightFissure.SetActive(false);
         resetting = false;
+        enemyHealth.currentHealth = enemyHealth.maxHealth;
     }
 
     public void SpawnFissures()

@@ -524,7 +524,7 @@ public class PlayerController : MonoBehaviour
                     Kill();
                 } else if(colliders[i].gameObject.CompareTag("Enemy")){
                     Kill();
-                }
+                } 
             }
 
 
@@ -598,11 +598,16 @@ public class PlayerController : MonoBehaviour
     public void Plant(){
         playerState = PlayerStates.planted;
         myAnim.SetBool("Crouching",true);
+        flowerHolderTransform.localPosition = new Vector3(.02f,2.15f,0f);
+        lineRenderer.transform.localPosition = new Vector3(.02f,1.5f,0f);
+
     }
 
     public void Uproot(){
         playerState = PlayerStates.normal;
         myAnim.SetBool("Crouching",false);
+        flowerHolderTransform.localPosition = new Vector3(.02f,2.48f,0f);
+        lineRenderer.transform.localPosition = new Vector3(.02f,1.83f,0f);
     }
 
     public void Reset(){

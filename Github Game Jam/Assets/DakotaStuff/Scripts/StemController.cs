@@ -227,7 +227,7 @@ public class StemController : MonoBehaviour
                     linePoints[1] = transform.InverseTransformPoint(flowerHolder.position);
 
                     lineRenderer.SetPositions(linePoints.ToArray());
-
+                    
                     playerController.Plant();
                     // playerScale = playerController.transform.localScale;
                 }

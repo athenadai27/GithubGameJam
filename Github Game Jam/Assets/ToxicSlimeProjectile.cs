@@ -16,6 +16,7 @@ public class ToxicSlimeProjectile : MonoBehaviour
     public GameObject poof;
     public bool isToxic;
     public GameObject toxicPuddle;
+    public float lerpSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,7 @@ public class ToxicSlimeProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lerp += Time.deltaTime / 2f;
+        lerp += Time.deltaTime *lerpSpeed;
         Vector3 m1 = Vector3.Lerp(startPos, midPoint, lerp);
         Vector3 m2 = Vector3.Lerp(midPoint, endPos, lerp);
         Vector3 nextPosition = Vector3.Lerp(m1, m2, lerp);
@@ -51,9 +52,16 @@ public class ToxicSlimeProjectile : MonoBehaviour
                     else if (hitRay.collider.CompareTag("HeldItem") && !hitRay.collider.gameObject.name.Contains("Sword"))
                     {
                         hitRay.collider.gameObject.GetComponent<ItemScript>().Break();
-                        
+                        float additionalX = 0f;
+                        if(transform.position.x > hitRay.transform.position.x){
+                            additionalX = 1f;
+                        } else{
+                            additionalX = -1f;
+                        }
+                        additionalX *= Random.Range(.25f,.75f)*(Vector3.Distance(startPos,endPos));
                         startPos = transform.position;
-                        endPos = new Vector3(startPos.x + Random.Range(-5f, 5f), -2.75f, 0f);
+                        
+                        endPos = new Vector3(startPos.x + additionalX, -2.75f, 0f);
                         float oozeLerpHeight = Random.Range(3f, 5f);
                         midPoint = startPos + (endPos - startPos) / 2 + Vector3.up * oozeLerpHeight;
                         lerp = 0f;

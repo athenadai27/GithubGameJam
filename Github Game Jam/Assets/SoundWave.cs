@@ -9,10 +9,10 @@ public class SoundWave : MonoBehaviour
     public LayerMask hitMask;
     public LayerMask enemyMask;
     public bool goingToEnemy;
+ 
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
