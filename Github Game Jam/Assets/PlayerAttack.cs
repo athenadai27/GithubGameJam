@@ -49,6 +49,12 @@ public class PlayerAttack : MonoBehaviour
                             enemyHitCheck.GetComponent<FrogMiniboss>().ItemHit();
                             weaponModifier = 2f;
                         }
+                    }else if(enemyHitCheck.GetComponent<FrogKingScript>()){
+                        if (enemyHitCheck.GetComponent<FrogKingScript>().bossState == FrogKingScript.BossStates.leapDown)
+                        {
+                            enemyHitCheck.GetComponent<FrogKingScript>().ItemHit();
+                            weaponModifier = 2f;
+                        }
                     } else if(enemyHitCheck.GetComponent<ToxicSlimeProjectile>()){
                         enemyHitCheck.GetComponent<ToxicSlimeProjectile>().WhackIntoEnemy();
                     }else if(enemyHitCheck.GetComponent<SoundWave>()){

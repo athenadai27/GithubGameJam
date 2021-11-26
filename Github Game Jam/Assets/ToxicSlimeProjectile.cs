@@ -82,7 +82,8 @@ public class ToxicSlimeProjectile : MonoBehaviour
         {
             Instantiate(poof,transform.position,poof.transform.rotation);
             if(isToxic){
-                Instantiate(toxicPuddle,transform.position + Vector3.down*.5f,toxicPuddle.transform.rotation);
+               Instantiate(toxicPuddle,transform.position + Vector3.down*.5f,toxicPuddle.transform.rotation);
+
             } 
             
             gameObject.SetActive(false);

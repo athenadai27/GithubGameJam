@@ -597,10 +597,12 @@ public class PlayerController : MonoBehaviour
 
     public void Plant(){
         playerState = PlayerStates.planted;
+        myAnim.SetBool("Crouching",true);
     }
 
     public void Uproot(){
         playerState = PlayerStates.normal;
+        myAnim.SetBool("Crouching",false);
     }
 
     public void Reset(){

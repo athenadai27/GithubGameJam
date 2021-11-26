@@ -23,6 +23,7 @@ public class MatchScript : MonoBehaviour
             if(matchTouch.gameObject.CompareTag("Toxic")){
                 fireTransform.SetParent(matchTouch.transform);
                 fireTransform.position = matchTouch.transform.position;
+                matchTouch.GetComponent<PuddleScript>().shrinkSpeed *= 2;
                 itemScript.Break();
                 return;
             }
@@ -32,6 +33,7 @@ public class MatchScript : MonoBehaviour
             if(fireTouch.gameObject.CompareTag("Toxic")){
                 fireTransform.SetParent(fireTouch.transform);
                 fireTransform.position = fireTouch.transform.position;
+                fireTouch.GetComponent<PuddleScript>().shrinkSpeed *= 2;
                  itemScript.Break();
             }
         }

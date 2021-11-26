@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FrogKingScript : MonoBehaviour
 {
-    public enum BossStates { leapUp, leapDown, croaking, sliming, tongueing, prepareToTongue, ouchie, stunned, prepareToJump, prepareToFall, prepareForSliming, prepareForCroaking, prepareForJumpOrShake, prepareForTongueOrCroak, prepareForCroakOrJump, prepareForTongueOrShake, phase1, phase2, changingPhases, doneFighting, goodbye }
+    public enum BossStates { leapUp, leapDown, croaking, sliming, tongueing, prepareToTongue, ouchie, stunned, prepareToJump, prepareToFall, prepareForSliming, prepareForCroaking, phase1, phase2, changingPhases, doneFighting, goodbye }
     public BossStates bossState;
     public BossStates currentPhase;
     public Vector3 lerpStartPos;
@@ -67,6 +67,11 @@ public class FrogKingScript : MonoBehaviour
     public int numWavesPerCroak;
     public int numCroaks;
     public int numShakes;
+
+    public Transform leftFissureTransform;
+    public Transform rightFissureTransform;
+    public GameObject leftFissure;
+    public GameObject rightFissure;
     // Start is called before the first frame update
     void Start()
     {
@@ -144,8 +149,10 @@ public class FrogKingScript : MonoBehaviour
                 Vector3 m1 = Vector3.Lerp(lerpStartPos, ouchieMidpoint, leapLerp);
                 Vector3 m2 = Vector3.Lerp(ouchieMidpoint, lerpEndPos, leapLerp);
                 transform.position = Vector3.Lerp(m1, m2, leapLerp);
+
                 if (transform.position == lerpEndPos)
                 {
+                    Debug.Log("stop jumping");
                     fallCircle.gameObject.SetActive(false);
                     myAnim.SetBool("Jumping", false);
                     if (!camFollow.cameraShaking && !cameraShaking)
@@ -177,7 +184,7 @@ public class FrogKingScript : MonoBehaviour
                     if (allOffScreen)
                     {
                         doneCroaking = false;
-                        bossState = BossStates.phase2;
+                        bossState = currentPhase;
                     }
                 }
                 break;
@@ -310,7 +317,7 @@ public class FrogKingScript : MonoBehaviour
                 if (enemyHealth.currentHealth <= 10)
                 {
                     bossState = BossStates.changingPhases;
-                    currentPhase = BossStates.changingPhases;
+                    currentPhase = BossStates.phase2;
                     ActivateTextController(phaseChangeText);
                     delayTime = Time.time + 3f;
                     return;
@@ -445,35 +452,66 @@ public class FrogKingScript : MonoBehaviour
                 if (randomChances[randomIndex] == 0)
                 {
                     chances[0]++;
+
                     delayTime = Time.time + 3f;
-                    bossState = BossStates.prepareForTongueOrCroak;
+                    float thisOrThat1 = Random.Range(0f, 1f);
+                    if (thisOrThat1 >= 50)
+                    {
+                       bossState = BossStates.prepareToTongue;
+                    }
+                    else
+                    {
+                      bossState = BossStates.prepareForCroaking;
+                    }
+                   // bossState = BossStates.prepareForTongueOrCroak;
                     ActivateTextController(tongueOrCroakText);
                 }
                 else if (randomChances[randomIndex] == 1)
                 {
                     chances[1]++;
                     chosenPhase2Index = 1;
-                    bossState = BossStates.prepareToJump;
                     delayTime = Time.time + 3f;
-                     bossState = BossStates.prepareForTongueOrShake;
+
+                    float thisOrThat1 = Random.Range(0f, 1f);
+                    if (thisOrThat1 >= 50)
+                    {
+                       bossState = BossStates.prepareToTongue;
+                    }
+                    else
+                    {
+                      bossState = BossStates.prepareForSliming;
+                    }
                     ActivateTextController(tongueOrShakeText);
                 }
                 else if (randomChances[randomIndex] == 2)
                 {
                     chances[2]++;
                     chosenPhase2Index = 2;
-                    bossState = BossStates.prepareForSliming;
                     delayTime = Time.time + 3f;
-                     bossState = BossStates.prepareForCroakOrJump;
+                    float thisOrThat1 = Random.Range(0f, 1f);
+                    if (thisOrThat1 >= 50)
+                    {
+                       bossState = BossStates.prepareForCroaking;
+                    }
+                    else
+                    {
+                      bossState = BossStates.prepareToJump;
+                    }
                     ActivateTextController(croakOrJumpText);
                 }
                 else if (randomChances[randomIndex] == 3)
                 {
                     chances[3]++;
                     chosenPhase2Index = 3;
-                    bossState = BossStates.prepareForCroaking;
-                    delayTime = Time.time + 3f;
-                   bossState = BossStates.prepareForJumpOrShake;
+                    float thisOrThat1 = Random.Range(0f, 1f);
+                    if (thisOrThat1 >= 50)
+                    {
+                       bossState = BossStates.prepareToJump;
+                    }
+                    else
+                    {
+                      bossState = BossStates.prepareForSliming;
+                    }
                     ActivateTextController(jumpOrShakeText);
                 }
                 bool everyOptionChosen = true;
@@ -493,174 +531,24 @@ public class FrogKingScript : MonoBehaviour
                 }
                 break;
 
-            case BossStates.prepareForCroakOrJump:
-                if (Time.time > delayTime && waiting)
-                {
-                    textControllerScript.FadeText();
-                    waiting = false;
-
-                    float thisOrThat1 = Random.Range(0f, 1f);
-                    if (thisOrThat1 >= 50)
-                    {
-                        textControllerScript.FadeText();
-                        bossState = BossStates.croaking;
-                        croakTracker = 0;
-                        myAnim.SetBool("Croaking", true);
-                        waiting = false;
-                    }
-                    else
-                    {
-                        textControllerScript.FadeText();
-                        myAnim.SetBool("Jumping", true);
-                        waiting = false;
-                    }
-                }
-                else
-                {
-                    if (textControllerScript.CheckIfArrived() && !waiting)
-                    {
-                        waiting = true;
-                        delayTime = Time.time + 1f;
-                    }
-
-                }
-
-                break;
-            case BossStates.prepareForJumpOrShake:
-                if (Time.time > delayTime && waiting)
-                {
-                    textControllerScript.FadeText();
-                    waiting = false;
-
-                    float thisOrThat1 = Random.Range(0f, 1f);
-                    if (thisOrThat1 >= 50)
-                    {
-                        textControllerScript.FadeText();
-                        myAnim.SetBool("Shaking", true);
-                        bossState = BossStates.sliming;
-                        slimeTracker = 0;
-                        waiting = false;
-                    }
-                    else
-                    {
-                        textControllerScript.FadeText();
-                        myAnim.SetBool("Jumping", true);
-                        waiting = false;
-                    }
-                }
-                else
-                {
-                    if (textControllerScript.CheckIfArrived() && !waiting)
-                    {
-                        waiting = true;
-                        delayTime = Time.time + 1f;
-                    }
-
-                }
-                break;
-            case BossStates.prepareForTongueOrCroak:
-                if (Time.time > delayTime && waiting)
-                {
-                    textControllerScript.FadeText();
-                    waiting = false;
-
-                    float thisOrThat1 = Random.Range(0f, 1f);
-                    if (thisOrThat1 >= 50)
-                    {
-                        textControllerScript.FadeText();
-                        bossState = BossStates.croaking;
-                        croakTracker = 0;
-                        myAnim.SetBool("Croaking", true);
-                        waiting = false;
-                    }
-                    else
-                    {
-                        textControllerScript.FadeText();
-                        bossState = BossStates.tongueing;
-                        myAnim.SetBool("Tonguing", true);
-                        waiting = false;
-                    }
-                }
-                else
-                {
-                    if (playerTransform.position.x > transform.position.x)
-                    {
-                        transform.localScale = new Vector3(-1, 1, 1);
-                    }
-                    else if (playerTransform.position.x < transform.position.x)
-                    {
-                        transform.localScale = Vector3.one;
-
-                    }
-                    tongueScript.tongue.transform.localScale = transform.localScale;
-                    canvas.transform.localScale = transform.localScale;
-                    if (textControllerScript.CheckIfArrived() && !waiting)
-                    {
-                        waiting = true;
-                        delayTime = Time.time + 1f;
-
-                    }
-
-                }
-                break;
-            case BossStates.prepareForTongueOrShake:
-                if (Time.time > delayTime && waiting)
-                {
-                    textControllerScript.FadeText();
-                    waiting = false;
-
-                    float thisOrThat1 = Random.Range(0f, 1f);
-                    if (thisOrThat1 >= 50)
-                    {
-                        textControllerScript.FadeText();
-                        bossState = BossStates.tongueing;
-                        myAnim.SetBool("Tonguing", true);
-                        waiting = false;
-                    }
-                    else
-                    {
-                        textControllerScript.FadeText();
-                        myAnim.SetBool("Shaking", true);
-                        bossState = BossStates.sliming;
-                        slimeTracker = 0;
-                        waiting = false;
-                    }
-                }
-                else
-                {
-                    if (playerTransform.position.x > transform.position.x)
-                    {
-                        transform.localScale = new Vector3(-1, 1, 1);
-                    }
-                    else if (playerTransform.position.x < transform.position.x)
-                    {
-                        transform.localScale = Vector3.one;
-
-                    }
-                    tongueScript.tongue.transform.localScale = transform.localScale;
-                    canvas.transform.localScale = transform.localScale;
-                    if (textControllerScript.CheckIfArrived() && !waiting)
-                    {
-                        waiting = true;
-                        delayTime = Time.time + 1f;
-                    }
-
-                }
-                break;
         }
     }
 
     public void Leap()
     {
-        fallCircle.transform.position = new Vector3(transform.position.x, -3.21f, 0f);
+        if (bossState != BossStates.ouchie)
+        {
+            fallCircle.transform.position = new Vector3(transform.position.x, -3.21f, 0f);
 
-        fallCircle.gameObject.SetActive(true);
-        fallCircle.grow = false;
+            fallCircle.gameObject.SetActive(true);
+            fallCircle.grow = false;
 
-        leapLerp = 0;
-        lerpStartPos = transform.position;
-        lerpEndPos = transform.position + Vector3.up * 20f;
-        bossState = BossStates.leapUp;
+            leapLerp = 0;
+            lerpStartPos = transform.position;
+            lerpEndPos = transform.position + Vector3.up * 20f;
+            bossState = BossStates.leapUp;
+        }
+
     }
 
     public void Fall()
@@ -680,19 +568,24 @@ public class FrogKingScript : MonoBehaviour
 
     public void ItemHit()
     {
-        lerpStartPos = transform.position;
-        if (lerpStartPos.x > midpointTransform.position.x)
+        if (bossState != BossStates.ouchie)
         {
-            lerpEndPos = new Vector3(lerpStartPos.x - Random.Range(5f, 10f), groundY, 0f);
+            Debug.Log("ouchie");
+            lerpStartPos = transform.position;
+            if (lerpStartPos.x > midpointTransform.position.x)
+            {
+                lerpEndPos = new Vector3(lerpStartPos.x - Random.Range(5f, 10f), groundY, 0f);
+            }
+            else
+            {
+                lerpEndPos = new Vector3(lerpStartPos.x + Random.Range(5f, 10f), groundY, 0f);
+            }
+            ouchieTopY = 5f;
+            ouchieMidpoint = lerpStartPos + (lerpEndPos - lerpStartPos) / 2 + Vector3.up * ouchieTopY;
+            leapLerp = 0f;
+            bossState = BossStates.ouchie;
         }
-        else
-        {
-            lerpEndPos = new Vector3(lerpStartPos.x + Random.Range(5f, 10f), groundY, 0f);
-        }
-        ouchieTopY = 5f;
-        ouchieMidpoint = lerpStartPos + (lerpEndPos - lerpStartPos) / 2 + Vector3.up * ouchieTopY;
-        leapLerp = 0f;
-        bossState = BossStates.ouchie;
+
     }
 
     public void Croak()
@@ -716,6 +609,7 @@ public class FrogKingScript : MonoBehaviour
         if (croakTracker >= numCroaks)
         {
             myAnim.SetBool("Croaking", false);
+            bossState = currentPhase;
             //bossState = BossStates.phase2;
             doneCroaking = true;
 
@@ -775,7 +669,7 @@ public class FrogKingScript : MonoBehaviour
         newSlime.transform.SetAsLastSibling();
         if (slimeTracker >= numShakes)
         {
-            bossState = BossStates.phase2;
+            bossState = currentPhase;
             myAnim.SetBool("Shaking", false);
         }
     }
@@ -862,4 +756,11 @@ public class FrogKingScript : MonoBehaviour
         resetting = false;
     }
 
+    public void SpawnFissures()
+    {
+        leftFissure.transform.position = leftFissureTransform.position;
+        rightFissure.transform.position = rightFissureTransform.position;
+        leftFissure.SetActive(true);
+        rightFissure.SetActive(true);
+    }
 }

@@ -1,5 +1,405 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &40659432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 40659433}
+  m_Layer: 14
+  m_Name: RightFissureSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &40659433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40659432}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.05, y: -0.37, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4385821461185735199}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &181759933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 181759934}
+  - component: {fileID: 181759935}
+  m_Layer: 0
+  m_Name: TongueOrCroak
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &181759934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181759933}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4385821461413538716}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &181759935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181759933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911693228037b0e4a8eefa5a3f2d638a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runner: {fileID: 0}
+  wordBlockPrefab: {fileID: 2421338707633369312, guid: 74024e61a7a9dca4a90d665ca92f2622,
+    type: 3}
+  idleBlockList: []
+  activeBlockList: []
+  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
+  pauseBetweenLaunch: 0.2
+  sentence: I wonder which is sharper , my tongue or the sound of my croaks . Both
+    are too quick to be blocked !
+  specialWords:
+  - sharper
+  - blocked
+  wordGrabber: {fileID: 0}
+  stemController: {fileID: 0}
+  wordItemSpawnObjects:
+  - {fileID: 5923480428146412796, guid: 80d433d7f27f5ed48b19cd099421e696, type: 3}
+  - {fileID: 2113222761536899277, guid: 9e545677dc6744d4787cdbc02f3a02ca, type: 3}
+  lineCount: 3
+  npcCanvasTransform: {fileID: 4385821461413538716}
+  newlyActivated: []
+--- !u!1 &321006559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 321006560}
+  m_Layer: 14
+  m_Name: LeftFissureSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &321006560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321006559}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.77, y: -0.37, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4385821461185735199}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &340258830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 340258831}
+  - component: {fileID: 340258832}
+  m_Layer: 0
+  m_Name: CroakOrJump
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &340258831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340258830}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4385821461413538716}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &340258832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340258830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911693228037b0e4a8eefa5a3f2d638a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runner: {fileID: 0}
+  wordBlockPrefab: {fileID: 2421338707633369312, guid: 74024e61a7a9dca4a90d665ca92f2622,
+    type: 3}
+  idleBlockList: []
+  activeBlockList: []
+  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
+  pauseBetweenLaunch: 0.2
+  sentence: An explosion of sound or a quake from the ground ? You must defend yourself
+    both high and low !
+  specialWords:
+  - explosion
+  - defend
+  wordGrabber: {fileID: 0}
+  stemController: {fileID: 0}
+  wordItemSpawnObjects:
+  - {fileID: 141293092407075674, guid: 20c0bd647bb227446a4d855240131b26, type: 3}
+  - {fileID: 2113222761536899277, guid: 9e545677dc6744d4787cdbc02f3a02ca, type: 3}
+  lineCount: 2
+  npcCanvasTransform: {fileID: 4385821461413538716}
+  newlyActivated: []
+--- !u!1 &547345489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 547345490}
+  m_Layer: 14
+  m_Name: TonguePos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &547345490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547345489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.45, y: 4.24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4385821461185735199}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &966331254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966331255}
+  m_Layer: 14
+  m_Name: CroakPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966331255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966331254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7, y: 3.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4385821461185735199}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1515177904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1515177905}
+  - component: {fileID: 1515177906}
+  m_Layer: 0
+  m_Name: JumpOrShake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1515177905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515177904}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4385821461413538716}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1515177906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515177904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911693228037b0e4a8eefa5a3f2d638a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runner: {fileID: 0}
+  wordBlockPrefab: {fileID: 2421338707633369312, guid: 74024e61a7a9dca4a90d665ca92f2622,
+    type: 3}
+  idleBlockList: []
+  activeBlockList: []
+  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
+  pauseBetweenLaunch: 0.2
+  sentence: Quake or shake ? Either way you can't protect yourself from your fate
+    !
+  specialWords:
+  - protect
+  wordGrabber: {fileID: 0}
+  stemController: {fileID: 0}
+  wordItemSpawnObjects:
+  - {fileID: 2113222761536899277, guid: 9e545677dc6744d4787cdbc02f3a02ca, type: 3}
+  lineCount: 2
+  npcCanvasTransform: {fileID: 4385821461413538716}
+  newlyActivated: []
+--- !u!1 &1718720631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1718720632}
+  m_Layer: 14
+  m_Name: TonguePos2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1718720632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718720631}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.81, y: 3.79, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4385821461185735199}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1912662129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1912662130}
+  - component: {fileID: 1912662131}
+  m_Layer: 0
+  m_Name: TongueOrShake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1912662130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912662129}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4385821461413538716}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1912662131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912662129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911693228037b0e4a8eefa5a3f2d638a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runner: {fileID: 0}
+  wordBlockPrefab: {fileID: 2421338707633369312, guid: 74024e61a7a9dca4a90d665ca92f2622,
+    type: 3}
+  idleBlockList: []
+  activeBlockList: []
+  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
+  pauseBetweenLaunch: 0.2
+  sentence: My tongue and my ooze are a perfect match don't you think ? A sticky
+    skewer and a skewering sticky !
+  specialWords:
+  - match
+  - skewer
+  wordGrabber: {fileID: 0}
+  stemController: {fileID: 0}
+  wordItemSpawnObjects:
+  - {fileID: 8678507565859263418, guid: b4ee7d5d6930d5f41901f3fb6c255cc0, type: 3}
+  - {fileID: 5923480428146412796, guid: 80d433d7f27f5ed48b19cd099421e696, type: 3}
+  lineCount: 2
+  npcCanvasTransform: {fileID: 4385821461413538716}
+  newlyActivated: []
 --- !u!1 &4385821460113865543
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,7 +434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1.3399963, y: 3.99}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4385821460233924894
@@ -85,17 +485,16 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 7, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
-  sentence: Let the dice fall like rain ! Just try and shield yourself from this
-    pain!
+  sentence: Not even an umbrella could protect you from this rain !
   specialWords:
-  - shield
+  - protect
   wordGrabber: {fileID: 0}
   stemController: {fileID: 0}
   wordItemSpawnObjects:
   - {fileID: 2113222761536899277, guid: 9e545677dc6744d4787cdbc02f3a02ca, type: 3}
-  lineCount: 2
+  lineCount: 1
   npcCanvasTransform: {fileID: 4385821461413538716}
   newlyActivated: []
 --- !u!1 &4385821460270120422
@@ -123,7 +522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4385821460270120422}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.30900574, y: 0.43999982, z: 0.18738878}
+  m_LocalPosition: {x: -0.30901122, y: 0.4400003, z: 0.18738878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4385821460113865542}
@@ -146,18 +545,18 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 7, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
-  sentence: 'A frog''s tongue is the ultimate weapon ! Good luck protecting yourself
-    against this! '
+  sentence: Prepare for a tongue fit for a king! There will be no defense against
+    my perfect offense !
   specialWords:
-  - weapon
-  - protecting
+  - defense
+  - offense
   wordGrabber: {fileID: 0}
   stemController: {fileID: 0}
   wordItemSpawnObjects:
-  - {fileID: 5923480428146412796, guid: 80d433d7f27f5ed48b19cd099421e696, type: 3}
   - {fileID: 2113222761536899277, guid: 9e545677dc6744d4787cdbc02f3a02ca, type: 3}
+  - {fileID: 5923480428146412796, guid: 80d433d7f27f5ed48b19cd099421e696, type: 3}
   lineCount: 2
   npcCanvasTransform: {fileID: 4385821461413538716}
   newlyActivated: []
@@ -209,19 +608,16 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 7, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
-  sentence: You might want to cover your ears for this one . The sound can be quite
-    piercing !
+  sentence: A king's croaks are like knives to the ears ! Soon you'll see why !
   specialWords:
-  - cover
-  - piercing
+  - knives
   wordGrabber: {fileID: 0}
   stemController: {fileID: 0}
   wordItemSpawnObjects:
-  - {fileID: 2113222761536899277, guid: 9e545677dc6744d4787cdbc02f3a02ca, type: 3}
   - {fileID: 5923480428146412796, guid: 80d433d7f27f5ed48b19cd099421e696, type: 3}
-  lineCount: 2
+  lineCount: 3
   npcCanvasTransform: {fileID: 4385821461413538716}
   newlyActivated: []
 --- !u!1 &4385821460578021091
@@ -249,7 +645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4385821460578021091}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.30900574, y: 0.43999982, z: 0.18738878}
+  m_LocalPosition: {x: -0.30901122, y: 0.4400003, z: 0.18738878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4385821460113865542}
@@ -272,16 +668,17 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 7, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
-  sentence: The tongue is mightier than the sword !
+  sentence: A sharp tongue beats a sharp sword any day ! And mine is the sharpest
+    !
   specialWords:
   - sword
   wordGrabber: {fileID: 0}
   stemController: {fileID: 0}
   wordItemSpawnObjects:
   - {fileID: 5923480428146412796, guid: 80d433d7f27f5ed48b19cd099421e696, type: 3}
-  lineCount: 1
+  lineCount: 2
   npcCanvasTransform: {fileID: 4385821461413538716}
   newlyActivated: []
 --- !u!1 &4385821460676991635
@@ -318,7 +715,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1.34, y: 3.99}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4385821461185735194
@@ -331,14 +728,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4385821461185735199}
   - component: {fileID: 4385821461185735196}
-  - component: {fileID: 4385821461185735198}
   - component: {fileID: 4385821461185735185}
-  - component: {fileID: 4385821461185735197}
   - component: {fileID: 4385821461185735184}
   - component: {fileID: 4385821461185735187}
+  - component: {fileID: 1950557626}
+  - component: {fileID: 1950557633}
   m_Layer: 14
   m_Name: Garbara
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -357,6 +754,11 @@ Transform:
   - {fileID: 4385821461413538716}
   - {fileID: 4385821461777706625}
   - {fileID: 4385821461810729237}
+  - {fileID: 547345490}
+  - {fileID: 1718720632}
+  - {fileID: 966331255}
+  - {fileID: 321006560}
+  - {fileID: 40659433}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -398,8 +800,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -600640441
   m_SortingLayer: 1
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: c12b1f1a6f57dac42934d833a74a7543, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 1e215e957c7745f42b445eeac872d14b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -410,71 +812,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4385821461185735198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4385821461185735194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2961968cb6f14b540ae89143ea737cc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossState: 12
-  currentPhase: 12
-  lerpStartPos: {x: 0, y: 0, z: 0}
-  lerpEndPos: {x: 0, y: 0, z: 0}
-  leapLerp: 0
-  fallCircle: {fileID: 0}
-  playerTransform: {fileID: 0}
-  boxCollider: {fileID: 4385821461185735185}
-  fallMask:
-    serializedVersion: 2
-    m_Bits: 41216
-  midpointTransform: {fileID: 0}
-  ouchieTopY: 0
-  ouchieMidpoint: {x: 0, y: 0, z: 0}
-  myAnim: {fileID: 4385821461185735197}
-  croak1: 0
-  sonicWavesHolder: {fileID: 0}
-  oozeHolder: {fileID: 0}
-  shakeSpawnTime: 0
-  slimeTracker: 0
-  croakTracker: 0
-  doneCroaking: 0
-  smokeCloud: {fileID: 0}
-  diceSpawnTransform: {fileID: 4385821461810729237}
-  textControllers:
-  - {fileID: 4385821461910897898}
-  tongueTexts:
-  - {fileID: 4385821460270120422}
-  - {fileID: 4385821460578021091}
-  jumpTexts:
-  - {fileID: 4385821461910897898}
-  - {fileID: 4385821462090884125}
-  diceTexts:
-  - {fileID: 4385821461934450244}
-  - {fileID: 4385821460233924894}
-  sonicTexts:
-  - {fileID: 4385821462219674145}
-  - {fileID: 4385821460501691835}
-  phaseChangeText: {fileID: 4385821461631821804}
-  fightOverText: {fileID: 4385821461916829739}
-  activeTextController: {fileID: 0}
-  textControllerScript: {fileID: 0}
-  delayTime: 0
-  tongueScript: {fileID: 4385821461185735184}
-  tongueAttack: 0
-  canvas: {fileID: 4385821461413538717}
-  checkpoint: {fileID: 0}
-  resetting: 0
-  enemyHealth: {fileID: 4385821461185735187}
-  chances: 00000000000000000000000000000000
-  areaBounds: {fileID: 0}
-  previousSimilarTextChosen: 0
-  doneFighting: 0
 --- !u!61 &4385821461185735185
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -488,38 +825,19 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.17786407, y: 3.0231366}
+  m_Offset: {x: -0.34454346, y: 2.8977609}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.04}
-    oldSize: {x: 7.36, y: 7.03}
+    pivot: {x: 0.5, y: 0.08}
+    oldSize: {x: 27.735771, y: 16.59}
     newSize: {x: 5.05, y: 5.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.8841095, y: 5.1850863}
+  m_Size: {x: 6.5140076, y: 6.7731905}
   m_EdgeRadius: 0
---- !u!95 &4385821461185735197
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4385821461185735194}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3b82ec8d6fed6d44480984f282234aa4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &4385821461185735184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,7 +852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tongue: {fileID: 4385821461777706624}
   target: {fileID: 0}
-  myAnim: {fileID: 4385821461185735197}
+  myAnim: {fileID: 1950557626}
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   lerp: 0
@@ -567,6 +885,107 @@ MonoBehaviour:
   maxHealth: 20
   enemySprite: {fileID: 4385821461185735196}
   enemyDamageTime: 0
+--- !u!95 &1950557626
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385821461185735194}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 850581666a83d4b4abf3a98fc6bed70b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1950557633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385821461185735194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1435b3bb3c1d8e418456af8ebc92c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossState: 16
+  currentPhase: 16
+  lerpStartPos: {x: 0, y: 0, z: 0}
+  lerpEndPos: {x: 0, y: 0, z: 0}
+  leapLerp: 0
+  fallCircle: {fileID: 0}
+  playerTransform: {fileID: 0}
+  boxCollider: {fileID: 4385821461185735185}
+  fallMask:
+    serializedVersion: 2
+    m_Bits: 41216
+  midpointTransform: {fileID: 0}
+  ouchieTopY: 0
+  ouchieMidpoint: {x: 0, y: 0, z: 0}
+  myAnim: {fileID: 1950557626}
+  croak1: 0
+  sonicWavesHolder: {fileID: 0}
+  oozeHolder: {fileID: 0}
+  toxicSlimes: []
+  soundWaves: []
+  shakeSpawnTime: 0
+  slimeTracker: 0
+  croakTracker: 0
+  doneCroaking: 0
+  smokeCloud: {fileID: 0}
+  diceSpawnTransform: {fileID: 4385821461810729237}
+  textControllers: []
+  tongueTexts:
+  - {fileID: 4385821460270120422}
+  - {fileID: 4385821460578021091}
+  jumpTexts:
+  - {fileID: 4385821461910897898}
+  - {fileID: 4385821462090884125}
+  diceTexts:
+  - {fileID: 4385821461934450244}
+  - {fileID: 4385821460233924894}
+  sonicTexts:
+  - {fileID: 4385821462219674145}
+  - {fileID: 4385821460501691835}
+  phaseChangeText: {fileID: 4385821461631821804}
+  fightOverText: {fileID: 4385821461916829739}
+  jumpOrShakeText: {fileID: 1515177904}
+  tongueOrCroakText: {fileID: 181759933}
+  croakOrJumpText: {fileID: 340258830}
+  tongueOrShakeText: {fileID: 1912662129}
+  activeTextController: {fileID: 0}
+  textControllerScript: {fileID: 0}
+  delayTime: 0
+  tongueScript: {fileID: 4385821461185735184}
+  tongueAttack: 0
+  canvas: {fileID: 4385821461413538717}
+  checkpoint: {fileID: 0}
+  resetting: 0
+  enemyHealth: {fileID: 4385821461185735187}
+  chances: 00000000000000000000000000000000
+  areaBounds: {fileID: 0}
+  previousSimilarTextChosen: 0
+  doneFighting: 0
+  groundY: 0
+  camFollow: {fileID: 0}
+  cameraShaking: 0
+  waiting: 0
+  croakTransform: {fileID: 966331255}
+  numWavesPerCroak: 6
+  numCroaks: 5
+  numShakes: 5
+  leftFissureTransform: {fileID: 321006560}
+  rightFissureTransform: {fileID: 40659433}
+  leftFissure: {fileID: 0}
+  rightFissure: {fileID: 0}
 --- !u!1 &4385821461230255857
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +1020,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1.3399963, y: 3.99}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4385821461413538717
@@ -640,12 +1059,16 @@ RectTransform:
   - {fileID: 4385821460676991634}
   - {fileID: 4385821461518211943}
   - {fileID: 4385821461916829738}
+  - {fileID: 1515177905}
+  - {fileID: 181759934}
+  - {fileID: 340258831}
+  - {fileID: 1912662130}
   m_Father: {fileID: 4385821461185735199}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1.49, y: 4.5}
   m_SizeDelta: {x: 4.869708, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4385821461413538705
@@ -666,8 +1089,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -600640441
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &4385821461413538718
 MonoBehaviour:
@@ -742,7 +1165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1.3399963, y: 3.99}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4385821461631821804
@@ -770,7 +1193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4385821461631821804}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.30899876, y: 0.43999994, z: 0.18738878}
+  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4385821461413538716}
@@ -793,10 +1216,10 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 7, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
   pauseBetweenLaunch: 0.2
-  sentence: You're tougher than you look , insect. I guess I'll have to take you
-    seriously.
+  sentence: You insolent insect ! You will join your fuzzy friend in her quest to
+    retrieve my queen soon enough !
   specialWords: []
   wordGrabber: {fileID: 0}
   stemController: {fileID: 0}
@@ -830,7 +1253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4385821461777706638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.59, y: 3.38, z: 0}
+  m_LocalPosition: {x: -2.09, y: 4.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4385821461185735199}
@@ -928,7 +1351,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -946,8 +1369,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.9725491, g: 0.23137257, b: 0.20784315, a: 1}
-      key1: {r: 0.023529414, g: 0.42352945, b: 0.32156864, a: 1}
+      key0: {r: 0.42352945, g: 0.16470589, b: 0.63529414, a: 1}
+      key1: {r: 0.4666667, g: 0.6509804, b: 0.14901961, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1125,18 +1548,17 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 7, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
-  sentence: Just try and shield yourself against this! I'll flatten you like a nail
-    !
+  sentence: Don't let down your guard, for after the drop comes the explosion !
   specialWords:
-  - shield
-  - nail
+  - guard
+  - explosion
   wordGrabber: {fileID: 0}
   stemController: {fileID: 0}
   wordItemSpawnObjects:
   - {fileID: 2113222761536899277, guid: 9e545677dc6744d4787cdbc02f3a02ca, type: 3}
-  - {fileID: 5923480428146412796, guid: 80d433d7f27f5ed48b19cd099421e696, type: 3}
+  - {fileID: 141293092407075674, guid: 20c0bd647bb227446a4d855240131b26, type: 3}
   lineCount: 2
   npcCanvasTransform: {fileID: 4385821461413538716}
   newlyActivated: []
@@ -1165,7 +1587,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4385821461916829739}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.30899876, y: 0.43999994, z: 0.18738878}
+  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4385821461413538716}
@@ -1188,7 +1610,7 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 7, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
   pauseBetweenLaunch: 0.2
   sentence: Beaten by an insect ... how shameful. This isn't the last you'll see
     of me!
@@ -1247,15 +1669,16 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 7, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
-  sentence: Time to slice and dice , well ... mostly dice!
+  sentence: Be careful about touching these .  You might feel a hot, burning sensation
+    !
   specialWords:
-  - slice
+  - burning
   wordGrabber: {fileID: 0}
   stemController: {fileID: 0}
   wordItemSpawnObjects:
-  - {fileID: 5923480428146412796, guid: 80d433d7f27f5ed48b19cd099421e696, type: 3}
+  - {fileID: 8678507565859263418, guid: b4ee7d5d6930d5f41901f3fb6c255cc0, type: 3}
   lineCount: 2
   npcCanvasTransform: {fileID: 4385821461413538716}
   newlyActivated: []
@@ -1307,11 +1730,11 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 7, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
-  sentence: You might feel a sharp , crushing pain ...
+  sentence: The ground will splinter beneath my weight !
   specialWords:
-  - sharp
+  - splinter
   wordGrabber: {fileID: 0}
   stemController: {fileID: 0}
   wordItemSpawnObjects:
@@ -1367,18 +1790,15 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 7, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
-  sentence: You might want to cover your ears for this one . The sound can be quite
-    piercing !
+  sentence: Shield your ears little one ! For this is the croak of a KING !
   specialWords:
-  - cover
-  - piercing
+  - Shield
   wordGrabber: {fileID: 0}
   stemController: {fileID: 0}
   wordItemSpawnObjects:
   - {fileID: 2113222761536899277, guid: 9e545677dc6744d4787cdbc02f3a02ca, type: 3}
-  - {fileID: 5923480428146412796, guid: 80d433d7f27f5ed48b19cd099421e696, type: 3}
   lineCount: 2
   npcCanvasTransform: {fileID: 4385821461413538716}
   newlyActivated: []

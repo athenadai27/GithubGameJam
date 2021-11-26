@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5891554975249950572}
   - component: {fileID: 5891554975249950573}
   - component: {fileID: 5891554975249950570}
+  - component: {fileID: -3337566574283792604}
   m_Layer: 17
   m_Name: PoisonPuddle
   m_TagString: Toxic
@@ -129,3 +130,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0515442, y: 0.7117443}
   m_EdgeRadius: 0
+--- !u!114 &-3337566574283792604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891554975249950574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d7c6409a2f0dc4e8c0a541995a81e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkSpeed: 0.2
+  startShrinkSpeed: 0
