@@ -130,6 +130,7 @@ MonoBehaviour:
   breaking: 0
   freezeFrame: 0
   freezeTime: 0
+  weaponColliderObject: {fileID: 7218935008207815817}
 --- !u!58 &5923480428146412775
 CircleCollider2D:
   m_ObjectHideFlags: 0

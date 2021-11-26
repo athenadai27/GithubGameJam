@@ -20,6 +20,7 @@ public class PlayerAttack : MonoBehaviour
     public bool breaking;
     public bool freezeFrame;
     public float freezeTime;
+    public GameObject weaponColliderObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +47,11 @@ public class PlayerAttack : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 myAnim.SetTrigger("Swing");
+                 if(!swinging){
+                    weaponColliderObject.SetActive(true);
+                }
                 swinging = true;
+               
             }
             if (swinging && !breaking)
             {
@@ -110,6 +115,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void DoneSwinging()
     {
+        weaponColliderObject.SetActive(false);
         if (breaking)
         {
             itemScript.Break();
