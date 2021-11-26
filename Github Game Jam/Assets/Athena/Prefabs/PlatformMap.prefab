@@ -179,5 +179,5 @@ CompositeCollider2D:
     m_ColliderPaths: []
   m_CompositePaths:
     m_Paths: []
-  m_VertexDistance: 0.25
+  m_VertexDistance: 0.0005
   m_OffsetDistance: 0.1
