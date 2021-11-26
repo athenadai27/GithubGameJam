@@ -62,8 +62,6 @@ public class WordBlockV2 : MonoBehaviour
             {
                 transform.localPosition = destination;
                 arrived = true;
-                Debug.Log("arrived");
-                Debug.Log(movement.magnitude);
                 phase = 0;
             }
             else

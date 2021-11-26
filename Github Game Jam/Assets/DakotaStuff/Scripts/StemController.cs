@@ -162,8 +162,6 @@ public class StemController : MonoBehaviour
                     flower.transform.position = transform.TransformPoint(Vector3.Lerp(startPos, endPos, lerpToPoint));
                     linePoints[linePoints.Count - 1] = transform.InverseTransformPoint(flower.transform.position);
                     lineRenderer.SetPosition(lineRenderer.positionCount - 1, transform.InverseTransformPoint(flower.transform.position));
-                    Debug.Log(transform.InverseTransformPoint(flower.transform.position));
-                    Debug.Log(endPos);
                     if (Vector3.Distance(transform.InverseTransformPoint(flower.transform.position), endPos) < .1f)
                     {
                          

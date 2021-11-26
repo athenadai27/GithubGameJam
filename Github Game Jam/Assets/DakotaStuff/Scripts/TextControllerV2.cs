@@ -195,11 +195,6 @@ public class TextControllerV2 : MonoBehaviour
                 hasArrived = false;
             }
         }
-        if(hasArrived){
-            Debug.Log("has arrived");
-            Debug.Log(idleBlockList.Count);
-
-        }
         return hasArrived;
     }
 }

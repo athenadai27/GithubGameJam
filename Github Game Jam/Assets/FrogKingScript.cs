@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrogMiniboss : MonoBehaviour
+public class FrogKingScript : MonoBehaviour
 {
-    public enum BossStates { leapUp, leapDown, croaking, sliming, tongueing, prepareToTongue, ouchie, stunned, prepareToJump, prepareToFall, prepareForSliming, prepareForCroaking, phase1, phase2, changingPhases, doneFighting, goodbye }
+    public enum BossStates { leapUp, leapDown, croaking, sliming, tongueing, prepareToTongue, ouchie, stunned, prepareToJump, prepareToFall, prepareForSliming, prepareForCroaking, prepareForJumpOrShake, prepareForTongueOrCroak, prepareForCroakOrJump, prepareForTongueOrShake, phase1, phase2, changingPhases, doneFighting, goodbye }
     public BossStates bossState;
     public BossStates currentPhase;
     public Vector3 lerpStartPos;
@@ -39,6 +39,10 @@ public class FrogMiniboss : MonoBehaviour
     public List<GameObject> sonicTexts;
     public GameObject phaseChangeText;
     public GameObject fightOverText;
+    public GameObject jumpOrShakeText;
+    public GameObject tongueOrCroakText;
+    public GameObject croakOrJumpText;
+    public GameObject tongueOrShakeText;
     public GameObject activeTextController;
     public TextControllerV2 textControllerScript;
 
@@ -79,7 +83,7 @@ public class FrogMiniboss : MonoBehaviour
     void Update()
     {
         canvas.transform.localScale = transform.localScale;
-        
+
         switch (bossState)
         {
             case BossStates.leapUp:
@@ -113,18 +117,19 @@ public class FrogMiniboss : MonoBehaviour
                     {
                         myAnim.SetBool("Jumping", false);
                         Debug.Log("shake");
-                        if(!camFollow.cameraShaking && !cameraShaking){
-                            StartCoroutine(camFollow.CameraShake(.5f,.1f));
+                        if (!camFollow.cameraShaking && !cameraShaking)
+                        {
+                            StartCoroutine(camFollow.CameraShake(.5f, .1f));
                             cameraShaking = true;
                         }
-                        
+
                     }
                     else if (fallCast.collider.CompareTag("HeldItem") && !fallCast.collider.gameObject.name.Contains("Sword"))
                     {
                         fallCast.collider.gameObject.GetComponent<ItemScript>().Break();
                         ItemHit();
                     }
-                    
+
 
 
                 }
@@ -143,12 +148,13 @@ public class FrogMiniboss : MonoBehaviour
                 {
                     fallCircle.gameObject.SetActive(false);
                     myAnim.SetBool("Jumping", false);
-                    if(!camFollow.cameraShaking && !cameraShaking){
+                    if (!camFollow.cameraShaking && !cameraShaking)
+                    {
                         Debug.Log("shake");
-                        StartCoroutine(camFollow.CameraShake(.5f,.1f));
+                        StartCoroutine(camFollow.CameraShake(.5f, .1f));
                         cameraShaking = true;
                     }
-                    
+
                 }
                 break;
             case BossStates.croaking:
@@ -183,15 +189,17 @@ public class FrogMiniboss : MonoBehaviour
                     croakTracker = 0;
                     myAnim.SetBool("Croaking", true);
                     waiting = false;
-                } else{
-                    if(textControllerScript.CheckIfArrived() && !waiting){
+                }
+                else
+                {
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
                         waiting = true;
                         delayTime = Time.time + 1f;
                     }
-                    
+
                 }
                 break;
-            
             case BossStates.sliming:
 
                 break;
@@ -203,13 +211,16 @@ public class FrogMiniboss : MonoBehaviour
                     bossState = BossStates.sliming;
                     slimeTracker = 0;
                     waiting = false;
-                } else{
-                    if( textControllerScript.CheckIfArrived() && !waiting){
+                }
+                else
+                {
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
                         waiting = true;
                         delayTime = Time.time + 1f;
-                        
+
                     }
-                    
+
                 }
                 break;
             case BossStates.tongueing:
@@ -248,12 +259,15 @@ public class FrogMiniboss : MonoBehaviour
                     bossState = BossStates.tongueing;
                     myAnim.SetBool("Tonguing", true);
                     waiting = false;
-                } else{
-                    if(textControllerScript.CheckIfArrived() && !waiting){
+                }
+                else
+                {
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
                         waiting = true;
                         delayTime = Time.time + 1f;
                     }
-                    
+
                 }
 
                 break;
@@ -265,12 +279,15 @@ public class FrogMiniboss : MonoBehaviour
                     textControllerScript.FadeText();
                     myAnim.SetBool("Jumping", true);
                     waiting = false;
-                 } else{
-                    if(textControllerScript.CheckIfArrived() && !waiting){
+                }
+                else
+                {
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
                         waiting = true;
                         delayTime = Time.time + 1f;
                     }
-                    
+
                 }
                 break;
             case BossStates.prepareToFall:
@@ -278,12 +295,15 @@ public class FrogMiniboss : MonoBehaviour
                 {
                     Fall();
                     waiting = false;
-                } else{
-                    if(textControllerScript.CheckIfArrived() && !waiting){
+                }
+                else
+                {
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
                         waiting = true;
                         delayTime = Time.time + 1f;
                     }
-                    
+
                 }
                 break;
             case BossStates.phase1:
@@ -358,12 +378,15 @@ public class FrogMiniboss : MonoBehaviour
                     textControllerScript.FadeText();
                     bossState = BossStates.phase2;
                     waiting = false;
-                } else{
-                    if(textControllerScript.CheckIfArrived() && !waiting){
+                }
+                else
+                {
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
                         waiting = true;
                         delayTime = Time.time + 1f;
                     }
-                    
+
                 }
                 break;
             case BossStates.doneFighting:
@@ -373,12 +396,15 @@ public class FrogMiniboss : MonoBehaviour
                     textControllerScript.FadeText();
                     myAnim.SetBool("Jumping", true);
                     waiting = false;
-                } else{
-                    if(textControllerScript.CheckIfArrived() && !waiting){
+                }
+                else
+                {
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
                         waiting = true;
                         delayTime = Time.time + 1f;
                     }
-                    
+
                 }
                 break;
             case BossStates.goodbye:
@@ -420,18 +446,8 @@ public class FrogMiniboss : MonoBehaviour
                 {
                     chances[0]++;
                     delayTime = Time.time + 3f;
-                    bossState = BossStates.prepareToTongue;
-                    float randomChance = Random.Range(0f, 1f);
-                    if (previousSimilarTextChosen == 0)
-                    {
-                        ActivateTextController(tongueTexts[1]);
-                        previousSimilarTextChosen = 1;
-                    }
-                    else
-                    {
-                        ActivateTextController(tongueTexts[0]);
-                        previousSimilarTextChosen = 0;
-                    }
+                    bossState = BossStates.prepareForTongueOrCroak;
+                    ActivateTextController(tongueOrCroakText);
                 }
                 else if (randomChances[randomIndex] == 1)
                 {
@@ -439,17 +455,8 @@ public class FrogMiniboss : MonoBehaviour
                     chosenPhase2Index = 1;
                     bossState = BossStates.prepareToJump;
                     delayTime = Time.time + 3f;
-                    float randomChance = Random.Range(0f, 1f);
-                    if (previousSimilarTextChosen == 0)
-                    {
-                        ActivateTextController(jumpTexts[1]);
-                        previousSimilarTextChosen = 1;
-                    }
-                    else
-                    {
-                        ActivateTextController(jumpTexts[0]);
-                        previousSimilarTextChosen = 0;
-                    }
+                     bossState = BossStates.prepareForTongueOrShake;
+                    ActivateTextController(tongueOrShakeText);
                 }
                 else if (randomChances[randomIndex] == 2)
                 {
@@ -457,17 +464,8 @@ public class FrogMiniboss : MonoBehaviour
                     chosenPhase2Index = 2;
                     bossState = BossStates.prepareForSliming;
                     delayTime = Time.time + 3f;
-                    float randomChance = Random.Range(0f, 1f);
-                    if (previousSimilarTextChosen == 0)
-                    {
-                        ActivateTextController(diceTexts[1]);
-                        previousSimilarTextChosen = 1;
-                    }
-                    else
-                    {
-                        ActivateTextController(diceTexts[0]);
-                        previousSimilarTextChosen = 0;
-                    }
+                     bossState = BossStates.prepareForCroakOrJump;
+                    ActivateTextController(croakOrJumpText);
                 }
                 else if (randomChances[randomIndex] == 3)
                 {
@@ -475,17 +473,8 @@ public class FrogMiniboss : MonoBehaviour
                     chosenPhase2Index = 3;
                     bossState = BossStates.prepareForCroaking;
                     delayTime = Time.time + 3f;
-                    float randomChance = Random.Range(0f, 1f);
-                    if (previousSimilarTextChosen == 0)
-                    {
-                        ActivateTextController(sonicTexts[1]);
-                        previousSimilarTextChosen = 1;
-                    }
-                    else
-                    {
-                        ActivateTextController(sonicTexts[0]);
-                        previousSimilarTextChosen = 0;
-                    }
+                   bossState = BossStates.prepareForJumpOrShake;
+                    ActivateTextController(jumpOrShakeText);
                 }
                 bool everyOptionChosen = true;
                 for (int i = 0; i < chances.Count; i++)
@@ -501,6 +490,161 @@ public class FrogMiniboss : MonoBehaviour
                     {
                         chances[i] = 0;
                     }
+                }
+                break;
+
+            case BossStates.prepareForCroakOrJump:
+                if (Time.time > delayTime && waiting)
+                {
+                    textControllerScript.FadeText();
+                    waiting = false;
+
+                    float thisOrThat1 = Random.Range(0f, 1f);
+                    if (thisOrThat1 >= 50)
+                    {
+                        textControllerScript.FadeText();
+                        bossState = BossStates.croaking;
+                        croakTracker = 0;
+                        myAnim.SetBool("Croaking", true);
+                        waiting = false;
+                    }
+                    else
+                    {
+                        textControllerScript.FadeText();
+                        myAnim.SetBool("Jumping", true);
+                        waiting = false;
+                    }
+                }
+                else
+                {
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
+                        waiting = true;
+                        delayTime = Time.time + 1f;
+                    }
+
+                }
+
+                break;
+            case BossStates.prepareForJumpOrShake:
+                if (Time.time > delayTime && waiting)
+                {
+                    textControllerScript.FadeText();
+                    waiting = false;
+
+                    float thisOrThat1 = Random.Range(0f, 1f);
+                    if (thisOrThat1 >= 50)
+                    {
+                        textControllerScript.FadeText();
+                        myAnim.SetBool("Shaking", true);
+                        bossState = BossStates.sliming;
+                        slimeTracker = 0;
+                        waiting = false;
+                    }
+                    else
+                    {
+                        textControllerScript.FadeText();
+                        myAnim.SetBool("Jumping", true);
+                        waiting = false;
+                    }
+                }
+                else
+                {
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
+                        waiting = true;
+                        delayTime = Time.time + 1f;
+                    }
+
+                }
+                break;
+            case BossStates.prepareForTongueOrCroak:
+                if (Time.time > delayTime && waiting)
+                {
+                    textControllerScript.FadeText();
+                    waiting = false;
+
+                    float thisOrThat1 = Random.Range(0f, 1f);
+                    if (thisOrThat1 >= 50)
+                    {
+                        textControllerScript.FadeText();
+                        bossState = BossStates.croaking;
+                        croakTracker = 0;
+                        myAnim.SetBool("Croaking", true);
+                        waiting = false;
+                    }
+                    else
+                    {
+                        textControllerScript.FadeText();
+                        bossState = BossStates.tongueing;
+                        myAnim.SetBool("Tonguing", true);
+                        waiting = false;
+                    }
+                }
+                else
+                {
+                    if (playerTransform.position.x > transform.position.x)
+                    {
+                        transform.localScale = new Vector3(-1, 1, 1);
+                    }
+                    else if (playerTransform.position.x < transform.position.x)
+                    {
+                        transform.localScale = Vector3.one;
+
+                    }
+                    tongueScript.tongue.transform.localScale = transform.localScale;
+                    canvas.transform.localScale = transform.localScale;
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
+                        waiting = true;
+                        delayTime = Time.time + 1f;
+
+                    }
+
+                }
+                break;
+            case BossStates.prepareForTongueOrShake:
+                if (Time.time > delayTime && waiting)
+                {
+                    textControllerScript.FadeText();
+                    waiting = false;
+
+                    float thisOrThat1 = Random.Range(0f, 1f);
+                    if (thisOrThat1 >= 50)
+                    {
+                        textControllerScript.FadeText();
+                        bossState = BossStates.tongueing;
+                        myAnim.SetBool("Tonguing", true);
+                        waiting = false;
+                    }
+                    else
+                    {
+                        textControllerScript.FadeText();
+                        myAnim.SetBool("Shaking", true);
+                        bossState = BossStates.sliming;
+                        slimeTracker = 0;
+                        waiting = false;
+                    }
+                }
+                else
+                {
+                    if (playerTransform.position.x > transform.position.x)
+                    {
+                        transform.localScale = new Vector3(-1, 1, 1);
+                    }
+                    else if (playerTransform.position.x < transform.position.x)
+                    {
+                        transform.localScale = Vector3.one;
+
+                    }
+                    tongueScript.tongue.transform.localScale = transform.localScale;
+                    canvas.transform.localScale = transform.localScale;
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
+                        waiting = true;
+                        delayTime = Time.time + 1f;
+                    }
+
                 }
                 break;
         }
@@ -556,7 +700,7 @@ public class FrogMiniboss : MonoBehaviour
         croakTracker++;
         float angleChange = Random.Range(-45f, 45f);
         Vector3 vectorDif = playerTransform.position - (croakTransform.position);
-        float radialDifference = 360/numWavesPerCroak;
+        float radialDifference = 360 / numWavesPerCroak;
         for (int i = 0; i < numWavesPerCroak; i++)
         {
             Vector3 newVector = Quaternion.Euler(0, 0, radialDifference * i + angleChange) * vectorDif;
@@ -589,32 +733,39 @@ public class FrogMiniboss : MonoBehaviour
         toxicSlimeProjectile.startPos = diceSpawnTransform.position;
         float aimAtBoutheina = Random.Range(0f, 1f);
         //List<float> currentActiveToxicPuddlePositions = new List<float>();
-        
+
         toxicSlimeProjectile.endPos = new Vector3(toxicSlimeProjectile.startPos.x + Random.Range(-15f, 15f), -2.75f, 0f);
         if (aimAtBoutheina <= .25f)
         {
             toxicSlimeProjectile.endPos.x = playerTransform.position.x;
-        } 
+        }
         bool tooCloseToOtherPuddles = false;
-       
-        for(int i = 0; i < oozeHolder.transform.childCount;i++){
-            if(oozeHolder.transform.GetChild(i).gameObject.activeSelf){
-                if(Vector3.Distance(toxicSlimeProjectile.endPos,oozeHolder.transform.GetChild(i).GetComponent<ToxicSlimeProjectile>().endPos) < 3){
+
+        for (int i = 0; i < oozeHolder.transform.childCount; i++)
+        {
+            if (oozeHolder.transform.GetChild(i).gameObject.activeSelf)
+            {
+                if (Vector3.Distance(toxicSlimeProjectile.endPos, oozeHolder.transform.GetChild(i).GetComponent<ToxicSlimeProjectile>().endPos) < 3)
+                {
                     tooCloseToOtherPuddles = true;
                 }
             }
         }
-        while(tooCloseToOtherPuddles){
+        while (tooCloseToOtherPuddles)
+        {
             tooCloseToOtherPuddles = false;
             toxicSlimeProjectile.endPos = new Vector3(toxicSlimeProjectile.startPos.x + Random.Range(-15f, 15f), -2.75f, 0f);
-             for(int i = 0; i < oozeHolder.transform.childCount;i++){
+            for (int i = 0; i < oozeHolder.transform.childCount; i++)
+            {
 
-            if(oozeHolder.transform.GetChild(i).gameObject.activeSelf){
-                if(Vector3.Distance(toxicSlimeProjectile.endPos,oozeHolder.transform.GetChild(i).GetComponent<ToxicSlimeProjectile>().endPos) < 3){
-                    tooCloseToOtherPuddles = true;
+                if (oozeHolder.transform.GetChild(i).gameObject.activeSelf)
+                {
+                    if (Vector3.Distance(toxicSlimeProjectile.endPos, oozeHolder.transform.GetChild(i).GetComponent<ToxicSlimeProjectile>().endPos) < 3)
+                    {
+                        tooCloseToOtherPuddles = true;
+                    }
                 }
             }
-        }
         }
         float oozeLerpHeight = Random.Range(10f, 15f);
         toxicSlimeProjectile.midPoint = toxicSlimeProjectile.startPos + (toxicSlimeProjectile.endPos - toxicSlimeProjectile.startPos) / 2 + Vector3.up * oozeLerpHeight;
@@ -702,7 +853,7 @@ public class FrogMiniboss : MonoBehaviour
         {
             sonicWavesHolder.transform.GetChild(i).gameObject.SetActive(false);
         }
-        
+
         cameraShaking = false;
         currentPhase = BossStates.phase1;
         bossState = BossStates.phase1;
@@ -710,6 +861,5 @@ public class FrogMiniboss : MonoBehaviour
         tongueScript.tongue.gameObject.SetActive(false);
         resetting = false;
     }
-
 
 }
