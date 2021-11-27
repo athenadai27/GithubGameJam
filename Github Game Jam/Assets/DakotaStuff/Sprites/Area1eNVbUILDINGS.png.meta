@@ -1,7 +1,52 @@
 fileFormatVersion: 2
 guid: 6fba78cda0c7f12469d33ff376c2a7e9
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -259041497133973987
+    second: Area1eNVbUILDINGS_0
+  - first:
+      213: -3222396141051973706
+    second: Area1eNVbUILDINGS_1
+  - first:
+      213: -2038659241003169193
+    second: Area1eNVbUILDINGS_2
+  - first:
+      213: -2185055481772858955
+    second: Area1eNVbUILDINGS_3
+  - first:
+      213: 3131520753858928948
+    second: Area1eNVbUILDINGS_4
+  - first:
+      213: -7706661063666143572
+    second: Area1eNVbUILDINGS_5
+  - first:
+      213: 7403684095725877571
+    second: Area1eNVbUILDINGS_6
+  - first:
+      213: 1896152633036097261
+    second: Area1eNVbUILDINGS_7
+  - first:
+      213: 4478038075052685429
+    second: Area1eNVbUILDINGS_8
+  - first:
+      213: 445263504414473414
+    second: Area1eNVbUILDINGS_9
+  - first:
+      213: -7033227866291910880
+    second: Area1eNVbUILDINGS_10
+  - first:
+      213: -1721979800511558061
+    second: Area1eNVbUILDINGS_11
+  - first:
+      213: -4027844187634250766
+    second: Area1eNVbUILDINGS_13
+  - first:
+      213: -886837105635081385
+    second: Area1eNVbUILDINGS_14
+  - first:
+      213: -4723344198193949433
+    second: Area1eNVbUILDINGS_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +85,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -71,9 +116,372 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_0
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 828
+        width: 296
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1e7e3d7123b76cf0800000000000000
+      internalID: -259041497133973987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_1
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 833
+        width: 284
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bfe10f58cfb743d0800000000000000
+      internalID: -3222396141051973706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_2
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 643
+        width: 116
+        height: 380
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75a40f9b83a35b3e0800000000000000
+      internalID: -2038659241003169193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_3
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 672
+        width: 295
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b1a862cd9f1da1e0800000000000000
+      internalID: -2185055481772858955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_4
+      rect:
+        serializedVersion: 2
+        x: 1849
+        y: 841
+        width: 187
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 431668cb885657b20800000000000000
+      internalID: 3131520753858928948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_5
+      rect:
+        serializedVersion: 2
+        x: 2159
+        y: 833
+        width: 183
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae68df18907c0590800000000000000
+      internalID: -7706661063666143572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_6
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 544
+        width: 295
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34933fa657b2fb660800000000000000
+      internalID: 7403684095725877571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_7
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 601
+        width: 296
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de6c90406cc705a10800000000000000
+      internalID: 1896152633036097261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_8
+      rect:
+        serializedVersion: 2
+        x: 1828
+        y: 655
+        width: 166
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 578703257ef252e30800000000000000
+      internalID: 4478038075052685429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_9
+      rect:
+        serializedVersion: 2
+        x: 2205
+        y: 659
+        width: 105
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ccf1145cc4ed2600800000000000000
+      internalID: 445263504414473414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_10
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 32
+        width: 767
+        height: 449
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 027ca4de484f46e90800000000000000
+      internalID: -7033227866291910880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_11
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 33
+        width: 350
+        height: 414
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35e4c10be7c4a18e0800000000000000
+      internalID: -1721979800511558061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_13
+      rect:
+        serializedVersion: 2
+        x: 1418
+        y: 33
+        width: 337
+        height: 484
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fb40714d093a18c0800000000000000
+      internalID: -4027844187634250766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_14
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 42
+        width: 333
+        height: 431
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7534cf0e95251b3f0800000000000000
+      internalID: -886837105635081385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Area1eNVbUILDINGS_15
+      rect:
+        serializedVersion: 2
+        x: 2289
+        y: 58
+        width: 323
+        height: 445
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7055fb22a7f437eb0800000000000000
+      internalID: -4723344198193949433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
