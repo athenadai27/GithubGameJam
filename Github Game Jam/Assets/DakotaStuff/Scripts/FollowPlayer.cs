@@ -5,7 +5,6 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     public Transform target;
-    public BoxCollider2D mapBounds;
     public int currentIndex;
 
     private float xMin, xMax, yMin, yMax;
@@ -21,13 +20,14 @@ public class FollowPlayer : MonoBehaviour
     public bool verticalFollow;
     public Vector3 scaleTracker;
     public bool cameraShaking;
+    public List<BoxCollider2D> mapBounds;
     void Start()
     {
         
-        xMin = mapBounds.bounds.min.x ;
-        xMax = mapBounds.bounds.max.x;
-        yMin = mapBounds.bounds.min.y;
-        yMax = mapBounds.bounds.max.y;
+        xMin = mapBounds[currentIndex].bounds.min.x ;
+        xMax = mapBounds[currentIndex].bounds.max.x;
+        yMin = mapBounds[currentIndex].bounds.min.y;
+        yMax = mapBounds[currentIndex].bounds.max.y;
 
         mainCam = GetComponent<Camera>();
         
@@ -36,12 +36,18 @@ public class FollowPlayer : MonoBehaviour
         
     }
     void FixedUpdate(){
-        // for(int i = 0; i < mapBounds.Length;i++){
-        //     if(player.transform.position.x > mapBounds[i].bounds.min.x && player.transform.position.x < mapBounds[i].bounds.max.x){
-        //         currentIndex = i;
+        float previousIndex = currentIndex;
+        for(int i = 0; i < mapBounds.Count;i++){
+            if(player.transform.position.x > mapBounds[i].bounds.min.x && player.transform.position.x < mapBounds[i].bounds.max.x && 
+            player.transform.position.y > mapBounds[i].bounds.min.y && player.transform.position.y < mapBounds[i].bounds.max.y){
+                currentIndex = i;
                 
-        //     }
-        // }
+            }
+        }
+        if(previousIndex != currentIndex){
+            ChangeBounds();
+        }
+        
         
         if(verticalFollow){
             camY = Mathf.Clamp(target.position.y + followAhead , yMin + camOrthsize, yMax - camOrthsize);
@@ -63,10 +69,10 @@ public class FollowPlayer : MonoBehaviour
   
 
     public void ChangeBounds(){
-         xMin = mapBounds.bounds.min.x ;
-        xMax = mapBounds.bounds.max.x;
-        yMin = mapBounds.bounds.min.y;
-        yMax = mapBounds.bounds.max.y;
+         xMin = mapBounds[currentIndex].bounds.min.x;
+        xMax = mapBounds[currentIndex].bounds.max.x;
+        yMin = mapBounds[currentIndex].bounds.min.y;
+        yMax = mapBounds[currentIndex].bounds.max.y;
 
         
         
@@ -88,5 +94,23 @@ public class FollowPlayer : MonoBehaviour
         }
         cameraShaking = false;
         transform.position = originalPos;
+    }
+
+    public void FocusPlayer(BoxCollider2D newMapBounds){
+        currentIndex = mapBounds.FindIndex(x => x == newMapBounds);
+        ChangeBounds();
+         if(verticalFollow){
+            camY = Mathf.Clamp(target.position.y + followAhead , yMin + camOrthsize, yMax - camOrthsize);
+        } else{
+            camY = Mathf.Clamp(target.position.y , yMin + camOrthsize, yMax - camOrthsize);
+        }
+        
+        
+        if(player.transform.lossyScale.x > 0){
+            camX = Mathf.Clamp(target.position.x+ followAhead, xMin + cameraRatio, xMax - cameraRatio);
+        } else{
+            camX = Mathf.Clamp(target.position.x- followAhead, xMin + cameraRatio, xMax - cameraRatio);
+        }
+        transform.position = new Vector3(camX ,camY,transform.position.z);
     }
 }

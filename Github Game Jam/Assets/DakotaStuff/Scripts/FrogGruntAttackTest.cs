@@ -28,8 +28,8 @@ public class FrogGruntAttackTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        endPos = target.position;
-        distanceFromEndStart = Vector3.Distance(endPos, tongue.transform.position);
+       // endPos = target.position;
+       // distanceFromEndStart = Vector3.Distance(endPos, tongue.transform.position);
     }
 
     // Update is called once per frame
@@ -62,6 +62,7 @@ public class FrogGruntAttackTest : MonoBehaviour
                 }
                 if (distanceFromEnd >= Vector3.Distance(tongue.transform.position, endPos))
                 {
+                    myAnim.SetTrigger("Retract");
                     tongue.gameObject.SetActive(false);
                     if (capturedPlayer)
                     {
@@ -115,7 +116,7 @@ public class FrogGruntAttackTest : MonoBehaviour
                     endPos = playerTransform.position;
 
                     tongueState = TongueStates.goingIn;
-                    myAnim.SetTrigger("Retract");
+                    
                     return;
                 }
                 if (outDistanceToTarget >= Vector3.Distance(tongue.transform.position, endPos))
@@ -123,7 +124,7 @@ public class FrogGruntAttackTest : MonoBehaviour
                     lerp = 0;
 
                     tongueState = TongueStates.goingIn;
-                    myAnim.SetTrigger("Retract");
+                    
                 }
                 break;
         }
@@ -164,7 +165,7 @@ public class FrogGruntAttackTest : MonoBehaviour
         {
             Debug.Log("retract");
             tongueState = TongueStates.goingIn;
-            myAnim.SetTrigger("Retract");
+            
         }
 
         

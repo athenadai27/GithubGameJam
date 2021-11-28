@@ -18,7 +18,9 @@ public class MatchScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider2D matchTouch = Physics2D.OverlapBox(matchCollider.bounds.center,matchCollider.bounds.size,0,burnMask);
+        if(Input.GetMouseButtonDown(1)){
+
+            Collider2D matchTouch = Physics2D.OverlapBox(matchCollider.bounds.center,matchCollider.bounds.size,0,burnMask);
         if(matchTouch){
             if(matchTouch.gameObject.CompareTag("Toxic")){
                 fireTransform.SetParent(matchTouch.transform);
@@ -26,6 +28,12 @@ public class MatchScript : MonoBehaviour
                 matchTouch.GetComponent<PuddleScript>().shrinkSpeed *= 2;
                 itemScript.Break();
                 return;
+            } else if(matchTouch.gameObject.GetComponent<BurnAlert>()){
+                fireTransform.SetParent(matchTouch.transform);
+                fireTransform.position = matchTouch.transform.position;
+
+                matchTouch.gameObject.GetComponent<BurnAlert>().Burn();
+                itemScript.Break();
             }
         }
         Collider2D fireTouch = Physics2D.OverlapBox(fireCollider.bounds.center,fireCollider.bounds.size,0,burnMask);
@@ -35,7 +43,14 @@ public class MatchScript : MonoBehaviour
                 fireTransform.position = fireTouch.transform.position;
                 fireTouch.GetComponent<PuddleScript>().shrinkSpeed *= 2;
                  itemScript.Break();
+            }else if(fireTouch.gameObject.GetComponent<BurnAlert>()){
+                fireTransform.SetParent(fireTouch.transform);
+                fireTransform.position = fireTouch.transform.position;
+                fireTouch.gameObject.GetComponent<BurnAlert>().Burn();
+                itemScript.Break();
             }
         }
+        }
+        
     }
 }

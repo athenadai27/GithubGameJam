@@ -26,7 +26,8 @@ public class PlayerController : MonoBehaviour
     public float lerpTime;
     public float previousHealth;
     public Animator myAnim;
-    public enum PlayerStates { normal, hiding, restricted, planted };
+    public enum PlayerStates { normal, hiding, restricted, planted, disabled};
+    public bool canMove;
     public PlayerStates playerState = PlayerStates.normal;
     public SpriteRenderer sprite;
 
@@ -69,7 +70,12 @@ public class PlayerController : MonoBehaviour
         moveVector = Vector3.zero;
 
         //if(grounded){
-        moveDir = Input.GetAxisRaw("Horizontal");
+        if(canMove){
+            moveDir = Input.GetAxisRaw("Horizontal");
+        } else{
+            moveDir = 0;
+        }
+        
 
 
         if (transform.parent != null)
@@ -98,12 +104,14 @@ public class PlayerController : MonoBehaviour
                     {
                         if (myAnim.GetBool("Crouching"))
                         {
+                            moveSpeed = 8f;
                             myAnim.SetBool("Crouching", false);
                             flowerHolderTransform.localPosition = new Vector3(.02f,2.48f,0f);
                             lineRenderer.transform.localPosition = new Vector3(.02f,1.83f,0f);
                         }
                         else
                         {
+                            moveSpeed = 5f;
                             myAnim.SetBool("Crouching", true);
                             flowerHolderTransform.localPosition = new Vector3(.02f,2.15f,0f);
                             lineRenderer.transform.localPosition = new Vector3(.02f,1.5f,0f);
@@ -169,7 +177,7 @@ public class PlayerController : MonoBehaviour
                 //     stemController.transform.localScale = Vector3.one;
                 // }
 
-                if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
+                if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && canMove)
                 {
                     if (grounded)
                     {
@@ -251,14 +259,18 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerStates.planted:
                 break;
+            case PlayerStates.disabled:
+                break;
         }
         // }
     }
 
     void FixedUpdate()
     {
-
-        ColliderCheck();
+        if(playerState != PlayerStates.hiding){
+            ColliderCheck();
+        }
+        
 
         switch (playerState)
         {
@@ -304,7 +316,7 @@ public class PlayerController : MonoBehaviour
                     transform.SetParent(null);
                 }
                 myAnim.SetBool("Grounded", grounded);
-                if (grounded)
+                if (grounded )
                 {
                     rightDirection = Quaternion.Euler(0, 0, -transform.lossyScale.x * 90) * hitGroundRay.normal;
 
@@ -325,7 +337,7 @@ public class PlayerController : MonoBehaviour
                 {
                     startJump = false;
                     rightDirection = Vector3.right * transform.lossyScale.x;
-                    if (moveDir != 0)
+                    if (moveDir != 0 )
                     {
 
                         Vector3 horizontalMoveDir = Vector3.right * moveDir;
@@ -349,6 +361,8 @@ public class PlayerController : MonoBehaviour
             case PlayerStates.hiding:
                 break;
             case PlayerStates.planted:
+                break;
+            case PlayerStates.disabled:
                 break;
         }
 

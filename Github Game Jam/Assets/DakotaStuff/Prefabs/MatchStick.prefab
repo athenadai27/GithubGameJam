@@ -154,7 +154,7 @@ MonoBehaviour:
   fireCollider: {fileID: 8678507567444119621}
   burnMask:
     serializedVersion: 2
-    m_Bits: 131072
+    m_Bits: 133120
   itemScript: {fileID: 8678507565859263415}
   fireTransform: {fileID: 7068091090130197848}
 --- !u!114 &8678507565859263415

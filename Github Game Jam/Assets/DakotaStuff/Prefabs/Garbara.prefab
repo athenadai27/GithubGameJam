@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181759933}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
+  m_LocalPosition: {x: -0.30901122, y: 0.4400003, z: 0.18738878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4385821461413538716}
@@ -78,7 +78,7 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
   sentence: I wonder which is sharper , my tongue or the sound of my croaks . Both
     are too quick to be blocked !
@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340258830}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
+  m_LocalPosition: {x: -0.30901122, y: 0.4400003, z: 0.18738878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4385821461413538716}
@@ -171,7 +171,7 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
   sentence: An explosion of sound or a quake from the ground ? You must defend yourself
     both high and low !
@@ -271,7 +271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515177904}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
+  m_LocalPosition: {x: -0.30901122, y: 0.4400003, z: 0.18738878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4385821461413538716}
@@ -294,7 +294,7 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
   sentence: Quake or shake ? Either way you can't protect yourself from your fate
     !
@@ -362,7 +362,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912662129}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
+  m_LocalPosition: {x: -0.30901122, y: 0.4400003, z: 0.18738878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4385821461413538716}
@@ -385,7 +385,7 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
   sentence: My tongue and my ooze are a perfect match don't you think ? A sticky
     skewer and a skewering sticky !
@@ -916,8 +916,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1435b3bb3c1d8e418456af8ebc92c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossState: 16
-  currentPhase: 16
+  bossState: 12
+  currentPhase: 12
   lerpStartPos: {x: 0, y: 0, z: 0}
   lerpEndPos: {x: 0, y: 0, z: 0}
   leapLerp: 0
@@ -1168,65 +1168,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1.3399963, y: 3.99}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &4385821461631821804
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4385821461631821807}
-  - component: {fileID: 4385821461631821806}
-  m_Layer: 0
-  m_Name: TransitionText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4385821461631821807
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4385821461631821804}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4385821461413538716}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4385821461631821806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4385821461631821804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911693228037b0e4a8eefa5a3f2d638a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runner: {fileID: 0}
-  wordBlockPrefab: {fileID: 2421338707633369312, guid: 74024e61a7a9dca4a90d665ca92f2622,
-    type: 3}
-  idleBlockList: []
-  activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
-  pauseBetweenLaunch: 0.2
-  sentence: You insolent insect ! You will join your fuzzy friend in her quest to
-    retrieve my queen soon enough !
-  specialWords: []
-  wordGrabber: {fileID: 0}
-  stemController: {fileID: 0}
-  wordItemSpawnObjects: []
-  lineCount: 2
-  npcCanvasTransform: {fileID: 4385821461413538716}
-  newlyActivated: []
 --- !u!1 &4385821461777706638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,7 +1528,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4385821461916829739}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6489952, y: 4.43, z: 0.18738878}
+  m_LocalPosition: {x: -0.30901122, y: 0.4400003, z: 0.18738878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4385821461413538716}
@@ -1610,7 +1551,7 @@ MonoBehaviour:
     type: 3}
   idleBlockList: []
   activeBlockList: []
-  relativeWordCloudCenter: {x: 0, y: 1, z: 0}
+  relativeWordCloudCenter: {x: 0, y: 5, z: 0}
   pauseBetweenLaunch: 0.2
   sentence: Beaten by an insect ... how shameful. This isn't the last you'll see
     of me!
@@ -1802,3 +1743,100 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 4385821461413538716}
   newlyActivated: []
+--- !u!1001 &5370571865065222621
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4385821461413538716}
+    m_Modifications:
+    - target: {fileID: 8526875169148507697, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_Name
+      value: TransitionText
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.30901122
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4400003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.18738878
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507699, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: sentence
+      value: You insolent insect! Soon you will join your fuzzy friend in search
+        of my queen !
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507699, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: lineCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526875169148507699, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+        type: 3}
+      propertyPath: npcCanvasTransform
+      value: 
+      objectReference: {fileID: 4385821461413538716}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f16fa36c7339cb14a8f9a8219a6436d6, type: 3}
+--- !u!1 &4385821461631821804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8526875169148507697, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5370571865065222621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4385821461631821807 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8526875169148507698, guid: f16fa36c7339cb14a8f9a8219a6436d6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5370571865065222621}
+  m_PrefabAsset: {fileID: 0}

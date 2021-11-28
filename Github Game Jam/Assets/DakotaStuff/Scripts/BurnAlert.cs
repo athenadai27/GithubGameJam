@@ -19,7 +19,7 @@ public class BurnAlert : MonoBehaviour
 
     public void Burn(){
         for(int i = 0; i < alertedEnemies.Count;i++){
-            alertedEnemies[i].SetThreatLevel(2);
+            alertedEnemies[i].Lure();
         }
     }
 }

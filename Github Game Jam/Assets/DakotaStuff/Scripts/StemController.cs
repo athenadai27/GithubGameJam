@@ -223,7 +223,7 @@ public class StemController : MonoBehaviour
 
             case PlayerStates.nothing:
 
-                if (Input.GetMouseButtonDown(0) && playerController.grounded && !pauseScript.paused)
+                if (Input.GetMouseButtonDown(0) && playerController.grounded && !pauseScript.paused && playerController.playerState != PlayerController.PlayerStates.hiding)
                 {
                     clickTime = Time.time + .1f;
                     Vector3 mousePosInit = mainCam.ScreenToWorldPoint(Input.mousePosition);
