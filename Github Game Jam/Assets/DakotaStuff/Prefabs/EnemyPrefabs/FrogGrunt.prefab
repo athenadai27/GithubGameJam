@@ -311,7 +311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5832968628389473242
 Transform:
   m_ObjectHideFlags: 0
@@ -412,18 +412,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alertLevel: 0
-  currentThreatLevel: 0
-  sentenceControllers:
-  - {fileID: 5832968629560473562}
-  - {fileID: 5832968627762232448}
-  - {fileID: 5832968628023322464}
-  - {fileID: 5832968629417825615}
-  - {fileID: 5832968628610799089}
-  activeSentenceController: {fileID: 5832968629560473562}
+  sleepText: {fileID: 0}
+  searchText: {fileID: 0}
+  boutheinaSpottedText: {fileID: 0}
+  luredText: {fileID: 0}
+  chillText: {fileID: 0}
+  currentTextController: {fileID: 0}
+  suspiciousText: {fileID: 0}
   textController: {fileID: 5832968629560473560}
   playerTransform: {fileID: 0}
   moveSpeed: 4
-  searchTransform: {fileID: 0}
+  lureTransform: {fileID: 0}
   npcSprite: {fileID: 5832968628389473243}
   alertSign: {fileID: 5832968629040426161}
   wakeUpTime: 0
@@ -437,6 +436,16 @@ MonoBehaviour:
   invokingThreatLevel: 0
   attackCooldown: 0
   attackCooldownAdditional: 3
+  delayTime: 0
+  waiting: 0
+  nextText: {fileID: 0}
+  tongueAttack: {fileID: 0}
+  canvas: {fileID: 0}
+  eventMask:
+    serializedVersion: 2
+    m_Bits: 0
+  bodyCollider: {fileID: 0}
+  objectToDestroyName: 
 --- !u!114 &5832968628389473240
 MonoBehaviour:
   m_ObjectHideFlags: 0

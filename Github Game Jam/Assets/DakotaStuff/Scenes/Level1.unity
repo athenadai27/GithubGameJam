@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10812,6 +10812,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2491370772899692632
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2491370774393776488, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491370774393776488, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 127.5967
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491370774393776488, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.15235996
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491370774393776488, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491370774393776488, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491370774393776488, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491370774393776488, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491370774393776488, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491370774393776488, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491370774393776488, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491370774393776488, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491370774393776502, guid: 53a877d6a4ad22546bb65d0e6f67c6b5,
+        type: 3}
+      propertyPath: m_Name
+      value: Gameboy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 53a877d6a4ad22546bb65d0e6f67c6b5, type: 3}
 --- !u!1001 &5307545260986078728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10968,6 +11037,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FirstFrogGruntTutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 2052102008431984740, guid: 48e8d87e1860d4d4fa8ba2c7db1b7f32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2052102008431984744, guid: 48e8d87e1860d4d4fa8ba2c7db1b7f32,
         type: 3}
       propertyPath: lureTransform
@@ -10991,7 +11065,7 @@ PrefabInstance:
     - target: {fileID: 2052102008431984747, guid: 48e8d87e1860d4d4fa8ba2c7db1b7f32,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 62.83
+      value: 85.3
       objectReference: {fileID: 0}
     - target: {fileID: 2052102008431984747, guid: 48e8d87e1860d4d4fa8ba2c7db1b7f32,
         type: 3}

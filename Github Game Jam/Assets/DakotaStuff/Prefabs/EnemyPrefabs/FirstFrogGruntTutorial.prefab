@@ -715,7 +715,7 @@ MonoBehaviour:
   frogAnim: {fileID: 2052102008431984741}
   frogCanvas: {fileID: 2052102006711417800}
   doneScouting: 0
-  enemyAlertScript: {fileID: 2052102008431984744}
+  enemyAlertScript: {fileID: 0}
   frogAttackScript: {fileID: 2052102008431984745}
   nextPhaseTransform: {x: 0, y: 0, z: 0}
   teachingHowToGrabNPC: {fileID: 2052102008431984738}
