@@ -76,4 +76,10 @@ public class HoujeilahScript : MonoBehaviour
         spriteRenderer.color = newColor;
         Debug.Log("houjeilahappear");
     }
+
+    public void Reset(){
+        Color newColor = spriteRenderer.color;
+        newColor.a = 1f;
+        spriteRenderer.color = newColor;
+    }
 }

@@ -9,7 +9,7 @@ public class NPCTravelToAndFrom : MonoBehaviour
     public Transform endPosTransform;
     public float waitTime;
     public TextControllerV2 textController;
-    public enum TravelStates {going, coming, waiting, nothing};
+    public enum TravelStates {going, coming, waiting, nothing, attacking};
     public TravelStates travelState;
     public float moveLerp;
     public float secondsToGetThere;
@@ -25,6 +25,9 @@ public class NPCTravelToAndFrom : MonoBehaviour
     public GameObject nextPromptColliderObject;
     public HoujeilahScript houjeilah;
     public GameObject nextPrompt;
+    public CircleCollider2D aggroCollider;
+    public FrogGruntAttackTest tongueAttack;
+    public LayerMask playerMask;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +38,14 @@ public class NPCTravelToAndFrom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Collider2D playerOverlap = Physics2D.OverlapCircle(aggroCollider.bounds.center,aggroCollider.radius,playerMask);
+        if(playerOverlap && travelState != TravelStates.attacking){
+            playerOverlap.GetComponent<PlayerController>().canMove = false;
+            frogAnim.SetTrigger("Attack");
+            travelState = TravelStates.attacking;
+        }
         switch(travelState){
+            
             case TravelStates.going:
                 moveLerp += Time.deltaTime/secondsToGetThere;
 
@@ -84,6 +94,8 @@ public class NPCTravelToAndFrom : MonoBehaviour
                 }
                 break;
             case TravelStates.nothing:
+                break;
+            case TravelStates.attacking:
                 break;
         }
     }

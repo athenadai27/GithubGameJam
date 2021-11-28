@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer flowerSprite;
 
     public StemController stemController;
-    public Checkpoint checkpoint;
+    public CheckpointManager checkpointManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -629,9 +629,10 @@ public class PlayerController : MonoBehaviour
         playerState = PlayerStates.normal;
         myAnim.Rebind();
         stemController.Reset();
+        canMove = true;
     }
 
     public void Kill(){
-        checkpoint.Reset();
+        checkpointManager.GoToCheckpoint();
     }
 }

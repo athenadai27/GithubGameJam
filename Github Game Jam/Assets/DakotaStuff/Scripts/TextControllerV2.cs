@@ -46,6 +46,8 @@ public class TextControllerV2 : MonoBehaviour
     Transform npcCanvasTransform;
 
     public List<WordBlockV2> newlyActivated = new List<WordBlockV2>();
+
+    public ActivateDeactivateAfterText activateDeactivateAfterText;
     /// <summary>
     /// very dangerous and evil, delete after testing
     /// </summary>
@@ -181,6 +183,9 @@ public class TextControllerV2 : MonoBehaviour
         for (int i = 0; i < idleBlockList.Count; i++)
         {
             idleBlockList[i].gameObject.SetActive(false);
+        }
+        if(activateDeactivateAfterText != null){
+            activateDeactivateAfterText.ActivateAndDeactivate();
         }
         gameObject.SetActive(false);
     }
