@@ -29,7 +29,7 @@ public class CheckPoint : MonoBehaviour
             activeCheckPoint.Load();
     }
 
-    private void Load()
+    protected virtual void Load()
     {
         // restore player controller
         player.Reset();
