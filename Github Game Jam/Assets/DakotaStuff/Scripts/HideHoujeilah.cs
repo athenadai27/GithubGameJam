@@ -20,7 +20,7 @@ public class HideHoujeilah : MonoBehaviour
         Collider2D houjeilahOverlap = Physics2D.OverlapBox(hideCollider.bounds.center,hideCollider.bounds.size,0f,houjeilahMask);
         if(houjeilahOverlap){
             houjeilahOverlap.GetComponent<HoujeilahScript>().Hide(hideTransform.position);
-            this.enabled = false;
+            gameObject.SetActive(false);
         }
     }
 }

@@ -22,8 +22,10 @@ public class GiveToHoujeilah : MonoBehaviour
        if(!textController.gameObject.activeSelf){
            stemController.grabbedItem.transform.SetParent(houjeilahArmTransform);
            stemController.grabbedItem.transform.position = houjeilahArmTransform.position;
+           stemController.grabbedItem.GetComponent<BoxCollider2D>().enabled = true;
            stemController.grabbedItem = null;
            nextDialoguePrompt.SetActive(true);
+
            gameObject.SetActive(false);
        }
     }

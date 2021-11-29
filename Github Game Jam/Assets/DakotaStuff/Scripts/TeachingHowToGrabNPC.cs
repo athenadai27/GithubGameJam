@@ -14,7 +14,12 @@ public class TeachingHowToGrabNPC : MonoBehaviour
     public GameObject retractPrompt;
     public GameObject giveToHoujeilahObject;
     public GameObject waitForTextObject;
-
+    public List<GameObject> objectsToActivateFromWord;
+    public List<GameObject> objectsToDeactivateFromWord;
+     public List<GameObject> objectsToActivateFromItem;
+    public List<GameObject> objectsToDeactivateFromItem;
+    public List<TextControllerV2> textControllersToDeactivateFromWord;
+    public List<TextControllerV2> textControllersToDeactivateFromItem;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,35 +37,33 @@ public class TeachingHowToGrabNPC : MonoBehaviour
             case HelpStates.waitingForWordGrab:
                 if (stemController.grabbedWord)
                 {
-                    if(wordDialogueController != null){
-                        wordDialogueController.SetActive(true);
+
+                    for(int i = 0; i < objectsToActivateFromWord.Count;i++){
+                        objectsToActivateFromWord[i].SetActive(true);
                     }
-                    
-                    if(dragPrompt != null){
-                        dragPrompt.SetActive(false);
+                    for(int i = 0; i < objectsToDeactivateFromWord.Count;i++){
+                        objectsToDeactivateFromWord[i].SetActive(false);
                     }
-                    
+                    for(int i = 0; i < textControllersToDeactivateFromWord.Count;i++){
+                        textControllersToDeactivateFromWord[i].FadeText();
+                    }
                     helpState = HelpStates.waitingForItem;
-                    //this.enabled = false;
                 }
                 break;
             case HelpStates.waitingForItem:
                 if (stemController.grabbedItem)
                 {
-                    if(itemDialogueController != null){
-                        itemDialogueController.SetActive(true);
+
+                    for(int i = 0; i < objectsToActivateFromItem.Count;i++){
+                        objectsToActivateFromItem[i].SetActive(true);
                     }
-                    if(retractPrompt != null){
-                        retractPrompt.SetActive(false);
+                    for(int i = 0; i < objectsToDeactivateFromItem.Count;i++){
+                        objectsToDeactivateFromItem[i].SetActive(false);
                     }
-                    if(giveToHoujeilahObject != null){
-                        giveToHoujeilahObject.SetActive(true);
+                    for(int i = 0; i < textControllersToDeactivateFromItem.Count;i++){
+                        textControllersToDeactivateFromItem[i].FadeText();
                     }
-                    if(waitForTextObject != null){
-                        waitForTextObject.SetActive(true);
-                    }
-                    
-                    this.enabled = false;
+                    gameObject.SetActive(false);
                 }
                 break;
         }

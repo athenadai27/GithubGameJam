@@ -7,6 +7,7 @@ public class NPCTravelToAndFrom : MonoBehaviour
     public Vector3 startPos;
     public Vector3 endPos;
     public Transform endPosTransform;
+    public Transform parentTransform;
     public float waitTime;
     public TextControllerV2 textController;
     public enum TravelStates {going, coming, waiting, nothing, attacking};
@@ -29,8 +30,9 @@ public class NPCTravelToAndFrom : MonoBehaviour
     public FrogGruntAttackTest tongueAttack;
     public LayerMask playerMask;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        frogAnim.Rebind();
         endPos = endPosTransform.position;
         StartGoing(endPos);
     }
@@ -50,20 +52,20 @@ public class NPCTravelToAndFrom : MonoBehaviour
                 moveLerp += Time.deltaTime/secondsToGetThere;
 
                 Vector3 nextPos = Vector3.Lerp(startPos,endPos,moveLerp);
-                if(nextPos.x > transform.position.x){
-                    transform.localScale = new Vector3(-1,1,1);
-                } else if(nextPos.x < transform.position.x){
-                    transform.localScale = Vector3.one;
+                if(nextPos.x > parentTransform.position.x){
+                 parentTransform.localScale = new Vector3(-1,1,1);
+                } else if(nextPos.x < parentTransform.position.x){
+                 parentTransform.localScale = Vector3.one;
                 }
-                frogCanvas.transform.localScale = transform.localScale;
-                transform.position = nextPos;
+                frogCanvas.transform.localScale = parentTransform.localScale;
+                parentTransform.position = nextPos;
                 if(moveLerp >= 1){
                     if(doneScouting){
                         travelState = TravelStates.nothing;
-                        teachingHowToGrabNPC.enabled = true;
-                        transform.position = teleportPos.position;
-                        transform.localScale = Vector3.one;
-                        frogCanvas.transform.localScale = transform.localScale;
+                        teachingHowToGrabNPC.gameObject.SetActive(true);
+                        parentTransform.position = teleportPos.position;
+                     parentTransform.localScale = Vector3.one;
+                        frogCanvas.transform.localScale = parentTransform.localScale;
                        // enemyAlertScript.enabled = true;
                        // frogAttackScript.enabled = true;
                         nextPromptColliderObject.SetActive(true);
@@ -91,6 +93,7 @@ public class NPCTravelToAndFrom : MonoBehaviour
                     textController.gameObject.SetActive(false);
                     StartGoing(startPos);
                     doneScouting = true;
+                    waiting = false;
                 }
                 break;
             case TravelStates.nothing:
@@ -101,7 +104,7 @@ public class NPCTravelToAndFrom : MonoBehaviour
     }
 
     public void StartGoing(Vector3 targetPos){
-        startPos = transform.position;
+        startPos = parentTransform.position;
         endPos = targetPos;
         moveLerp = 0f;
         travelState = TravelStates.going;

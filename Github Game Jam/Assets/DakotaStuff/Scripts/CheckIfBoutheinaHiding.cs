@@ -33,7 +33,7 @@ public class CheckIfBoutheinaHiding : MonoBehaviour
             {
                 objectsToDeactivate[i].SetActive(false);
             }
-            this.enabled = false;
+            gameObject.SetActive(false);
         }
     }
 }

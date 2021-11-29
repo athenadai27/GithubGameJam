@@ -22,12 +22,15 @@ public class FrogGruntAttackTest : MonoBehaviour
     public TongueStates tongueState = TongueStates.dormant;
 
     public EnemyAlert enemyAlert;
+    public EnemyAlertTutorial enemyAlertTutorial;
     public bool attacking;
 
     public EdgeCollider2D edgeCollider;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        tongueState = TongueStates.dormant;
+        tongue.gameObject.SetActive(false);
        // endPos = target.position;
        // distanceFromEndStart = Vector3.Distance(endPos, tongue.transform.position);
     }
@@ -72,6 +75,8 @@ public class FrogGruntAttackTest : MonoBehaviour
                     if (enemyAlert)
                     {
                         enemyAlert.alertLevel = EnemyAlert.AlertLevels.pursuit;
+                    } else if(enemyAlertTutorial){
+                        enemyAlertTutorial.alertLevel = EnemyAlertTutorial.AlertLevels.pursuit;
                     }
 
                     tongueState = TongueStates.dormant;

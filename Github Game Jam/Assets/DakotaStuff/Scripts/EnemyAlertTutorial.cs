@@ -56,11 +56,15 @@ public class EnemyAlertTutorial : MonoBehaviour
     public LayerMask eventMask;
     public BoxCollider2D bodyCollider;
     public string objectToDestroyName;
+    public Transform parentTransform;
+
+    public HoujeilahScript houjeilah;
+    public Transform houjeilahTravelTransform;
     // Start is called before the first frame update
     void Start()
     {
         myAnim.SetBool("Sleeping", true);
-        startingPos = transform.position;
+        startingPos = parentTransform.position;
     }
 
     // Update is called once per frame
@@ -83,23 +87,23 @@ public class EnemyAlertTutorial : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, startingPos) > 1)
                 {
-                    if (startingPos.x < transform.position.x)
+                    if (startingPos.x < parentTransform.position.x)
                     {
-                        transform.localScale = Vector3.one;
-                        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+                       parentTransform.localScale = Vector3.one;
+                        parentTransform.position += Vector3.left * moveSpeed * Time.deltaTime;
                     }
-                    else if (startingPos.x > transform.position.x)
+                    else if (startingPos.x > parentTransform.position.x)
                     {
-                        transform.localScale = new Vector3(-1, 1, 1);
-                        transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                       parentTransform.localScale = new Vector3(-1, 1, 1);
+                        parentTransform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
-                    canvas.transform.localScale = transform.localScale;
+                    canvas.transform.localScale =parentTransform.localScale;
                 }
                 else
                 {
                     myAnim.SetBool("Walking", false);
-                    transform.localScale = Vector3.one;
-                    canvas.transform.localScale = transform.localScale;
+                   parentTransform.localScale = Vector3.one;
+                    canvas.transform.localScale =parentTransform.localScale;
                     Debug.Log("Sleeping");
                     myAnim.SetBool("Sleeping", true);
                     alertLevel = AlertLevels.sleeping;
@@ -142,17 +146,17 @@ public class EnemyAlertTutorial : MonoBehaviour
                 if (Vector3.Distance(transform.position, lureTransform.position) > 1)
                 {
 
-                    if (lureTransform.position.x < transform.position.x)
+                    if (lureTransform.position.x < parentTransform.position.x)
                     {
-                        transform.localScale = Vector3.one;
-                        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+                       parentTransform.localScale = Vector3.one;
+                        parentTransform.position += Vector3.left * moveSpeed * Time.deltaTime;
                     }
-                    else if (lureTransform.position.x > transform.position.x)
+                    else if (lureTransform.position.x > parentTransform.position.x)
                     {
-                        transform.localScale = new Vector3(-1, 1, 1);
-                        transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                       parentTransform.localScale = new Vector3(-1, 1, 1);
+                        parentTransform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
-                     canvas.transform.localScale = transform.localScale;
+                     canvas.transform.localScale =parentTransform.localScale;
                 }
                 else
                 {
@@ -162,6 +166,7 @@ public class EnemyAlertTutorial : MonoBehaviour
                     }
                     delayTime = Time.time + 5f;
                     alertLevel = AlertLevels.performingAction;
+                    houjeilah.GoToPosition(houjeilahTravelTransform.position);
                 }
                 break;
             case AlertLevels.performingAction:
@@ -179,7 +184,7 @@ public class EnemyAlertTutorial : MonoBehaviour
                 }
                 break;
             case AlertLevels.pursuit:
-                Vector3 playerDirection = (playerTransform.position + Vector3.up) - transform.position;
+                Vector3 playerDirection = (playerTransform.position + Vector3.up) - parentTransform.position;
                 //  Debug.Log(playerDirection.magnitude);
                 RaycastHit2D targetPlayerRay = Physics2D.Raycast(transform.position, playerDirection, playerDirection.magnitude + 50f, playerMask);
                 if (!targetPlayerRay)
@@ -197,7 +202,7 @@ public class EnemyAlertTutorial : MonoBehaviour
                     waiting = false;
                     return;
                 }
-                if (Vector3.Distance(playerTransform.position, transform.position) < 10f)
+                if (Vector3.Distance(playerTransform.position, parentTransform.position) < 10f)
                 {
                     if (Time.time > attackCooldown)
                     {
@@ -208,17 +213,17 @@ public class EnemyAlertTutorial : MonoBehaviour
                 }
                 else
                 {
-                    if (playerTransform.position.x < transform.position.x)
+                    if (playerTransform.position.x < parentTransform.position.x)
                     {
-                        transform.localScale = Vector3.one;
-                        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+                       parentTransform.localScale = Vector3.one;
+                        parentTransform.position += Vector3.left * moveSpeed * Time.deltaTime;
                     }
-                    else if (playerTransform.position.x > transform.position.x)
+                    else if (playerTransform.position.x > parentTransform.position.x)
                     {
-                        transform.localScale = new Vector3(-1, 1, 1);
-                        transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                       parentTransform.localScale = new Vector3(-1, 1, 1);
+                        parentTransform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
-                     canvas.transform.localScale = transform.localScale;
+                     canvas.transform.localScale =parentTransform.localScale;
                 }
 
 
@@ -226,17 +231,17 @@ public class EnemyAlertTutorial : MonoBehaviour
             case AlertLevels.attacking:
                 if (!tongueAttack.attacking)
                 {
-                    if (playerTransform.position.x < transform.position.x)
+                    if (playerTransform.position.x < parentTransform.position.x)
                     {
-                        transform.localScale = Vector3.one;
-                        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+                       parentTransform.localScale = Vector3.one;
+                        parentTransform.position += Vector3.left * moveSpeed * Time.deltaTime;
                     }
-                    else if (playerTransform.position.x > transform.position.x)
+                    else if (playerTransform.position.x > parentTransform.position.x)
                     {
-                        transform.localScale = new Vector3(-1, 1, 1);
-                        transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                       parentTransform.localScale = new Vector3(-1, 1, 1);
+                        parentTransform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
-                     canvas.transform.localScale = transform.localScale;
+                     canvas.transform.localScale =parentTransform.localScale;
                 }
                 break;
             case AlertLevels.sleeping:

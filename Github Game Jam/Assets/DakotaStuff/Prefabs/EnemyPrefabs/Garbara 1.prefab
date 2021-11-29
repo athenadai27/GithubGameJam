@@ -93,6 +93,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2061062133876502206
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +155,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2061062134039035231
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +279,7 @@ MonoBehaviour:
   lineCount: 3
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2061062134782990592
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +343,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2326052541893916700
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,6 +678,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2326052542056636709
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +738,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2326052542062243300
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,6 +801,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2326052542290279215
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +864,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2326052542419455251
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +925,7 @@ MonoBehaviour:
   lineCount: 1
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2326052542474196991
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +977,6 @@ GameObject:
   - component: {fileID: 2326052542518838046}
   - component: {fileID: 2326052542518838045}
   - component: {fileID: 2061062133172096180}
-  - component: {fileID: 2061062133172096207}
   - component: {fileID: 2061062134585387276}
   m_Layer: 14
   m_Name: Garbara 1
@@ -1102,6 +1110,7 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0, z: 0}
   tongueState: 2
   enemyAlert: {fileID: 0}
+  enemyAlertTutorial: {fileID: 0}
   attacking: 0
   edgeCollider: {fileID: 2326052541926934413}
 --- !u!114 &2326052542518838045
@@ -1139,88 +1148,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2061062133172096207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2326052542518838036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1435b3bb3c1d8e418456af8ebc92c23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossState: 12
-  currentPhase: 12
-  lerpStartPos: {x: 0, y: 0, z: 0}
-  lerpEndPos: {x: 0, y: 0, z: 0}
-  leapLerp: 0
-  fallCircle: {fileID: 0}
-  playerTransform: {fileID: 0}
-  boxCollider: {fileID: 2326052542518838047}
-  fallMask:
-    serializedVersion: 2
-    m_Bits: 41216
-  midpointTransform: {fileID: 0}
-  ouchieTopY: 0
-  ouchieMidpoint: {x: 0, y: 0, z: 0}
-  myAnim: {fileID: 2061062133172096180}
-  croak1: 0
-  sonicWavesHolder: {fileID: 0}
-  oozeHolder: {fileID: 0}
-  toxicSlimes: []
-  soundWaves: []
-  shakeSpawnTime: 0
-  slimeTracker: 0
-  croakTracker: 0
-  doneCroaking: 0
-  smokeCloud: {fileID: 0}
-  diceSpawnTransform: {fileID: 2326052541893916699}
-  textControllers: []
-  tongueTexts:
-  - {fileID: 2326052543703487720}
-  - {fileID: 2326052543931729901}
-  jumpTexts:
-  - {fileID: 2326052542062243300}
-  - {fileID: 2326052542419455251}
-  diceTexts:
-  - {fileID: 2326052542038626122}
-  - {fileID: 2326052543739680784}
-  sonicTexts:
-  - {fileID: 2326052542290279215}
-  - {fileID: 2326052544008459445}
-  phaseChangeText: {fileID: 2326052542877863650}
-  fightOverText: {fileID: 2326052542056636709}
-  jumpOrShakeText: {fileID: 2061062133876502206}
-  tongueOrCroakText: {fileID: 2061062134672721587}
-  croakOrJumpText: {fileID: 2061062134782990592}
-  tongueOrShakeText: {fileID: 2061062133209661823}
-  activeTextController: {fileID: 0}
-  textControllerScript: {fileID: 0}
-  delayTime: 0
-  tongueScript: {fileID: 2326052542518838046}
-  tongueAttack: 0
-  canvas: {fileID: 2326052542559994515}
-  checkpoint: {fileID: 0}
-  resetting: 0
-  enemyHealth: {fileID: 2326052542518838045}
-  chances: 00000000000000000000000000000000
-  areaBounds: {fileID: 0}
-  previousSimilarTextChosen: 0
-  doneFighting: 0
-  groundY: 0
-  camFollow: {fileID: 0}
-  cameraShaking: 0
-  waiting: 0
-  croakTransform: {fileID: 2061062134424494713}
-  numWavesPerCroak: 6
-  numCroaks: 5
-  numShakes: 5
-  leftFissureTransform: {fileID: 0}
-  rightFissureTransform: {fileID: 0}
-  leftFissure: {fileID: 0}
-  rightFissure: {fileID: 0}
 --- !u!114 &2061062134585387276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1499,6 +1426,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2326052543028245405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,6 +1561,7 @@ MonoBehaviour:
   lineCount: 1
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2326052543739680784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1693,6 +1622,7 @@ MonoBehaviour:
   lineCount: 1
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2326052543931729901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,6 +1686,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2326052544008459445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,3 +1749,4 @@ MonoBehaviour:
   lineCount: 3
   npcCanvasTransform: {fileID: 2326052542559994514}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}

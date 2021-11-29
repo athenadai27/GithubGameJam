@@ -1,5 +1,203 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &92449471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 92449472}
+  - component: {fileID: 92449473}
+  m_Layer: 14
+  m_Name: FrogGruntBackAndForth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &92449472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92449471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2052102008431984747}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &92449473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92449471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a3bbb91eaa57a4687b649d5f25f734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
+  endPos: {x: 0, y: 0, z: 0}
+  endPosTransform: {fileID: 5514756662015769787}
+  waitTime: 0
+  textController: {fileID: 5514756662229337241}
+  travelState: 3
+  moveLerp: 0
+  secondsToGetThere: 2
+  waiting: 0
+  frogAnim: {fileID: 2052102008431984741}
+  frogCanvas: {fileID: 2052102006711417800}
+  doneScouting: 0
+  enemyAlertScript: {fileID: 0}
+  frogAttackScript: {fileID: 2052102008431984745}
+  nextPhaseTransform: {x: 0, y: 0, z: 0}
+  teachingHowToGrabNPC: {fileID: 0}
+  teleportPos: {fileID: 0}
+  nextPromptColliderObject: {fileID: 0}
+  houjeilah: {fileID: 0}
+  nextPrompt: {fileID: 0}
+  aggroCollider: {fileID: 2052102008286698184}
+  tongueAttack: {fileID: 2052102008431984745}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!1 &1845206645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1845206646}
+  - component: {fileID: 1845206647}
+  m_Layer: 14
+  m_Name: FrogGruntTeachingHowToGrab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1845206646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845206645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2052102008431984747}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1845206647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845206645}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d983072f1fd9ab41998641ec0c3789e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textController: {fileID: 5514756661828449415}
+  wordDialogueController: {fileID: 0}
+  itemDialogueController: {fileID: 0}
+  dragPrompt: {fileID: 0}
+  stemController: {fileID: 0}
+  helpState: 0
+  retractPrompt: {fileID: 0}
+  giveToHoujeilahObject: {fileID: 0}
+  waitForTextObject: {fileID: 0}
+--- !u!1 &2063656586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063656587}
+  - component: {fileID: 2063656588}
+  m_Layer: 14
+  m_Name: EnemyAlert
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2063656587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063656586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2052102008431984747}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2063656588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063656586}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e5763f940b0884fa6495a0c5aa8474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alertLevel: 0
+  sleepText: {fileID: 5514756662374011018}
+  searchText: {fileID: 0}
+  boutheinaSpottedText: {fileID: 5514756662043072112}
+  luredText: {fileID: 5514756661856713182}
+  chillText: {fileID: 2052102007243693163}
+  currentTextController: {fileID: 5514756662374011018}
+  suspiciousText: {fileID: 5514756662673882660}
+  textController: {fileID: 5514756662374011016}
+  playerTransform: {fileID: 0}
+  moveSpeed: 5
+  lureTransform: {fileID: 0}
+  npcSprite: {fileID: 2052102008431984746}
+  alertSign: {fileID: 2052102006723643136}
+  wakeUpTime: 0
+  myAnim: {fileID: 2052102008431984741}
+  playerDetector: {fileID: 2052102008286698184}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  nextAlertLevel: 0
+  startingPos: {x: 0, y: 0, z: 0}
+  invokingThreatLevel: 0
+  attackCooldown: 0
+  attackCooldownAdditional: 0
+  delayTime: 0
+  waiting: 0
+  nextText: {fileID: 0}
+  tongueAttack: {fileID: 2052102008431984745}
+  canvas: {fileID: 2052102006711417797}
+  eventMask:
+    serializedVersion: 2
+    m_Bits: 4
+  bodyCollider: {fileID: 2052102008431984739}
+  objectToDestroyName: Fire
 --- !u!1 &2052102006711417796
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +458,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2052102006711417797}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &2052102007732832507
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,11 +712,8 @@ GameObject:
   - component: {fileID: 2052102008431984747}
   - component: {fileID: 2052102008431984746}
   - component: {fileID: 2052102008431984741}
-  - component: {fileID: 2052102008431984744}
   - component: {fileID: 2052102008431984745}
-  - component: {fileID: 5514756662689442735}
   - component: {fileID: 2052102008431984739}
-  - component: {fileID: 2052102008431984738}
   m_Layer: 14
   m_Name: FirstFrogGruntTutorial
   m_TagString: Enemy
@@ -541,6 +737,9 @@ Transform:
   - {fileID: 2052102008286698187}
   - {fileID: 2052102007732832504}
   - {fileID: 5514756662015769787}
+  - {fileID: 92449472}
+  - {fileID: 1845206646}
+  - {fileID: 2063656587}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -613,53 +812,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2052102008431984744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052102008431984740}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75b59ee22cf157446a8fd547f097ac62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alertLevel: 0
-  sleepText: {fileID: 5514756662374011018}
-  searchText: {fileID: 0}
-  boutheinaSpottedText: {fileID: 5514756662043072112}
-  luredText: {fileID: 5514756661856713182}
-  chillText: {fileID: 5514756663220930962}
-  currentTextController: {fileID: 5514756662374011018}
-  suspiciousText: {fileID: 5514756662673882660}
-  textController: {fileID: 5514756662374011016}
-  playerTransform: {fileID: 0}
-  moveSpeed: 4
-  lureTransform: {fileID: 0}
-  npcSprite: {fileID: 2052102008431984746}
-  alertSign: {fileID: 2052102006723643136}
-  wakeUpTime: 0
-  myAnim: {fileID: 2052102008431984741}
-  playerDetector: {fileID: 2052102008286698184}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  nextAlertLevel: 0
-  startingPos: {x: 0, y: 0, z: 0}
-  invokingThreatLevel: 0
-  attackCooldown: 0
-  attackCooldownAdditional: 3
-  delayTime: 0
-  waiting: 0
-  nextText: {fileID: 0}
-  tongueAttack: {fileID: 2052102008431984745}
-  canvas: {fileID: 2052102006711417797}
-  eventMask:
-    serializedVersion: 2
-    m_Bits: 4
-  bodyCollider: {fileID: 2052102008431984739}
-  objectToDestroyName: Fire
 --- !u!114 &2052102008431984745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,7 +819,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052102008431984740}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bc0a4e07163ce3489433c83e6ee360e, type: 3}
   m_Name: 
@@ -688,41 +840,9 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   targetPos: {x: 0, y: 0, z: 0}
   tongueState: 2
-  enemyAlert: {fileID: 2052102008431984744}
+  enemyAlert: {fileID: 0}
   attacking: 0
   edgeCollider: {fileID: 2052102007732832506}
---- !u!114 &5514756662689442735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052102008431984740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4a3bbb91eaa57a4687b649d5f25f734, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPos: {x: 0, y: 0, z: 0}
-  endPos: {x: 0, y: 0, z: 0}
-  endPosTransform: {fileID: 5514756662015769787}
-  waitTime: 0
-  textController: {fileID: 5514756662229337241}
-  travelState: 3
-  moveLerp: 0
-  secondsToGetThere: 2
-  waiting: 0
-  frogAnim: {fileID: 2052102008431984741}
-  frogCanvas: {fileID: 2052102006711417800}
-  doneScouting: 0
-  enemyAlertScript: {fileID: 0}
-  frogAttackScript: {fileID: 2052102008431984745}
-  nextPhaseTransform: {x: 0, y: 0, z: 0}
-  teachingHowToGrabNPC: {fileID: 2052102008431984738}
-  teleportPos: {fileID: 0}
-  nextPromptColliderObject: {fileID: 0}
-  houjeilah: {fileID: 0}
-  nextPrompt: {fileID: 0}
 --- !u!61 &2052102008431984739
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -749,27 +869,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.351242, y: 3.8487368}
   m_EdgeRadius: 0
---- !u!114 &2052102008431984738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052102008431984740}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d983072f1fd9ab41998641ec0c3789e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textController: {fileID: 5514756661828449415}
-  wordDialogueController: {fileID: 0}
-  itemDialogueController: {fileID: 0}
-  dragPrompt: {fileID: 0}
-  stemController: {fileID: 0}
-  helpState: 0
-  retractPrompt: {fileID: 0}
-  giveToHoujeilahObject: {fileID: 0}
-  waitForTextObject: {fileID: 0}
 --- !u!1 &5514756661828449417
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +929,7 @@ MonoBehaviour:
   lineCount: 1
   npcCanvasTransform: {fileID: 2052102006711417797}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &5514756661856713182
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,6 +988,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2052102006711417797}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &5514756662015769788
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +1013,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5514756662015769788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.32, y: 0, z: 0}
+  m_LocalPosition: {x: -12.89, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2052102008431984747}
@@ -976,6 +1077,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2052102006711417797}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &5514756662229337243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,6 +1137,7 @@ MonoBehaviour:
   lineCount: 4
   npcCanvasTransform: {fileID: 2052102006711417797}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &5514756662374011018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,6 +1198,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2052102006711417797}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &5514756662673882660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,6 +1257,7 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2052102006711417797}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
 --- !u!1 &5514756663220930962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,3 +1316,4 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 2052102006711417797}
   newlyActivated: []
+  activateDeactivateAfterText: {fileID: 0}
