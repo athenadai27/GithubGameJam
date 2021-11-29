@@ -41,11 +41,10 @@ public class BossCheckPoint : CheckPoint
         switch (attachedBoss)
         {
             case AttachedBoss.GARBARA:
-                // TODO: implement after merged to a branch where Garbara lives
+                gameObject.GetComponent<FrogMiniboss>().Reset(savedPhaseNumber);
                 break;
             case AttachedBoss.FROG_KING:
-                var fKingScript = gameObject.GetComponent<FrogKingScript>();
-                fKingScript.Reset(savedPhaseNumber);
+                gameObject.GetComponent<FrogKingScript>().Reset(savedPhaseNumber);
                 break;
         }
     }
