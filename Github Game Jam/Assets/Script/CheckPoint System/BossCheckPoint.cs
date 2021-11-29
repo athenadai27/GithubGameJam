@@ -14,24 +14,21 @@ public class BossCheckPoint : CheckPoint
         FROG_KING
     }
 
-    /// <summary>
-    /// save progress for Garbara.
-    /// </summary>
-    /// <param name="phase">convert the current boss state to an integer</param>
-    public void SaveForGabara(int phase)
+    private void Start()
     {
-        savedPhaseNumber = phase;
-        attachedBoss = AttachedBoss.GARBARA;
+        if (gameObject.GetComponent<FrogKingScript>())
+        {
+            attachedBoss = AttachedBoss.FROG_KING;
+        }
+        else
+        {
+            attachedBoss = AttachedBoss.GARBARA;
+        }
     }
 
-    /// <summary>
-    /// save progress for Frog King
-    /// </summary>
-    /// <param name="phase">convert the current boss state to an integer</param>
-    public void SaveForFrogKing(int phase)
+    public void SaveBoss(int phase)
     {
         savedPhaseNumber = phase;
-        attachedBoss = AttachedBoss.FROG_KING;
     }
 
     protected override void Load()
@@ -47,5 +44,7 @@ public class BossCheckPoint : CheckPoint
                 gameObject.GetComponent<FrogKingScript>().Reset(savedPhaseNumber);
                 break;
         }
+
+        transform.position = savedPosition;
     }
 }
