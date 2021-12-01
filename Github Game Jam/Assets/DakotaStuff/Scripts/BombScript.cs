@@ -11,6 +11,9 @@ public class BombScript : MonoBehaviour
     public float lifeTime;
     public Animator myAnim;
     public bool exploding;
+    public AudioSource audioSource;
+    public AudioClip tickClip;
+    public AudioClip explodeClip;
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -27,6 +30,8 @@ public class BombScript : MonoBehaviour
                 Collider2D explosionHit = Physics2D.OverlapCircle(explosionCollider.bounds.center, explosionCollider.radius, explosionMask);
                 if (explosionHit)
                 {
+                    audioSource.clip = explodeClip;
+                    audioSource.Play();
                     if(explosionHit.gameObject.GetComponent<CheckForBombHit>() != null){
                         explosionHit.gameObject.GetComponent<CheckForBombHit>().BombHit();
                     }

@@ -63,6 +63,9 @@ public class BeanFrog : EnemyHealth
     public float groundY;
     public Transform parentTransform;
     public Vector3 resetScale;
+    public AudioSource beanAudioSource;
+    public AudioClip launchClip;
+    
     // Start is called before the first frame update
     void OnEnable()
     {

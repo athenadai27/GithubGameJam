@@ -75,6 +75,14 @@ public class FrogKingScript : EnemyHealth
     public LayerMask playerMask;
     public GameObject initialText;
     public Transform cameraTransform;
+    public AudioSource levelAudio;
+    public AudioClip bossMusic;
+    public AudioSource frogKingAudio;
+    public AudioClip launchClip;
+    public AudioClip wavesClip;
+    public AudioClip slamClip;
+    public AudioClip talkClip;
+    public AudioClip hurtClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +93,13 @@ public class FrogKingScript : EnemyHealth
         // for(int i = 0; i < sonicWavesHolder.transform.childCount;i++){
         //     soundWaves.Add(sonicWavesHolder.transform.GetChild(i).GetComponent<SoundWave>());
         // }
+    }
+
+    public override void Damage(float damageAmount)
+    {
+        base.Damage(damageAmount);
+        frogKingAudio.clip = hurtClip;
+        frogKingAudio.Play();
     }
 
     // Update is called once per frame
@@ -109,6 +124,8 @@ public class FrogKingScript : EnemyHealth
                     textControllerScript.FadeText();
                     bossState = BossStates.phase1;
                     waiting = false;
+                    levelAudio.clip = bossMusic;
+                    levelAudio.Play();
                 }
                 else
                 {
@@ -687,7 +704,8 @@ public class FrogKingScript : EnemyHealth
             newWave.SetActive(true);
             newWave.transform.SetAsLastSibling();
         }
-
+        frogKingAudio.clip = wavesClip;
+        frogKingAudio.Play();
         if (croakTracker >= numCroaks)
         {
             myAnim.SetBool("Croaking", false);
@@ -748,6 +766,9 @@ public class FrogKingScript : EnemyHealth
         Debug.Log(toxicSlimeProjectile.endPos);
         newSlime.SetActive(true);
         newSlime.transform.SetAsLastSibling();
+
+        frogKingAudio.clip = launchClip;
+        frogKingAudio.Play();
         if (slimeTracker >= numShakes)
         {
             bossState = currentPhase;
@@ -781,7 +802,8 @@ public class FrogKingScript : EnemyHealth
                 activeTextController.SetActive(false);
             }
         }
-
+        frogKingAudio.clip = talkClip;
+        frogKingAudio.Play();
 
         activeTextController = sentTextController;
 
@@ -810,6 +832,8 @@ public class FrogKingScript : EnemyHealth
     {
         bossState = currentPhase;
         cameraShaking = false;
+        frogKingAudio.clip = slamClip;
+        frogKingAudio.Play();
     }
 
 

@@ -32,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
         
     }
 
-    public void Damage(float damageAmount){
+    public virtual void Damage(float damageAmount){
         currentHealth -= damageAmount;
         enemySprite.color = Color.red;
         enemyDamageTime = Time.time + .5f;

@@ -17,6 +17,8 @@ public class FakeSceneTransition : MonoBehaviour
     public LayerMask playerMask;
     public FollowPlayer followPlayerScript;
     public BoxCollider2D newMapBounds;
+    public AudioSource levelMusic;
+    public AudioClip newLevelMusic;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class FakeSceneTransition : MonoBehaviour
                 if(fadeScreen.overlayImage.color.a <= 0){
                     transitionState = FakeSceneTransitionStates.waitingForCollision;
                     followPlayerScript.enabled = true;
+                
                 }  
                 break;
             case FakeSceneTransitionStates.fadingOut:
@@ -57,6 +60,8 @@ public class FakeSceneTransition : MonoBehaviour
                     backgroundSpriteRenderer.sprite = newBackgroundSprite;
                     StartCoroutine(fadeScreen.FadeInRoutine());
                     transitionState = FakeSceneTransitionStates.fadingIn;
+                    levelMusic.clip = newLevelMusic;
+                    levelMusic.Play();
                 }
                 break;
         }

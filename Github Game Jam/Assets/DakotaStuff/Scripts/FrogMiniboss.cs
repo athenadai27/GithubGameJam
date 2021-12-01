@@ -67,7 +67,16 @@ public class FrogMiniboss : EnemyHealth
     public int numShakes;
     public BoxCollider2D talkCollider;
     public LayerMask playerMask;
-public Transform cameraTransform;   
+public Transform cameraTransform;  
+    public AudioSource levelAudio;
+    public AudioClip bossMusic;
+    public AudioClip trashSewerMusic;
+    public AudioSource garbaraAudio;
+    public AudioClip launchClip;
+    public AudioClip wavesClip;
+    public AudioClip slamClip;
+    public AudioClip talkClip;
+    public AudioClip hurtClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +87,11 @@ public Transform cameraTransform;
 
     }
 
+    public override void Damage(float damageAmount){
+        base.Damage(damageAmount);
+        garbaraAudio.clip = hurtClip;
+        garbaraAudio.Play();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -121,6 +135,8 @@ public Transform cameraTransform;
                     textControllerScript.FadeText();
                     bossState = BossStates.phase1;
                     waiting = false;
+                    levelAudio.clip = bossMusic;
+                    levelAudio.Play();
                 }
                 else
                 {
@@ -142,6 +158,8 @@ public Transform cameraTransform;
                     delayTime = Time.time + 3f;
                     if (doneFighting)
                     {
+                        levelAudio.clip = trashSewerMusic;
+                        levelAudio.Play();
                         gameObject.SetActive(false);
                         return;
                     }
@@ -640,7 +658,8 @@ public Transform cameraTransform;
             newWave.SetActive(true);
             newWave.transform.SetAsLastSibling();
         }
-
+        garbaraAudio.clip = wavesClip;
+        garbaraAudio.Play();
         if (croakTracker >= numCroaks)
         {
             myAnim.SetBool("Croaking", false);
@@ -698,7 +717,8 @@ public Transform cameraTransform;
         float oozeLerpHeight = Random.Range(10f, 15f);
         toxicSlimeProjectile.midPoint = toxicSlimeProjectile.startPos + (toxicSlimeProjectile.endPos - toxicSlimeProjectile.startPos) / 2 + Vector3.up * oozeLerpHeight;
         toxicSlimeProjectile.lerp = 0f;
-
+        garbaraAudio.clip = launchClip;
+        garbaraAudio.Play();
         newSlime.SetActive(true);
         newSlime.transform.SetAsLastSibling();
         if (slimeTracker >= numShakes)
@@ -734,7 +754,8 @@ public Transform cameraTransform;
             }
         }
 
-
+        garbaraAudio.clip = talkClip;
+        garbaraAudio.Play();
         activeTextController = sentTextController;
 
 
@@ -762,6 +783,8 @@ public Transform cameraTransform;
     {
         bossState = currentPhase;
         cameraShaking = false;
+        garbaraAudio.clip = slamClip;
+        garbaraAudio.Play();
     }
 
 

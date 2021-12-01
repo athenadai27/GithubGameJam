@@ -52,6 +52,10 @@ public class PlayerController : MonoBehaviour
     public StemController stemController;
     public CheckpointManager checkpointManager;
     public float stepHeight;
+    public AudioSource playerAudioSource;
+    public AudioClip damageClip;
+    public AudioClip footstepsClip;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -284,7 +288,7 @@ public class PlayerController : MonoBehaviour
                 RaycastHit2D hitGroundRay = new RaycastHit2D();
                 for (int i = 0; i < groundedRay.Length; i++)
                 {
-                    
+
                     if (Mathf.Abs(groundedRay[i].normal.x) < .5f && groundedRay[i].normal.y > 0)
                     {
                         hitGroundRay = groundedRay[i];
@@ -380,6 +384,12 @@ public class PlayerController : MonoBehaviour
             // Debug.Log(updatedMoveDir);
             //  Debug.Log(updatedMoveSpeed);
             myAnim.SetBool("Running", true);
+            if(playerAudioSource.clip != footstepsClip){
+                playerAudioSource.clip = footstepsClip;
+            }
+            if(!playerAudioSource.isPlaying){
+                playerAudioSource.Play();
+            }
             RaycastHit2D[] horizontalCheck = Physics2D.BoxCastAll(groundCollider.bounds.center, groundCollider.bounds.size , 0f, updatedMoveDir, updatedMoveSpeed * Time.fixedDeltaTime, groundMask);
 
             bool canMoveDirection = true;
@@ -461,6 +471,10 @@ public class PlayerController : MonoBehaviour
         else
         {
             myAnim.SetBool("Running", false);
+
+            if(playerAudioSource.isPlaying && playerAudioSource.clip == footstepsClip){
+                playerAudioSource.Stop();
+            }
         }
     }
 
@@ -647,6 +661,8 @@ public class PlayerController : MonoBehaviour
     public void Kill(){
         bodyCollider.enabled = false;
         groundCollider.enabled = false;
+        playerAudioSource.clip = damageClip;
+        playerAudioSource.Play();
         playerState = PlayerStates.respawning;
         checkpointManager.StartRespawning();
         Debug.Log("kill");

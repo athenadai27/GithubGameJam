@@ -67,6 +67,8 @@ public class StemController : MonoBehaviour
     public GameObject antMask;
     public bool hasFrogMask;
     public bool hasAntMask;
+    public AudioSource grabAudio;
+    public AudioClip grabClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -212,6 +214,7 @@ public class StemController : MonoBehaviour
                     
                     if (grabbedWord != null)
                     {
+                        grabAudio.Play();
                         Debug.Log(grabbedWord.name);
                         if(grabbedWord.objectToSpawn.name.Contains("FrogMask")){
                             frogMask.SetActive(true);

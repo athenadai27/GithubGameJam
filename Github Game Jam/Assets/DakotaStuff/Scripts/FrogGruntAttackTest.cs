@@ -26,6 +26,8 @@ public class FrogGruntAttackTest : MonoBehaviour
     public bool attacking;
 
     public EdgeCollider2D edgeCollider;
+    public AudioSource tongueAudio;
+    
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -162,6 +164,7 @@ public class FrogGruntAttackTest : MonoBehaviour
             tongue.SetPosition(i, tongue.transform.position);
         }
         tongue.gameObject.SetActive(true);
+        tongueAudio.Play();
     }
 
     public void Retract()

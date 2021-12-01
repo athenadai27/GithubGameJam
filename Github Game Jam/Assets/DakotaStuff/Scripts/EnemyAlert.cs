@@ -59,6 +59,9 @@ public class EnemyAlert : EnemyHealth
     public Transform tongueTransform;
     public Vector3 spawnPos;
     public bool badEyesight;
+    public AudioSource enemyAudio;
+    public AudioClip talkClip;
+    public AudioClip alertClip;
     // Start is called before the first frame update
     void OnEnable()
     {

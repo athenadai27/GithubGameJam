@@ -17,6 +17,7 @@ public class ProjectileScript : MonoBehaviour
     public float lerpSpeed;
     public BoxCollider2D projectileCollider;
    
+    
     // Start is called before the first frame update
     void Start()
     {

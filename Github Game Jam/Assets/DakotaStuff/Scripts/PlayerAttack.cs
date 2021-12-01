@@ -23,6 +23,9 @@ public class PlayerAttack : MonoBehaviour
     public GameObject weaponColliderObject;
     public EnemyHealth hitEnemy;
     public float damageAmount;
+    public AudioSource swordAudio;
+    public AudioClip swingClip;
+    public AudioClip parryClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,9 +53,11 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) && itemScript.itemState == ItemScript.ItemStates.held)
             {
                 myAnim.SetTrigger("Swing");
+                swordAudio.clip = swingClip;
+                swordAudio.Play();
                  if(!swinging){
                     weaponColliderObject.SetActive(true);
                 }
@@ -140,6 +145,8 @@ public class PlayerAttack : MonoBehaviour
 
     public void Parry()
     {
+        swordAudio.clip = parryClip;
+        swordAudio.Play();
         freezeFrame = true;
         freezeTime = Time.unscaledTime + .5f;
     }
