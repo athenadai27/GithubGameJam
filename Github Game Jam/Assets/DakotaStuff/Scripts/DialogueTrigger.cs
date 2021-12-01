@@ -17,6 +17,8 @@ public class DialogueTrigger : MonoBehaviour
     public HoujeilahScript houjeilah;
     public Transform houjeilahTravelPosition;
     public PlayerController playerController;
+    public bool travel;
+    public float jumpHeight;
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -37,16 +39,14 @@ public class DialogueTrigger : MonoBehaviour
                 }
                 break;
             case DialogueState.activated:
-                if(waiting && Time.time > afterTextDelayTime){
-                    if(prompt != null){
-                        prompt.SetActive(true);
-                        Debug.Log("activate prompt");
-                    }
-                    
+                if(waiting && Time.time > afterTextDelayTime){       
                     playerController.canMove = true;
                     textController.FadeText();
                     dialogueState = DialogueState.done;
-                    houjeilah.GoToPosition(houjeilahTravelPosition.position);
+                    if(travel){
+                        houjeilah.GoToPosition(houjeilahTravelPosition.position,jumpHeight);
+                    }
+                    
                 } else{
                     if(textController.CheckIfArrived() && !waiting){
                         waiting = true;

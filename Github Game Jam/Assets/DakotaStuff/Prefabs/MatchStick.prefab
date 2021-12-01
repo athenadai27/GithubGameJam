@@ -193,6 +193,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1902392348679738209, guid: 168b7356a03aaca40892e295c4c8bbd7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Extra
+      objectReference: {fileID: 0}
     - target: {fileID: 1902392348679738210, guid: 168b7356a03aaca40892e295c4c8bbd7,
         type: 3}
       propertyPath: m_SortingLayer

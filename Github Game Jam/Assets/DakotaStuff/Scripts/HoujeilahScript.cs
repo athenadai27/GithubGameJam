@@ -11,10 +11,12 @@ public class HoujeilahScript : MonoBehaviour
     public float moveSpeed;
     public Vector3 startPos;
     public Vector3 travelPos;
+    public Vector3 midPoint;
     public float moveLerp;
     public GameObject houjeilahCanvas;
     public SpriteRenderer spriteRenderer;
     public Vector3 previousPosition;
+    public Transform playerTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,10 @@ public class HoujeilahScript : MonoBehaviour
         switch(houjeilahState){
             case HoujeilahStates.travelling:
                 moveLerp += Time.deltaTime*moveSpeed;
-                Vector3 nextPos = Vector3.Lerp(startPos,travelPos,moveLerp);
+                Vector3 m1 = Vector3.Lerp(startPos, midPoint, moveLerp);
+                Vector3 m2 = Vector3.Lerp(midPoint, travelPos, moveLerp);
+                Vector3 nextPos = Vector3.Lerp(m1, m2, moveLerp);
+                
                 if(nextPos.x >  transform.position.x){
                     transform.localScale = new Vector3(-1,1,1);
                     
@@ -38,10 +43,17 @@ public class HoujeilahScript : MonoBehaviour
                 transform.position = nextPos;
                 
                 if(moveLerp >= 1){
+                    
                     houjeilahState = HoujeilahStates.waiting;
                 }
                 break;
             case HoujeilahStates.waiting:
+                if(playerTransform.position.x > transform.position.x){
+                    transform.localScale = new Vector3(-1,1,1);
+                } else if(playerTransform.position.x < transform.position.x){
+                    transform.localScale = Vector3.one;
+                }
+                houjeilahCanvas.transform.localScale = transform.localScale;
                 break;
         }
     }
@@ -55,10 +67,12 @@ public class HoujeilahScript : MonoBehaviour
         prompts[promptIndex].SetActive(true);
     }
 
-    public void GoToPosition(Vector3 goToPos){
+    public void GoToPosition(Vector3 goToPos, float jumpHeight){
+        
         moveLerp = 0f;
         startPos = transform.position;
         travelPos = goToPos;
+        midPoint = startPos + (travelPos - startPos) / 2 + Vector3.up * jumpHeight;
         houjeilahState = HoujeilahStates.travelling;
     }
 
@@ -67,14 +81,12 @@ public class HoujeilahScript : MonoBehaviour
         Color newColor = spriteRenderer.color;
         newColor.a = .5f;
         spriteRenderer.color = newColor;
-        Debug.Log("houjeilahhide");
     }
     public void Appear(){
         transform.position = previousPosition;
         Color newColor = spriteRenderer.color;
         newColor.a = 1f;
         spriteRenderer.color = newColor;
-        Debug.Log("houjeilahappear");
     }
 
     public void Reset(){

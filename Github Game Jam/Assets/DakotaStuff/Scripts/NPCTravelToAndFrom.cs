@@ -35,6 +35,9 @@ public class NPCTravelToAndFrom : MonoBehaviour
         frogAnim.Rebind();
         endPos = endPosTransform.position;
         StartGoing(endPos);
+        moveLerp = 0f;
+        enemyAlertScript.spawnPos = transform.position;
+        
     }
 
     // Update is called once per frame
@@ -64,6 +67,7 @@ public class NPCTravelToAndFrom : MonoBehaviour
                         travelState = TravelStates.nothing;
                         teachingHowToGrabNPC.gameObject.SetActive(true);
                         parentTransform.position = teleportPos.position;
+                        enemyAlertScript.spawnPos = teleportPos.position;
                      parentTransform.localScale = Vector3.one;
                         frogCanvas.transform.localScale = parentTransform.localScale;
                        // enemyAlertScript.enabled = true;
@@ -74,7 +78,8 @@ public class NPCTravelToAndFrom : MonoBehaviour
                         Debug.Log("houjeilahappear");
                         frogAnim.SetBool("Sleeping",true);
                         frogAnim.SetBool("Walking",false);
-                        this.enabled = false;
+                        gameObject.SetActive(false);
+
                         return;
                     }
                     travelState = TravelStates.waiting;

@@ -20,17 +20,21 @@ public class BombScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!exploding)
-        {
+       
             Collider2D bombHit = Physics2D.OverlapBox(bombCollider.bounds.center, bombCollider.bounds.size, 0, bombMask);
             if (exploding)
             {
                 Collider2D explosionHit = Physics2D.OverlapCircle(explosionCollider.bounds.center, explosionCollider.radius, explosionMask);
                 if (explosionHit)
                 {
-                    if (explosionHit.gameObject.CompareTag("Player"))
+                    if(explosionHit.gameObject.GetComponent<CheckForBombHit>() != null){
+                        explosionHit.gameObject.GetComponent<CheckForBombHit>().BombHit();
+                    }
+                    else if (explosionHit.gameObject.CompareTag("Player"))
                     {
 
+                    }else if(explosionHit.gameObject.GetComponentInChildren<Bombproof>()){
+                       
                     }
                     else if (explosionHit.gameObject.GetComponentInParent<EnemyHealth>())
                     {
@@ -55,7 +59,7 @@ public class BombScript : MonoBehaviour
                 }
             }
 
-        }
+        
 
 
     }

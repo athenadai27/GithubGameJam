@@ -21,6 +21,8 @@ public class PlayerAttack : MonoBehaviour
     public bool freezeFrame;
     public float freezeTime;
     public GameObject weaponColliderObject;
+    public EnemyHealth hitEnemy;
+    public float damageAmount;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,10 @@ public class PlayerAttack : MonoBehaviour
             {
                 freezeFrame = false;
                 Time.timeScale = 1f;
+                if(hitEnemy){
+                     hitEnemy.Damage(damageAmount);
+                }
+               
             }
         }
         else
@@ -65,8 +71,11 @@ public class PlayerAttack : MonoBehaviour
                         if (enemyHitCheck.gameObject.CompareTag("Tongue"))
                         {
                             enemyHitCheck.GetComponentInParent<FrogGruntAttackTest>().Retract();
+                            hitEnemy = enemyHitCheck.GetComponentInParent<EnemyHealth>();
                             Parry();
                             weaponModifier = 2f;
+                            damageAmount = weaponDamage*weaponModifier;
+                            return;
                         }
                         else if (enemyHitCheck.GetComponent<FrogMiniboss>())
                         {
@@ -89,6 +98,9 @@ public class PlayerAttack : MonoBehaviour
                         else if (enemyHitCheck.GetComponent<ToxicSlimeProjectile>())
                         {
                             enemyHitCheck.GetComponent<ToxicSlimeProjectile>().WhackIntoEnemy();
+                            Parry();
+                        }else if(enemyHitCheck.GetComponent<ProjectileScript>()){
+                            enemyHitCheck.GetComponent<ProjectileScript>().WhackIntoEnemy();
                             Parry();
                         }
                         else if (enemyHitCheck.GetComponent<SoundWave>())

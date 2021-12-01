@@ -9,7 +9,6 @@ public class SlowDownHoujeilah : MonoBehaviour
     public HoujeilahScript houjeilah;
     // Start is called before the first frame update
     void OnDisable(){
-        Debug.Log("deactivated");
     }
 
     void Update(){

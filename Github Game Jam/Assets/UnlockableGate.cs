@@ -21,8 +21,8 @@ public class UnlockableGate : MonoBehaviour
         if(keyOverlap){
             if(keyOverlap.name.Contains("Key")){
                 keyOverlap.GetComponent<ItemScript>().Break();
-                houjeilah.GoToPosition(nextHoujeilahPosition.position);
-                Destroy(this.gameObject);
+                houjeilah.GoToPosition(nextHoujeilahPosition.position,0f);
+                gameObject.SetActive(false);
                 
             }
         }

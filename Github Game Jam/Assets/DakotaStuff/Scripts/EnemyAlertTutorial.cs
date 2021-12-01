@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAlertTutorial : MonoBehaviour
+public class EnemyAlertTutorial : EnemyHealth
 {
     public enum AlertLevels { sleeping, backToStart, searching, pursuit, wakingUp, attacking, lured,performingAction, suspicious, waitForNextState };
 
@@ -60,11 +60,17 @@ public class EnemyAlertTutorial : MonoBehaviour
 
     public HoujeilahScript houjeilah;
     public Transform houjeilahTravelTransform;
+    public Vector3 spawnPos;
+    public Transform tongueTransform;
+    public GameObject houjeilahHideObject;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        Debug.Log("activated");
         myAnim.SetBool("Sleeping", true);
+        ActivateTextController(sleepText);
         startingPos = parentTransform.position;
+        spawnPos = parentTransform.position;
     }
 
     // Update is called once per frame
@@ -98,12 +104,14 @@ public class EnemyAlertTutorial : MonoBehaviour
                         parentTransform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
                     canvas.transform.localScale =parentTransform.localScale;
+                    tongueTransform.localScale = parentTransform.localScale;
                 }
                 else
                 {
                     myAnim.SetBool("Walking", false);
                    parentTransform.localScale = Vector3.one;
                     canvas.transform.localScale =parentTransform.localScale;
+                    tongueTransform.localScale = parentTransform.localScale;
                     Debug.Log("Sleeping");
                     myAnim.SetBool("Sleeping", true);
                     alertLevel = AlertLevels.sleeping;
@@ -157,6 +165,7 @@ public class EnemyAlertTutorial : MonoBehaviour
                         parentTransform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
                      canvas.transform.localScale =parentTransform.localScale;
+                     tongueTransform.localScale = parentTransform.localScale;
                 }
                 else
                 {
@@ -166,7 +175,11 @@ public class EnemyAlertTutorial : MonoBehaviour
                     }
                     delayTime = Time.time + 5f;
                     alertLevel = AlertLevels.performingAction;
-                    houjeilah.GoToPosition(houjeilahTravelTransform.position);
+                    if(houjeilahHideObject.transform.position == houjeilah.transform.position){
+                        houjeilah.Appear();
+                        houjeilah.GoToPosition(houjeilahTravelTransform.position,0f);
+                    }
+                    
                 }
                 break;
             case AlertLevels.performingAction:
@@ -176,6 +189,7 @@ public class EnemyAlertTutorial : MonoBehaviour
                     ActivateTextController(chillText);
                     Collider2D overlapBody = Physics2D.OverlapBox(bodyCollider.bounds.center,bodyCollider.bounds.size,0,eventMask);
                     if(overlapBody){
+                        Debug.Log(overlapBody.gameObject.name);
                         if(overlapBody.gameObject.name.Contains(objectToDestroyName)){
                             Destroy(overlapBody.gameObject);
                         }
@@ -224,6 +238,7 @@ public class EnemyAlertTutorial : MonoBehaviour
                         parentTransform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
                      canvas.transform.localScale =parentTransform.localScale;
+                     tongueTransform.localScale = parentTransform.localScale;
                 }
 
 
@@ -242,6 +257,7 @@ public class EnemyAlertTutorial : MonoBehaviour
                         parentTransform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
                      canvas.transform.localScale =parentTransform.localScale;
+                     tongueTransform.localScale = parentTransform.localScale;
                 }
                 break;
             case AlertLevels.sleeping:
@@ -319,6 +335,20 @@ public class EnemyAlertTutorial : MonoBehaviour
             alertLevel = AlertLevels.waitForNextState;
         }
         ActivateTextController(luredText);
+
+    }
+
+    public override void Reset()
+    {
+        base.Reset();
+        tongueAttack.Reset();
+        myAnim.SetBool("Sleeping",true);
+        alertLevel = AlertLevels.sleeping;
+        parentTransform.position = spawnPos;
+        parentTransform.localScale = Vector3.one;
+        canvas.transform.localScale = parentTransform.localScale;
+        tongueTransform.localScale = parentTransform.localScale;
+        
 
     }
 }

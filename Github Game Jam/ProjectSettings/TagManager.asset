@@ -12,6 +12,7 @@ TagManager:
   - Tongue
   - Toxic
   - Enemy
+  - Extra
   layers:
   - Default
   - TransparentFX

@@ -12,12 +12,13 @@ public class FallCircleTest : MonoBehaviour
     public bool grow;
     public Transform garbaraTransform;
     public float garbaraFloorY;
+    public float garbaraCeiling;
     // Start is called before the first frame update
     void OnEnable()
     {
         scaleLerp = 0;
         alphaLerp = 0;
-        garbaraFloorY = garbaraTransform.position.y;
+        //garbaraFloorY = garbaraTransform.position.y;
     }
 
     // Update is called once per frame
@@ -26,8 +27,9 @@ public class FallCircleTest : MonoBehaviour
         Vector3 newPosition = transform.position;
         newPosition.x = garbaraTransform.position.x;
         transform.position = newPosition;
-        float garbaraY = garbaraTransform.position.y;
-        float amountThrough = garbaraY / (garbaraFloorY + 20f);
+        float garbaraY = garbaraTransform.position.y - garbaraFloorY;
+        Debug.Log(garbaraY);
+        float amountThrough = garbaraY / (garbaraCeiling);
         Color spriteColor = sprite.color;
         spriteColor.a = 1 - amountThrough;
         sprite.color = spriteColor;
@@ -63,5 +65,8 @@ public class FallCircleTest : MonoBehaviour
         //     transform.localScale = Vector3.Lerp(endScale, startScale, scaleLerp);
         // }
 
+    }
+    public void SetTop(float newTop){
+        garbaraCeiling = newTop-garbaraFloorY;
     }
 }

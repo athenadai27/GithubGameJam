@@ -147,10 +147,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionMask:
     serializedVersion: 2
-    m_Bits: 16640
+    m_Bits: 16656
   bombMask:
     serializedVersion: 2
-    m_Bits: 16384
+    m_Bits: 16400
   explosionCollider: {fileID: 141293092407076003}
   bombCollider: {fileID: 141293092407076005}
   lifeTime: 0

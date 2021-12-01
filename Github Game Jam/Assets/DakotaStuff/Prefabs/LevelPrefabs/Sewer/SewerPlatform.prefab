@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8947158255568644951}
   - component: {fileID: 8947158255568644948}
+  - component: {fileID: 5474775040089452870}
   m_Layer: 0
   m_Name: SewerPlatform
   m_TagString: Untagged
@@ -82,3 +83,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!68 &5474775040089452870
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8947158255568644949}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.707367, y: 1.0534754}
+  - {x: 2.6098175, y: 1.033967}

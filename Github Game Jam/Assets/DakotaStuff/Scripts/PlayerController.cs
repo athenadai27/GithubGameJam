@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public float lerpTime;
     public float previousHealth;
     public Animator myAnim;
-    public enum PlayerStates { normal, hiding, restricted, planted, disabled};
+    public enum PlayerStates { normal, hiding, restricted, planted, disabled, respawning};
     public bool canMove;
     public PlayerStates playerState = PlayerStates.normal;
     public SpriteRenderer sprite;
@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
     public StemController stemController;
     public CheckpointManager checkpointManager;
+    public float stepHeight;
     // Start is called before the first frame update
     void Start()
     {
@@ -261,6 +262,8 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerStates.disabled:
                 break;
+
+            
         }
         // }
     }
@@ -377,7 +380,7 @@ public class PlayerController : MonoBehaviour
             // Debug.Log(updatedMoveDir);
             //  Debug.Log(updatedMoveSpeed);
             myAnim.SetBool("Running", true);
-            RaycastHit2D[] horizontalCheck = Physics2D.BoxCastAll(groundCollider.bounds.center, groundCollider.bounds.size - Vector3.one * .01f, 0f, updatedMoveDir, updatedMoveSpeed * Time.fixedDeltaTime, groundMask);
+            RaycastHit2D[] horizontalCheck = Physics2D.BoxCastAll(groundCollider.bounds.center, groundCollider.bounds.size , 0f, updatedMoveDir, updatedMoveSpeed * Time.fixedDeltaTime, groundMask);
 
             bool canMoveDirection = true;
 
@@ -388,7 +391,7 @@ public class PlayerController : MonoBehaviour
                 for (int i = 0; i < horizontalCheck.Length; i++)
                 {
 
-                    if (Mathf.Abs(horizontalCheck[i].normal.x) > .5f && ((updatedMoveDir.x > 0 && horizontalCheck[i].point.x > transform.position.x) || (updatedMoveDir.x < 0 && horizontalCheck[i].point.x < transform.position.x)))
+                    if (Mathf.Abs(horizontalCheck[i].normal.x) > .5f && ((updatedMoveDir.x > 0 && horizontalCheck[i].point.x > groundCollider.bounds.center.x) || (updatedMoveDir.x < 0 && horizontalCheck[i].point.x < groundCollider.bounds.center.x)))
                     {
                         // Debug.DrawRay(horizontalCheck[i].point, horizontalCheck[i].normal, Color.blue);
                         //    Debug.Log("reee");
@@ -411,9 +414,16 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                
                 transform.position += updatedMoveDir * updatedMoveSpeed * Time.fixedDeltaTime;
+                
             }
             Physics2D.SyncTransforms();
+            RaycastHit2D downRay = Physics2D.Raycast(transform.position,Vector2.down,groundCollider.bounds.extents.y,groundMask);
+            if(downRay.distance <= stepHeight){
+                transform.position += Vector3.up*downRay.distance;
+            }
+           // Physics2D.SyncTransforms();
             RaycastHit2D[] verticalCheck;
             Vector2 verticalCheckPoint;
             if (transform.localScale.x > 0)
@@ -532,7 +542,7 @@ public class PlayerController : MonoBehaviour
     public void ColliderCheck()
     {
         List<Collider2D> colliders = new List<Collider2D>(Physics2D.OverlapCapsuleAll(bodyCollider.bounds.center, bodyCollider.size, bodyCollider.direction, 0f, collisionMask));
-        if (colliders.Count > 0)
+        if (colliders.Count > 0 && bodyCollider.enabled)
         {
             for(int i = 0; i < colliders.Count;i++){
                 if(colliders[i].gameObject.CompareTag("Toxic")){
@@ -630,9 +640,17 @@ public class PlayerController : MonoBehaviour
         myAnim.Rebind();
         stemController.Reset();
         canMove = true;
+        bodyCollider.enabled = true;
+        groundCollider.enabled = true;
     }
 
     public void Kill(){
-        checkpointManager.GoToCheckpoint();
+        bodyCollider.enabled = false;
+        groundCollider.enabled = false;
+        playerState = PlayerStates.respawning;
+        checkpointManager.StartRespawning();
+        Debug.Log("kill");
     }
+
+   
 }

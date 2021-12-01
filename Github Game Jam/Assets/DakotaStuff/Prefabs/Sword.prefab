@@ -124,13 +124,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 81920
   hitEnemies: []
-  weaponDamage: 1
+  weaponDamage: 5
   swinging: 0
   itemScript: {fileID: -7588615250390609742}
   breaking: 0
   freezeFrame: 0
   freezeTime: 0
   weaponColliderObject: {fileID: 7218935008207815817}
+  hitEnemy: {fileID: 0}
+  damageAmount: 0
 --- !u!58 &5923480428146412775
 CircleCollider2D:
   m_ObjectHideFlags: 0

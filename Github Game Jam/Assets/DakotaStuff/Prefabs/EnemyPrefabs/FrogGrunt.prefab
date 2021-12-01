@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5832968627762232455}
   - component: {fileID: 5832968627762232454}
-  m_Layer: 0
-  m_Name: NormalTextController2
+  m_Layer: 14
+  m_Name: ChillText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,6 +58,13 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 5832968629019529332}
   newlyActivated: []
+  activateDeactivate: {fileID: 0}
+  activateAndDeactivateUponArrival: 0
+  waitTime: 0
+  waitTimeAdditional: 0
+  waiting: 0
+  stayActivated: 0
+  hasBeenActivated: 0
 --- !u!1 &5832968628023322464
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,8 +75,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5832968628023322471}
   - component: {fileID: 5832968628023322470}
-  m_Layer: 0
-  m_Name: NormalTextController3
+  m_Layer: 14
+  m_Name: LureText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,6 +123,13 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 5832968629019529332}
   newlyActivated: []
+  activateDeactivate: {fileID: 0}
+  activateAndDeactivateUponArrival: 0
+  waitTime: 0
+  waitTimeAdditional: 0
+  waiting: 0
+  stayActivated: 0
+  hasBeenActivated: 0
 --- !u!1 &5832968628027958090
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,9 +140,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5832968628027958089}
   - component: {fileID: 5832968628027958088}
-  m_Layer: 0
+  - component: {fileID: 1009875609}
+  m_Layer: 14
   m_Name: Tongue
-  m_TagString: Untagged
+  m_TagString: Tongue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -292,6 +307,24 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!68 &1009875609
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5832968628027958090}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -136.245, y: 2.2299998}
+  - {x: -134.995, y: 2.2299998}
 --- !u!1 &5832968628389473237
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,9 +338,11 @@ GameObject:
   - component: {fileID: 5832968628389473236}
   - component: {fileID: 5832968628389473241}
   - component: {fileID: 5832968628389473240}
-  m_Layer: 0
+  - component: {fileID: 841614477}
+  - component: {fileID: 841614476}
+  m_Layer: 14
   m_Name: FrogGrunt
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,14 +446,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b59ee22cf157446a8fd547f097ac62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 1
+  maxHealth: 1
+  enemySprite: {fileID: 5832968628389473243}
+  enemyDamageTime: 0
+  poof: {fileID: 6490449927920743215, guid: 7ba56671d3860c24c9f6f0ac4da26a28, type: 3}
+  parentObject: {fileID: 5832968628389473237}
   alertLevel: 0
-  sleepText: {fileID: 0}
-  searchText: {fileID: 0}
-  boutheinaSpottedText: {fileID: 0}
-  luredText: {fileID: 0}
-  chillText: {fileID: 0}
+  sleepText: {fileID: 5832968629560473562}
+  searchText: {fileID: 5832968629560473562}
+  boutheinaSpottedText: {fileID: 5832968629417825615}
+  luredText: {fileID: 5832968628023322464}
+  chillText: {fileID: 5832968627762232448}
   currentTextController: {fileID: 0}
-  suspiciousText: {fileID: 0}
+  suspiciousText: {fileID: 5832968628610799089}
   textController: {fileID: 5832968629560473560}
   playerTransform: {fileID: 0}
   moveSpeed: 4
@@ -439,13 +480,16 @@ MonoBehaviour:
   delayTime: 0
   waiting: 0
   nextText: {fileID: 0}
-  tongueAttack: {fileID: 0}
-  canvas: {fileID: 0}
+  tongueAttack: {fileID: 5832968628389473240}
+  canvas: {fileID: 5832968629019529332}
   eventMask:
     serializedVersion: 2
     m_Bits: 0
-  bodyCollider: {fileID: 0}
+  bodyCollider: {fileID: 841614477}
   objectToDestroyName: 
+  sleeper: 0
+  tongueTransform: {fileID: 5832968628027958089}
+  spawnPos: {x: 0, y: 0, z: 0}
 --- !u!114 &5832968628389473240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,7 +508,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   lerp: 0
-  tongueSpeed: 1
+  tongueSpeed: 9
   distanceFromEndStart: 0
   outDistanceFromEndStart: 0
   playerMask:
@@ -475,8 +519,73 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0, z: 0}
   tongueState: 2
   enemyAlert: {fileID: 5832968628389473241}
+  enemyAlertTutorial: {fileID: 0}
   attacking: 0
-  edgeCollider: {fileID: 0}
+  edgeCollider: {fileID: 1009875609}
+--- !u!61 &841614477
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5832968628389473237}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.164711, y: 2.1379404}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 5.05, y: 5.17}
+    newSize: {x: 5.05, y: 5.17}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.0617523, y: 3.9935284}
+  m_EdgeRadius: 0
+--- !u!114 &841614476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5832968628389473237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bb80e4d15207442994819c2bfa9764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useOnEnable: 0
+  useOnDisable: 1
+  useOnCollision: 0
+  disableBoutheinaMoveOnCollision: 0
+  enableBoutheinaMoveOnEnable: 0
+  enableBoutheinaMoveOnDisable: 0
+  playerController: {fileID: 0}
+  MoveHoujeilahOnDisable: 1
+  houjeilah: {fileID: 0}
+  houjeilahMoveTransform: {fileID: 0}
+  objectsToActivateOnEnable: []
+  objectsToDeactivateOnEnable: []
+  objectsToActivateOnDisable: []
+  objectsToDeactivateOnDisable: []
+  objectsToActivateOnCollision: []
+  objectsToDeactivateOnCollision: []
+  textsToDisableOnEnable: []
+  textsToDisableOnDisable: []
+  objectsToActivateWhenTextFinishedButNotDeactivated: []
+  objectsToDeactivateWhenTextFinishedButNotDeactivated: []
+  boxCollider: {fileID: 0}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  hasBeenActivated: 0
+  jumpHeight: 0
 --- !u!1 &5832968628514451835
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5832968628514451834}
   - component: {fileID: 5832968628514451833}
-  m_Layer: 2
+  m_Layer: 14
   m_Name: BoutheinaDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,8 +643,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5832968628610799088}
   - component: {fileID: 5832968628610799095}
-  m_Layer: 0
-  m_Name: NormalTextController5
+  m_Layer: 14
+  m_Name: SuspiciousText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,6 +691,13 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 5832968629019529332}
   newlyActivated: []
+  activateDeactivate: {fileID: 0}
+  activateAndDeactivateUponArrival: 0
+  waitTime: 0
+  waitTimeAdditional: 0
+  waiting: 0
+  stayActivated: 0
+  hasBeenActivated: 0
 --- !u!1 &5832968629019529333
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +710,7 @@ GameObject:
   - component: {fileID: 5832968629019529337}
   - component: {fileID: 5832968629019529338}
   - component: {fileID: 5832968629019529339}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: TextControllerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -643,7 +759,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 284289695
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &5832968629019529338
@@ -696,7 +812,7 @@ GameObject:
   - component: {fileID: 5832968629040426160}
   - component: {fileID: 5832968629040426166}
   - component: {fileID: 5832968629040426167}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Alert (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,8 +907,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5832968629417825614}
   - component: {fileID: 5832968629417825613}
-  m_Layer: 0
-  m_Name: NormalTextController4
+  m_Layer: 14
+  m_Name: AlarmedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -839,6 +955,13 @@ MonoBehaviour:
   lineCount: 2
   npcCanvasTransform: {fileID: 5832968629019529332}
   newlyActivated: []
+  activateDeactivate: {fileID: 0}
+  activateAndDeactivateUponArrival: 0
+  waitTime: 0
+  waitTimeAdditional: 0
+  waiting: 0
+  stayActivated: 0
+  hasBeenActivated: 0
 --- !u!1 &5832968629560473562
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,13 +972,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5832968629560473561}
   - component: {fileID: 5832968629560473560}
-  m_Layer: 0
-  m_Name: NormalTextController
+  m_Layer: 14
+  m_Name: SleepText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5832968629560473561
 Transform:
   m_ObjectHideFlags: 0
@@ -889,11 +1012,21 @@ MonoBehaviour:
   activeBlockList: []
   relativeWordCloudCenter: {x: 0, y: 7, z: 0}
   pauseBetweenLaunch: 0.2
-  sentence: Zzzzz ... gotta find it ... boss gonna fire me
-  specialWords: []
+  sentence: Gosh , I just really ain't as sharp as I used to be ... Guess that's
+    why they put me here ...
+  specialWords:
+  - sharp
   wordGrabber: {fileID: 0}
   stemController: {fileID: 0}
-  wordItemSpawnObjects: []
-  lineCount: 2
+  wordItemSpawnObjects:
+  - {fileID: 5923480428146412796, guid: 80d433d7f27f5ed48b19cd099421e696, type: 3}
+  lineCount: 3
   npcCanvasTransform: {fileID: 5832968629019529332}
   newlyActivated: []
+  activateDeactivate: {fileID: 0}
+  activateAndDeactivateUponArrival: 0
+  waitTime: 0
+  waitTimeAdditional: 0
+  waiting: 0
+  stayActivated: 0
+  hasBeenActivated: 0

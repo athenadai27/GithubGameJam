@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class EnemyAlert : MonoBehaviour
+public class EnemyAlert : EnemyHealth
 {
-    public enum AlertLevels { sleeping, backToStart, searching, pursuit, wakingUp, attacking, lured,performingAction, suspicious, waitForNextState };
+    public enum AlertLevels { sleeping, backToStart, searching, pursuit, wakingUp, attacking, lured, performingAction, suspicious, waitForNextState };
 
     public AlertLevels alertLevel;
 
@@ -55,26 +55,45 @@ public class EnemyAlert : MonoBehaviour
     public LayerMask eventMask;
     public BoxCollider2D bodyCollider;
     public string objectToDestroyName;
+    public bool sleeper;
+    public Transform tongueTransform;
+    public Vector3 spawnPos;
+    public bool badEyesight;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        myAnim.SetBool("Sleeping", true);
+        if (sleeper)
+        {
+            myAnim.SetBool("Sleeping", true);
+        }
+
         startingPos = transform.position;
+        spawnPos = transform.position;
+        alertLevel = AlertLevels.sleeping;
+        ActivateTextController(sleepText);
     }
 
     // Update is called once per frame
     void Update()
     {
         Collider2D playerDetectCollider = Physics2D.OverlapCircle(playerDetector.bounds.center, playerDetector.radius, playerMask);
-        if (playerDetectCollider && alertLevel != AlertLevels.wakingUp)
+        if (playerDetectCollider && alertLevel != AlertLevels.wakingUp && alertLevel != AlertLevels.pursuit && alertLevel != AlertLevels.attacking)
         {
-            nextAlertLevel = AlertLevels.pursuit;
-            if (alertLevel != AlertLevels.sleeping)
-            {
-                alertLevel = AlertLevels.waitForNextState;
-            }
+            Debug.Log("pursuit");
+            if(!playerDetectCollider.gameObject.GetComponentInChildren<StemController>().hasFrogMask || !badEyesight){
+                nextAlertLevel = AlertLevels.pursuit;
+                if (alertLevel != AlertLevels.sleeping || !sleeper)
+                {
+                    alertLevel = AlertLevels.waitForNextState;
+                }
 
-            ActivateTextController(boutheinaSpottedText);
+                ActivateTextController(boutheinaSpottedText);
+            } else if(playerDetectCollider.gameObject.GetComponentInChildren<StemController>().hasFrogMask && badEyesight){
+                alertLevel = AlertLevels.sleeping;
+                ActivateTextController(chillText);
+                bodyCollider.enabled = false;
+            }
+            
         }
         switch (alertLevel)
         {
@@ -92,6 +111,7 @@ public class EnemyAlert : MonoBehaviour
                         transform.localScale = new Vector3(-1, 1, 1);
                         transform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
+                    tongueTransform.localScale = transform.localScale;
                     canvas.transform.localScale = transform.localScale;
                 }
                 else
@@ -99,9 +119,13 @@ public class EnemyAlert : MonoBehaviour
                     myAnim.SetBool("Walking", false);
                     transform.localScale = Vector3.one;
                     canvas.transform.localScale = transform.localScale;
-                    Debug.Log("Sleeping");
-                    myAnim.SetBool("Sleeping", true);
-                    alertLevel = AlertLevels.sleeping;
+                    tongueTransform.localScale = transform.localScale;
+                    if (sleeper)
+                    {
+                        myAnim.SetBool("Sleeping", true);
+                        alertLevel = AlertLevels.sleeping;
+                    }
+
                     ActivateTextController(sleepText);
                     waiting = false;
 
@@ -151,7 +175,8 @@ public class EnemyAlert : MonoBehaviour
                         transform.localScale = new Vector3(-1, 1, 1);
                         transform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
-                     canvas.transform.localScale = transform.localScale;
+                    canvas.transform.localScale = transform.localScale;
+                    tongueTransform.localScale = transform.localScale;
                 }
                 else
                 {
@@ -164,16 +189,19 @@ public class EnemyAlert : MonoBehaviour
                 }
                 break;
             case AlertLevels.performingAction:
-                if(Time.time > delayTime){
+                if (Time.time > delayTime)
+                {
                     alertLevel = AlertLevels.waitForNextState;
                     nextAlertLevel = AlertLevels.backToStart;
                     ActivateTextController(chillText);
-                    Collider2D overlapBody = Physics2D.OverlapBox(bodyCollider.bounds.center,bodyCollider.bounds.size,0,eventMask);
-                    if(overlapBody){
-                        if(overlapBody.gameObject.name.Contains(objectToDestroyName)){
+                    Collider2D overlapBody = Physics2D.OverlapBox(bodyCollider.bounds.center, bodyCollider.bounds.size, 0, eventMask);
+                    if (overlapBody)
+                    {
+                        if (overlapBody.gameObject.name.Contains(objectToDestroyName))
+                        {
                             Destroy(overlapBody.gameObject);
                         }
-                        
+
                     }
                 }
                 break;
@@ -185,7 +213,7 @@ public class EnemyAlert : MonoBehaviour
                 {
                     Debug.Log("suspicious");
                     nextAlertLevel = AlertLevels.suspicious;
-                    if (alertLevel != AlertLevels.sleeping)
+                    if (alertLevel != AlertLevels.sleeping  || !sleeper)
                     {
 
                         alertLevel = AlertLevels.waitForNextState;
@@ -205,6 +233,19 @@ public class EnemyAlert : MonoBehaviour
                         alertLevel = AlertLevels.attacking;
                     }
                 }
+                else if(Vector3.Distance(playerTransform.position, transform.position) > 20f){
+                     nextAlertLevel = AlertLevels.suspicious;
+                    if (alertLevel != AlertLevels.sleeping  || !sleeper)
+                    {
+
+                        alertLevel = AlertLevels.waitForNextState;
+                    }
+
+                    ActivateTextController(suspiciousText);
+
+                    waiting = false;
+                    return;
+                }
                 else
                 {
                     if (playerTransform.position.x < transform.position.x)
@@ -217,7 +258,8 @@ public class EnemyAlert : MonoBehaviour
                         transform.localScale = new Vector3(-1, 1, 1);
                         transform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
-                     canvas.transform.localScale = transform.localScale;
+                    canvas.transform.localScale = transform.localScale;
+                    tongueTransform.localScale = transform.localScale;
                 }
 
 
@@ -235,7 +277,8 @@ public class EnemyAlert : MonoBehaviour
                         transform.localScale = new Vector3(-1, 1, 1);
                         transform.position += Vector3.right * moveSpeed * Time.deltaTime;
                     }
-                     canvas.transform.localScale = transform.localScale;
+                    canvas.transform.localScale = transform.localScale;
+                    tongueTransform.localScale = transform.localScale;
                 }
                 break;
             case AlertLevels.sleeping:
@@ -259,19 +302,23 @@ public class EnemyAlert : MonoBehaviour
 
     public void ActivateTextController(GameObject newTextController)
     {
-        if (currentTextController != newTextController)
+        if (currentTextController != null)
         {
-            currentTextController.SetActive(false);
-            if (textController != null)
+            if (currentTextController != newTextController)
             {
-                textController.FadeText();
+                currentTextController.SetActive(false);
+                if (textController != null)
+                {
+                    textController.FadeText();
+                }
+
+
             }
-
-
         }
+
         currentTextController = newTextController;
         textController = currentTextController.GetComponent<TextControllerV2>();
-        if (alertLevel == AlertLevels.sleeping && currentTextController != sleepText)
+        if ((alertLevel == AlertLevels.sleeping && currentTextController != sleepText) && sleeper)
         {
 
             StartWakeUp();
@@ -301,6 +348,7 @@ public class EnemyAlert : MonoBehaviour
     {
         currentTextController = boutheinaSpottedText;
         alertLevel = AlertLevels.pursuit;
+        Debug.Log("pursuit");
     }
 
     public void Lure()
@@ -315,4 +363,22 @@ public class EnemyAlert : MonoBehaviour
         ActivateTextController(luredText);
 
     }
+
+    public override void Reset()
+    {
+        base.Reset();
+        tongueAttack.Reset();
+        alertLevel = AlertLevels.sleeping;
+        nextAlertLevel = AlertLevels.sleeping;
+        textController.FadeText();
+        ActivateTextController(sleepText);
+
+        myAnim.Rebind();
+        transform.position = spawnPos;
+        transform.localScale = Vector3.one;
+        canvas.transform.localScale = transform.localScale;
+        tongueTransform.localScale = transform.localScale;
+
+    }
+
 }

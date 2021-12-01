@@ -2,31 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeachingHowToGrabNPC : MonoBehaviour
+public class TeachingHowToGrabNPC : ActivateDeactivateTutorial
 {
     public TextControllerV2 textController;
-    public GameObject wordDialogueController;
-    public GameObject itemDialogueController;
-    public GameObject dragPrompt;
+    
     public StemController stemController;
     public enum HelpStates { waitingForWordGrab, waitingForItem }
     public HelpStates helpState;
-    public GameObject retractPrompt;
-    public GameObject giveToHoujeilahObject;
-    public GameObject waitForTextObject;
     public List<GameObject> objectsToActivateFromWord;
     public List<GameObject> objectsToDeactivateFromWord;
      public List<GameObject> objectsToActivateFromItem;
     public List<GameObject> objectsToDeactivateFromItem;
     public List<TextControllerV2> textControllersToDeactivateFromWord;
     public List<TextControllerV2> textControllersToDeactivateFromItem;
+    public bool done;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         if(textController != null){
             textController.gameObject.SetActive(true);
         }
-        
+        done = false;
+        helpState = HelpStates.waitingForWordGrab;
     }
 
     // Update is called once per frame
@@ -37,13 +34,9 @@ public class TeachingHowToGrabNPC : MonoBehaviour
             case HelpStates.waitingForWordGrab:
                 if (stemController.grabbedWord)
                 {
+                    ActivateObjects(objectsToActivateFromWord);
+                    DeactivateObjects(objectsToDeactivateFromWord);
 
-                    for(int i = 0; i < objectsToActivateFromWord.Count;i++){
-                        objectsToActivateFromWord[i].SetActive(true);
-                    }
-                    for(int i = 0; i < objectsToDeactivateFromWord.Count;i++){
-                        objectsToDeactivateFromWord[i].SetActive(false);
-                    }
                     for(int i = 0; i < textControllersToDeactivateFromWord.Count;i++){
                         textControllersToDeactivateFromWord[i].FadeText();
                     }
@@ -51,22 +44,19 @@ public class TeachingHowToGrabNPC : MonoBehaviour
                 }
                 break;
             case HelpStates.waitingForItem:
-                if (stemController.grabbedItem)
+                if (stemController.grabbedItem && !done)
                 {
 
-                    for(int i = 0; i < objectsToActivateFromItem.Count;i++){
-                        objectsToActivateFromItem[i].SetActive(true);
-                    }
-                    for(int i = 0; i < objectsToDeactivateFromItem.Count;i++){
-                        objectsToDeactivateFromItem[i].SetActive(false);
-                    }
+                    ActivateObjects(objectsToActivateFromItem);
+                    DeactivateObjects(objectsToDeactivateFromItem);
                     for(int i = 0; i < textControllersToDeactivateFromItem.Count;i++){
                         textControllersToDeactivateFromItem[i].FadeText();
                     }
-                    gameObject.SetActive(false);
+                    done = true;
                 }
                 break;
         }
 
     }
+
 }

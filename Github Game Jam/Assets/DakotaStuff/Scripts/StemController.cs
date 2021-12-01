@@ -63,6 +63,10 @@ public class StemController : MonoBehaviour
     public Transform playerTransform;
     public PauseScript pauseScript;
     public float clickTime;
+    public GameObject frogMask;
+    public GameObject antMask;
+    public bool hasFrogMask;
+    public bool hasAntMask;
     // Start is called before the first frame update
     void Start()
     {
@@ -211,7 +215,10 @@ public class StemController : MonoBehaviour
                         
                         grabbedItem = grabbedWord.SpawnItem();
                         grabbedItem.SetActive(true);
-                        
+                        if(grabbedItem.name.Contains("FrogMask")){
+                            frogMask.SetActive(true);
+                            hasFrogMask = true;
+                        }
                         grabbedWord.Reset();
                         grabbedWord = null;
                     }

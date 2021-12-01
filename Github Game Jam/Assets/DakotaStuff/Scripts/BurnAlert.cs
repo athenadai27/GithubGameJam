@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurnAlert : MonoBehaviour
+public class BurnAlert : ActivateDeactivateTutorial
 {
     public List<EnemyAlert> alertedEnemies;
     public List<EnemyAlertTutorial> tutorialAlertedEnemies;
@@ -26,8 +26,18 @@ public class BurnAlert : MonoBehaviour
         for(int i = 0; i < tutorialAlertedEnemies.Count;i++){
             tutorialAlertedEnemies[i].Lure();
         }
-        for(int i = 0;i < deactivateObjects.Count;i++){
+        if(gameObject.activeSelf){
+            for(int i = 0;i < deactivateObjects.Count;i++){
+            if(deactivateObjects[i].GetComponent<ActivateDeactivateTutorial>() != null){
+                if(prematureDeactivations.Contains(deactivateObjects[i].GetComponent<ActivateDeactivateTutorial>())){
+                    deactivateObjects[i].GetComponent<ActivateDeactivateTutorial>().prematureDeactivation = true;
+                }
+                
+            }
             deactivateObjects[i].SetActive(false);
         }
+        }
+        
+        gameObject.SetActive(false);
     }
 }

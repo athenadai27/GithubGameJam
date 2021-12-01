@@ -28,12 +28,13 @@ public class MatchScript : MonoBehaviour
                 matchTouch.GetComponent<PuddleScript>().shrinkSpeed *= 2;
                 itemScript.Break();
                 return;
-            } else if(matchTouch.gameObject.GetComponent<BurnAlert>()){
+            } else if(matchTouch.gameObject.GetComponentInChildren<BurnAlert>(true)){
                 fireTransform.SetParent(matchTouch.transform);
                 fireTransform.position = matchTouch.transform.position;
-
-                matchTouch.gameObject.GetComponent<BurnAlert>().Burn();
+                Debug.Log("burn");
+                matchTouch.gameObject.GetComponentInChildren<BurnAlert>(true).Burn();
                 itemScript.Break();
+                return;
             }
         }
         Collider2D fireTouch = Physics2D.OverlapBox(fireCollider.bounds.center,fireCollider.bounds.size,0,burnMask);
@@ -43,10 +44,11 @@ public class MatchScript : MonoBehaviour
                 fireTransform.position = fireTouch.transform.position;
                 fireTouch.GetComponent<PuddleScript>().shrinkSpeed *= 2;
                  itemScript.Break();
-            }else if(fireTouch.gameObject.GetComponent<BurnAlert>()){
+            }else if(fireTouch.gameObject.GetComponentInChildren<BurnAlert>(true)){
                 fireTransform.SetParent(fireTouch.transform);
+                 Debug.Log("burn");
                 fireTransform.position = fireTouch.transform.position;
-                fireTouch.gameObject.GetComponent<BurnAlert>().Burn();
+                fireTouch.gameObject.GetComponentInChildren<BurnAlert>(true).Burn();
                 itemScript.Break();
             }
         }
