@@ -125,7 +125,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 81920
   hitEnemies: []
-  weaponDamage: 5
+  weaponDamage: 1
   swinging: 0
   itemScript: {fileID: -7588615250390609742}
   breaking: 0

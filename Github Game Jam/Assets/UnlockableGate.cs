@@ -8,6 +8,7 @@ public class UnlockableGate : MonoBehaviour
     public LayerMask keyMask;
     public HoujeilahScript houjeilah;
     public Transform nextHoujeilahPosition;
+    public AudioSource gateAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class UnlockableGate : MonoBehaviour
         Collider2D keyOverlap = Physics2D.OverlapBox(boxCollider.bounds.center,boxCollider.bounds.size,0f,keyMask);
         if(keyOverlap){
             if(keyOverlap.name.Contains("Key")){
+                gateAudio.Play();
                 keyOverlap.GetComponent<ItemScript>().Break();
                 houjeilah.GoToPosition(nextHoujeilahPosition.position,0f);
                 gameObject.SetActive(false);

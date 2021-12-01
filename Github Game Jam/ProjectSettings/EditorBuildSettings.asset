@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Athena/BossWhiteBox.unity
-    guid: 71b5ca375d83fd84a835124ba4daa435
+  - enabled: 1
+    path: Assets/Main Menu/MainMenu.unity
+    guid: a05b1fde639bbe647a95a8cec2784ee4
   - enabled: 1
     path: Assets/DakotaStuff/Scenes/Level1.unity
     guid: 4cc3bab9c29d41341828fb656d407ebf

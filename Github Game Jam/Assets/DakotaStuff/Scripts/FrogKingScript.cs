@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class FrogKingScript : EnemyHealth
 {
     public enum BossStates { leapUp, leapDown, croaking, sliming, tongueing, prepareToTongue, ouchie, stunned, prepareToJump, prepareToFall, prepareForSliming, prepareForCroaking, phase1, phase2, changingPhases, doneFighting, goodbye, waitingForBoutheina, waitingForInitialTextToFinish }
@@ -498,6 +498,7 @@ public class FrogKingScript : EnemyHealth
                     textControllerScript.FadeText();
                     myAnim.SetBool("Jumping", true);
                     waiting = false;
+                    SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
                 }
                 else
                 {

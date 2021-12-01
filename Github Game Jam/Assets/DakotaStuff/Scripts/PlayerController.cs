@@ -656,6 +656,7 @@ public class PlayerController : MonoBehaviour
         canMove = true;
         bodyCollider.enabled = true;
         groundCollider.enabled = true;
+        moveSpeed = 8f;
     }
 
     public void Kill(){
