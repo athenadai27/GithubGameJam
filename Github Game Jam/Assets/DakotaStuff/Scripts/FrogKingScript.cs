@@ -812,7 +812,7 @@ public class FrogKingScript : MonoBehaviour
         resetting = false;
         enemyHealth.currentHealth = enemyHealth.maxHealth;
     }
-
+    
     public void SpawnFissures()
     {
         leftFissure.transform.position = leftFissureTransform.position;

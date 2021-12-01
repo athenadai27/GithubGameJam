@@ -799,6 +799,4 @@ public class FrogMiniboss : EnemyHealth
         tongueScript.tongue.gameObject.SetActive(false);
         resetting = false;
     }
-
-
 }
