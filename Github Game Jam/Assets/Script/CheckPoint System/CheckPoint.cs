@@ -19,9 +19,14 @@ public class CheckPoint : MonoBehaviour
     [SerializeField]
     protected UnityEvent onLoad;
 
-    PlayerController player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+    PlayerController player;
 
     private Vector3 savedPosition;
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+    }
 
     static public void LoadCheckPoint()
     {
