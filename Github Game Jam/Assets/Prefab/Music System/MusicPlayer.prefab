@@ -141,9 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfc8390004c2e941ad439295f13c96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneClipMappings:
-  - sceneName: 
-    clip: {fileID: 0}
+  sceneClipMappings: []
   areaClipMappings:
-  - sceneName: 
-    clip: {fileID: 0}
+  - sceneName: Town
+    clip: {fileID: 8300000, guid: d77b59350d6754f45ab65eb7a421332a, type: 3}
