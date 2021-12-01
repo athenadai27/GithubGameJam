@@ -16,6 +16,7 @@ public class ProjectileScript : MonoBehaviour
     public GameObject poof;
     public float lerpSpeed;
     public BoxCollider2D projectileCollider;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +61,7 @@ public class ProjectileScript : MonoBehaviour
                         additionalX *= Random.Range(.25f,.75f)*(Vector3.Distance(startPos,endPos));
                         startPos = transform.position;
                         
-                        endPos = new Vector3(startPos.x + additionalX, -2.75f, 0f);
+                        endPos = new Vector3(startPos.x + additionalX, startPos.y-10f, 0f);
                         float oozeLerpHeight = Random.Range(3f, 5f);
                         midPoint = startPos + (endPos - startPos) / 2 + Vector3.up * oozeLerpHeight;
                         lerp = 0f;

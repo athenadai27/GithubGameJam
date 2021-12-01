@@ -10,6 +10,7 @@ public class FakeSceneTransition : MonoBehaviour
     public FakeSceneTransitionStates transitionState;
     public BoxCollider2D transitionCollider;
     public Transform teleportPos;
+    public Transform cameraTransform;
     public SpriteRenderer backgroundSpriteRenderer;
     public Sprite newBackgroundSprite;
     public Transform playerTransform;
@@ -36,19 +37,23 @@ public class FakeSceneTransition : MonoBehaviour
             case FakeSceneTransitionStates.fadingIn:
                 if(fadeScreen.overlayImage.color.a <= 0){
                     transitionState = FakeSceneTransitionStates.waitingForCollision;
+                    followPlayerScript.enabled = true;
                 }  
                 break;
             case FakeSceneTransitionStates.fadingOut:
                 if(fadeScreen.overlayImage.color.a >= 1){
                     fadeWaitTime = Time.time + 1f;
                     transitionState = FakeSceneTransitionStates.waitingForFade;
+                     followPlayerScript.enabled = false;
                 }   
                 break;
             case FakeSceneTransitionStates.waitingForFade:
                 if(Time.time > fadeWaitTime){
                     
                     playerTransform.position = teleportPos.position;
+                   
                      followPlayerScript.FocusPlayer(newMapBounds);
+                     
                     backgroundSpriteRenderer.sprite = newBackgroundSprite;
                     StartCoroutine(fadeScreen.FadeInRoutine());
                     transitionState = FakeSceneTransitionStates.fadingIn;

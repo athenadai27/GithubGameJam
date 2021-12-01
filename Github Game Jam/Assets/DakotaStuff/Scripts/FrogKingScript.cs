@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrogKingScript : MonoBehaviour
+public class FrogKingScript : EnemyHealth
 {
-    public enum BossStates { leapUp, leapDown, croaking, sliming, tongueing, prepareToTongue, ouchie, stunned, prepareToJump, prepareToFall, prepareForSliming, prepareForCroaking, phase1, phase2, changingPhases, doneFighting, goodbye }
+    public enum BossStates { leapUp, leapDown, croaking, sliming, tongueing, prepareToTongue, ouchie, stunned, prepareToJump, prepareToFall, prepareForSliming, prepareForCroaking, phase1, phase2, changingPhases, doneFighting, goodbye, waitingForBoutheina, waitingForInitialTextToFinish }
     public BossStates bossState;
     public BossStates currentPhase;
     public Vector3 lerpStartPos;
@@ -51,7 +51,6 @@ public class FrogKingScript : MonoBehaviour
     public FrogGruntAttackTest tongueScript;
     public bool tongueAttack;
     public GameObject canvas;
-    public Checkpoint checkpoint;
     public bool resetting;
     public EnemyHealth enemyHealth;
     public List<int> chances;
@@ -72,10 +71,14 @@ public class FrogKingScript : MonoBehaviour
     public Transform rightFissureTransform;
     public GameObject leftFissure;
     public GameObject rightFissure;
+    public CircleCollider2D waitingCollider;
+    public LayerMask playerMask;
+    public GameObject initialText;
+    public Transform cameraTransform;
     // Start is called before the first frame update
     void Start()
     {
-        groundY = transform.position.y;
+        cameraTransform = Camera.main.transform;
         // for(int i = 0; i < oozeHolder.transform.childCount;i++){
         //     toxicSlimes.Add(oozeHolder.transform.GetChild(i).GetComponent<ToxicSlimeProjectile>());
         // }
@@ -88,9 +91,36 @@ public class FrogKingScript : MonoBehaviour
     void Update()
     {
         canvas.transform.localScale = transform.localScale;
-
+        if(Time.time > enemyDamageTime){
+            enemySprite.color = Color.white;
+        }
         switch (bossState)
         {
+            case BossStates.waitingForBoutheina:
+                Collider2D checkForBoutheina = Physics2D.OverlapCircle(waitingCollider.bounds.center,waitingCollider.radius,playerMask);
+                if(checkForBoutheina){
+                    ActivateTextController(initialText);
+                    bossState = BossStates.waitingForInitialTextToFinish;
+                }
+                break;
+            case BossStates.waitingForInitialTextToFinish:
+            if (Time.time > delayTime && waiting)
+                {
+                    textControllerScript.FadeText();
+                    bossState = BossStates.phase1;
+                    waiting = false;
+                }
+                else
+                {
+                    if (textControllerScript.CheckIfArrived() && !waiting)
+                    {
+                        waiting = true;
+                        delayTime = Time.time + 1f;
+                    }
+
+                }
+                break;
+
             case BossStates.leapUp:
                 leapLerp += Time.deltaTime * 1.5f;
                 transform.position = Vector3.Lerp(lerpStartPos, lerpEndPos, leapLerp);
@@ -318,7 +348,7 @@ public class FrogKingScript : MonoBehaviour
                 }
                 break;
             case BossStates.phase1:
-                if (enemyHealth.currentHealth <= 10)
+                if (currentHealth <= 10)
                 {
                     bossState = BossStates.changingPhases;
                     currentPhase = BossStates.phase2;
@@ -465,7 +495,7 @@ public class FrogKingScript : MonoBehaviour
             case BossStates.goodbye:
                 break;
             case BossStates.phase2:
-                if (enemyHealth.currentHealth <= 0)
+                if (currentHealth <= 0)
                 {
                     bossState = BossStates.doneFighting;
                     currentPhase = BossStates.doneFighting;
@@ -581,8 +611,8 @@ public class FrogKingScript : MonoBehaviour
     {
         if (bossState != BossStates.ouchie)
         {
-            fallCircle.transform.position = new Vector3(transform.position.x, -3.21f, 0f);
-
+            fallCircle.transform.position = new Vector3(transform.position.x, groundY, 0f);
+            fallCircle.SetTop(transform.position.y + 20f);
             fallCircle.gameObject.SetActive(true);
             fallCircle.grow = false;
 
@@ -596,7 +626,8 @@ public class FrogKingScript : MonoBehaviour
 
     public void Fall()
     {
-        
+
+
         transform.position = new Vector3(playerTransform.position.x, transform.position.y, 0);
         float minX = areaBounds.bounds.min.x + boxCollider.bounds.extents.x + boxCollider.offset.x;
         float maxX = areaBounds.bounds.max.x - boxCollider.bounds.extents.x + boxCollider.offset.x;
@@ -605,14 +636,14 @@ public class FrogKingScript : MonoBehaviour
         } else if(transform.position.x > maxX){
             transform.position = new Vector3(maxX,transform.position.y,0);
         }
-        fallCircle.transform.position = new Vector3(transform.position.x, -3.21f, 0f);
-
+        fallCircle.transform.position = new Vector3(transform.position.x, groundY, 0f);
+        fallCircle.SetTop(transform.position.y + 20f);
         fallCircle.gameObject.SetActive(true);
         fallCircle.grow = true;
 
         leapLerp = 0;
         lerpStartPos = transform.position;
-        lerpEndPos = transform.position - Vector3.up * 20f;
+        lerpEndPos = new Vector3(lerpStartPos.x, groundY, 0f);
         bossState = BossStates.leapDown;
     }
 
@@ -678,7 +709,7 @@ public class FrogKingScript : MonoBehaviour
         float aimAtBoutheina = Random.Range(0f, 1f);
         //List<float> currentActiveToxicPuddlePositions = new List<float>();
 
-        toxicSlimeProjectile.endPos = new Vector3(toxicSlimeProjectile.startPos.x + Random.Range(-15f, 15f), -2.75f, 0f);
+        toxicSlimeProjectile.endPos = new Vector3(toxicSlimeProjectile.startPos.x + Random.Range(-15f, 15f), groundY, 0f);
         if (aimAtBoutheina <= .25f)
         {
             toxicSlimeProjectile.endPos.x = playerTransform.position.x;
@@ -698,7 +729,7 @@ public class FrogKingScript : MonoBehaviour
         while (tooCloseToOtherPuddles)
         {
             tooCloseToOtherPuddles = false;
-            toxicSlimeProjectile.endPos = new Vector3(toxicSlimeProjectile.startPos.x + Random.Range(-15f, 15f), -2.75f, 0f);
+            toxicSlimeProjectile.endPos = new Vector3(toxicSlimeProjectile.startPos.x + Random.Range(-15f, 15f), groundY, 0f);
             for (int i = 0; i < oozeHolder.transform.childCount; i++)
             {
 
@@ -714,7 +745,7 @@ public class FrogKingScript : MonoBehaviour
         float oozeLerpHeight = Random.Range(10f, 15f);
         toxicSlimeProjectile.midPoint = toxicSlimeProjectile.startPos + (toxicSlimeProjectile.endPos - toxicSlimeProjectile.startPos) / 2 + Vector3.up * oozeLerpHeight;
         toxicSlimeProjectile.lerp = 0f;
-
+        Debug.Log(toxicSlimeProjectile.endPos);
         newSlime.SetActive(true);
         newSlime.transform.SetAsLastSibling();
         if (slimeTracker >= numShakes)
@@ -756,13 +787,21 @@ public class FrogKingScript : MonoBehaviour
 
 
         textControllerScript = activeTextController.GetComponent<TextControllerV2>();
-        if (transform.position.x > midpointTransform.position.x)
+        if (transform.position.x > cameraTransform.position.x)
         {
             textControllerScript.relativeWordCloudCenter.x = -3;
         }
-        else if (transform.position.x < midpointTransform.position.x)
+        else if (transform.position.x < cameraTransform.position.x)
         {
             textControllerScript.relativeWordCloudCenter.x = 3;
+        }
+        if (transform.position.y > cameraTransform.position.y)
+        {
+            textControllerScript.relativeWordCloudCenter.y = -3;
+        }
+        else if (transform.position.y < cameraTransform.position.y)
+        {
+            textControllerScript.relativeWordCloudCenter.y = 3;
         }
         activeTextController.SetActive(true);
     }
@@ -779,8 +818,10 @@ public class FrogKingScript : MonoBehaviour
 
     }
 
-    public void Reset()
+    public override void Reset()
     {
+        currentHealth = maxHealth;
+        enemySprite.color = Color.white;
         if (activeTextController != null)
         {
             activeTextController.SetActive(false);
@@ -810,7 +851,7 @@ public class FrogKingScript : MonoBehaviour
         leftFissure.SetActive(false);
         rightFissure.SetActive(false);
         resetting = false;
-        enemyHealth.currentHealth = enemyHealth.maxHealth;
+        currentHealth = maxHealth;
     }
 
     public void SpawnFissures()

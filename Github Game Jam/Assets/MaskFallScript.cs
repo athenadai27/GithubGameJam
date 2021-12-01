@@ -26,6 +26,7 @@ public class MaskFallScript : MonoBehaviour
         if(moveLerp >= 1){
             antMask.SetActive(true);
             stemController.hasAntMask = true;
+            stemController.frogMask.SetActive(false);
             gameObject.SetActive(false);
         }
         

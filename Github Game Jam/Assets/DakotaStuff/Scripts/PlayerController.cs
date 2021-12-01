@@ -284,7 +284,7 @@ public class PlayerController : MonoBehaviour
                 RaycastHit2D hitGroundRay = new RaycastHit2D();
                 for (int i = 0; i < groundedRay.Length; i++)
                 {
-
+                    
                     if (Mathf.Abs(groundedRay[i].normal.x) < .5f && groundedRay[i].normal.y > 0)
                     {
                         hitGroundRay = groundedRay[i];

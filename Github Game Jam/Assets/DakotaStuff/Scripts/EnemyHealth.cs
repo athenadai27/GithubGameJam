@@ -14,7 +14,7 @@ public class EnemyHealth : MonoBehaviour
     public Vector3 originalScale;
     public Vector3 originalPosition;
     public Animator enemyAnim;
-
+    public bool boss;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damageAmount;
         enemySprite.color = Color.red;
         enemyDamageTime = Time.time + .5f;
-        if(currentHealth <= 0){
+        if(currentHealth <= 0 && !boss){
             Kill();
         }
     }

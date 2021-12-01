@@ -212,13 +212,17 @@ public class StemController : MonoBehaviour
                     
                     if (grabbedWord != null)
                     {
-                        
-                        grabbedItem = grabbedWord.SpawnItem();
-                        grabbedItem.SetActive(true);
-                        if(grabbedItem.name.Contains("FrogMask")){
+                        Debug.Log(grabbedWord.name);
+                        if(grabbedWord.objectToSpawn.name.Contains("FrogMask")){
                             frogMask.SetActive(true);
                             hasFrogMask = true;
+                            grabbedItem = null;
+                        }else{
+                            grabbedItem = grabbedWord.SpawnItem();
+                            grabbedItem.SetActive(true);
                         }
+                        
+                        
                         grabbedWord.Reset();
                         grabbedWord = null;
                     }

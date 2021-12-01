@@ -67,10 +67,11 @@ public class FrogMiniboss : EnemyHealth
     public int numShakes;
     public BoxCollider2D talkCollider;
     public LayerMask playerMask;
-
+public Transform cameraTransform;   
     // Start is called before the first frame update
     void Start()
     {
+        cameraTransform = Camera.main.transform;
         originalPosition = transform.position;
         originalScale = transform.localScale;
         //  groundY = transform.position.y;
@@ -738,19 +739,19 @@ public class FrogMiniboss : EnemyHealth
 
 
         textControllerScript = activeTextController.GetComponent<TextControllerV2>();
-        if (transform.position.x > midpointTransform.position.x)
+        if (transform.position.x > cameraTransform.position.x)
         {
             textControllerScript.relativeWordCloudCenter.x = -3;
         }
-        else if (transform.position.x < midpointTransform.position.x)
+        else if (transform.position.x < cameraTransform.position.x)
         {
             textControllerScript.relativeWordCloudCenter.x = 3;
         }
-        if (transform.position.y > midpointTransform.position.y)
+        if (transform.position.y > cameraTransform.position.y)
         {
             textControllerScript.relativeWordCloudCenter.y = -3;
         }
-        else if (transform.position.y < midpointTransform.position.y)
+        else if (transform.position.y < cameraTransform.position.y)
         {
             textControllerScript.relativeWordCloudCenter.y = 3;
         }

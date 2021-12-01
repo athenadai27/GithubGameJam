@@ -200,8 +200,9 @@ public class BeanFrog : EnemyHealth
                 break;
             case AlertLevels.pursuit:
                 Vector3 playerDirection = (playerTransform.position + Vector3.up) - parentTransform.position;
+                playerDirection.Normalize();
                 //  Debug.Log(playerDirection.magnitude);
-                RaycastHit2D targetPlayerRay = Physics2D.Raycast(parentTransform.position, playerDirection, playerDirection.magnitude + 50f, playerMask);
+                RaycastHit2D targetPlayerRay = Physics2D.Raycast(parentTransform.position, playerDirection, playerDirection.magnitude + 25f, playerMask);
                 if (!targetPlayerRay)
                 {
                     Debug.Log("suspicious");
@@ -216,8 +217,10 @@ public class BeanFrog : EnemyHealth
 
                     waiting = false;
                     return;
+                }else{
+                    
                 }
-                if (Vector3.Distance(playerTransform.position, parentTransform.position) < 50f)
+                if (Vector3.Distance(playerTransform.position, parentTransform.position) < 25f)
                 {
                     if (Time.time > attackCooldown)
                     {
