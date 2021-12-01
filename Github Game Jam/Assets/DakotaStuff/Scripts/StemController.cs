@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class StemController : MonoBehaviour
 {
     [SerializeField]
@@ -61,6 +61,12 @@ public class StemController : MonoBehaviour
 
     public PlayerController playerController;
     public Transform playerTransform;
+    public PauseScript pauseScript;
+    public float clickTime;
+    public GameObject frogMask;
+    public GameObject antMask;
+    public bool hasFrogMask;
+    public bool hasAntMask;
     // Start is called before the first frame update
     void Start()
     {
@@ -94,12 +100,17 @@ public class StemController : MonoBehaviour
         switch (playerState)
         {
             case PlayerStates.drawing:
+                
                 if (Input.GetMouseButtonDown(0))
                 {
                     Retract();
 
                     return;
-                }else if(Input.GetMouseButton(0)){
+                }else if(!Input.GetMouseButton(0) && Time.time < clickTime){
+                    Retract();
+                    return;
+                }
+                else if(Input.GetMouseButton(0)){
                      Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
                 mousePos.z = 0;
                 Vector3 mouseDir = new Vector3(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"), 0) * sensitivity;
@@ -204,7 +215,10 @@ public class StemController : MonoBehaviour
                         
                         grabbedItem = grabbedWord.SpawnItem();
                         grabbedItem.SetActive(true);
-                        
+                        if(grabbedItem.name.Contains("FrogMask")){
+                            frogMask.SetActive(true);
+                            hasFrogMask = true;
+                        }
                         grabbedWord.Reset();
                         grabbedWord = null;
                     }
@@ -216,9 +230,9 @@ public class StemController : MonoBehaviour
 
             case PlayerStates.nothing:
 
-                if (Input.GetMouseButtonDown(0) && playerController.grounded)
+                if (Input.GetMouseButtonDown(0) && playerController.grounded && !pauseScript.paused && playerController.playerState != PlayerController.PlayerStates.hiding)
                 {
-                    Debug.Log("go");
+                    clickTime = Time.time + .1f;
                     Vector3 mousePosInit = mainCam.ScreenToWorldPoint(Input.mousePosition);
                     mousePosInit.z = 0;
                     previousMousePos = mousePosInit;
@@ -269,5 +283,9 @@ public class StemController : MonoBehaviour
         lineRenderer.SetPosition(1, transform.InverseTransformPoint(flowerHolder.transform.position));
         flower.transform.position = flowerHolder.transform.position;
 
+    }
+
+    public void SetSensitivity(float newSensitivity){
+        sensitivity = newSensitivity;
     }
 }

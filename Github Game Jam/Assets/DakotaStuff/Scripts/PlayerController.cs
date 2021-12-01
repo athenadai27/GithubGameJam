@@ -26,7 +26,8 @@ public class PlayerController : MonoBehaviour
     public float lerpTime;
     public float previousHealth;
     public Animator myAnim;
-    public enum PlayerStates { normal, hiding, restricted, planted };
+    public enum PlayerStates { normal, hiding, restricted, planted, disabled, respawning};
+    public bool canMove;
     public PlayerStates playerState = PlayerStates.normal;
     public SpriteRenderer sprite;
 
@@ -49,11 +50,13 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer flowerSprite;
 
     public StemController stemController;
-    public Checkpoint checkpoint;
+    public CheckpointManager checkpointManager;
+    public float stepHeight;
     // Start is called before the first frame update
     void Start()
     {
         //  Application.targetFrameRate = 30;
+        Cursor.lockState =  CursorLockMode.Confined;
         myAnim = GetComponent<Animator>();
         if (PlayerPrefs.GetInt("HealthStars") == 0)
         {
@@ -68,7 +71,12 @@ public class PlayerController : MonoBehaviour
         moveVector = Vector3.zero;
 
         //if(grounded){
-        moveDir = Input.GetAxisRaw("Horizontal");
+        if(canMove){
+            moveDir = Input.GetAxisRaw("Horizontal");
+        } else{
+            moveDir = 0;
+        }
+        
 
 
         if (transform.parent != null)
@@ -97,12 +105,14 @@ public class PlayerController : MonoBehaviour
                     {
                         if (myAnim.GetBool("Crouching"))
                         {
+                            moveSpeed = 8f;
                             myAnim.SetBool("Crouching", false);
                             flowerHolderTransform.localPosition = new Vector3(.02f,2.48f,0f);
                             lineRenderer.transform.localPosition = new Vector3(.02f,1.83f,0f);
                         }
                         else
                         {
+                            moveSpeed = 5f;
                             myAnim.SetBool("Crouching", true);
                             flowerHolderTransform.localPosition = new Vector3(.02f,2.15f,0f);
                             lineRenderer.transform.localPosition = new Vector3(.02f,1.5f,0f);
@@ -168,7 +178,7 @@ public class PlayerController : MonoBehaviour
                 //     stemController.transform.localScale = Vector3.one;
                 // }
 
-                if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
+                if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && canMove)
                 {
                     if (grounded)
                     {
@@ -250,14 +260,20 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerStates.planted:
                 break;
+            case PlayerStates.disabled:
+                break;
+
+            
         }
         // }
     }
 
     void FixedUpdate()
     {
-
-        ColliderCheck();
+        if(playerState != PlayerStates.hiding){
+            ColliderCheck();
+        }
+        
 
         switch (playerState)
         {
@@ -303,7 +319,7 @@ public class PlayerController : MonoBehaviour
                     transform.SetParent(null);
                 }
                 myAnim.SetBool("Grounded", grounded);
-                if (grounded)
+                if (grounded )
                 {
                     rightDirection = Quaternion.Euler(0, 0, -transform.lossyScale.x * 90) * hitGroundRay.normal;
 
@@ -324,7 +340,7 @@ public class PlayerController : MonoBehaviour
                 {
                     startJump = false;
                     rightDirection = Vector3.right * transform.lossyScale.x;
-                    if (moveDir != 0)
+                    if (moveDir != 0 )
                     {
 
                         Vector3 horizontalMoveDir = Vector3.right * moveDir;
@@ -349,6 +365,8 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerStates.planted:
                 break;
+            case PlayerStates.disabled:
+                break;
         }
 
 
@@ -362,7 +380,7 @@ public class PlayerController : MonoBehaviour
             // Debug.Log(updatedMoveDir);
             //  Debug.Log(updatedMoveSpeed);
             myAnim.SetBool("Running", true);
-            RaycastHit2D[] horizontalCheck = Physics2D.BoxCastAll(groundCollider.bounds.center, groundCollider.bounds.size - Vector3.one * .01f, 0f, updatedMoveDir, updatedMoveSpeed * Time.fixedDeltaTime, groundMask);
+            RaycastHit2D[] horizontalCheck = Physics2D.BoxCastAll(groundCollider.bounds.center, groundCollider.bounds.size , 0f, updatedMoveDir, updatedMoveSpeed * Time.fixedDeltaTime, groundMask);
 
             bool canMoveDirection = true;
 
@@ -373,7 +391,7 @@ public class PlayerController : MonoBehaviour
                 for (int i = 0; i < horizontalCheck.Length; i++)
                 {
 
-                    if (Mathf.Abs(horizontalCheck[i].normal.x) > .5f && ((updatedMoveDir.x > 0 && horizontalCheck[i].point.x > transform.position.x) || (updatedMoveDir.x < 0 && horizontalCheck[i].point.x < transform.position.x)))
+                    if (Mathf.Abs(horizontalCheck[i].normal.x) > .5f && ((updatedMoveDir.x > 0 && horizontalCheck[i].point.x > groundCollider.bounds.center.x) || (updatedMoveDir.x < 0 && horizontalCheck[i].point.x < groundCollider.bounds.center.x)))
                     {
                         // Debug.DrawRay(horizontalCheck[i].point, horizontalCheck[i].normal, Color.blue);
                         //    Debug.Log("reee");
@@ -396,9 +414,16 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                
                 transform.position += updatedMoveDir * updatedMoveSpeed * Time.fixedDeltaTime;
+                
             }
             Physics2D.SyncTransforms();
+            RaycastHit2D downRay = Physics2D.Raycast(transform.position,Vector2.down,groundCollider.bounds.extents.y,groundMask);
+            if(downRay.distance <= stepHeight){
+                transform.position += Vector3.up*downRay.distance;
+            }
+           // Physics2D.SyncTransforms();
             RaycastHit2D[] verticalCheck;
             Vector2 verticalCheckPoint;
             if (transform.localScale.x > 0)
@@ -517,14 +542,14 @@ public class PlayerController : MonoBehaviour
     public void ColliderCheck()
     {
         List<Collider2D> colliders = new List<Collider2D>(Physics2D.OverlapCapsuleAll(bodyCollider.bounds.center, bodyCollider.size, bodyCollider.direction, 0f, collisionMask));
-        if (colliders.Count > 0)
+        if (colliders.Count > 0 && bodyCollider.enabled)
         {
             for(int i = 0; i < colliders.Count;i++){
                 if(colliders[i].gameObject.CompareTag("Toxic")){
                     Kill();
                 } else if(colliders[i].gameObject.CompareTag("Enemy")){
                     Kill();
-                }
+                } 
             }
 
 
@@ -597,19 +622,35 @@ public class PlayerController : MonoBehaviour
 
     public void Plant(){
         playerState = PlayerStates.planted;
+        myAnim.SetBool("Crouching",true);
+        flowerHolderTransform.localPosition = new Vector3(.02f,2.15f,0f);
+        lineRenderer.transform.localPosition = new Vector3(.02f,1.5f,0f);
+
     }
 
     public void Uproot(){
         playerState = PlayerStates.normal;
+        myAnim.SetBool("Crouching",false);
+        flowerHolderTransform.localPosition = new Vector3(.02f,2.48f,0f);
+        lineRenderer.transform.localPosition = new Vector3(.02f,1.83f,0f);
     }
 
     public void Reset(){
         playerState = PlayerStates.normal;
         myAnim.Rebind();
         stemController.Reset();
+        canMove = true;
+        bodyCollider.enabled = true;
+        groundCollider.enabled = true;
     }
 
     public void Kill(){
-        checkpoint.Reset();
+        bodyCollider.enabled = false;
+        groundCollider.enabled = false;
+        playerState = PlayerStates.respawning;
+        checkpointManager.StartRespawning();
+        Debug.Log("kill");
     }
+
+   
 }

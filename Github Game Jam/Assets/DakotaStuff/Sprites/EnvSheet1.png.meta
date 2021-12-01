@@ -1,7 +1,49 @@
 fileFormatVersion: 2
 guid: bcc68de691f39644790474f69230ad18
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 7569503407017317830
+    second: EnvSheet1_1
+  - first:
+      213: -3136342164980591973
+    second: EnvSheet1_2
+  - first:
+      213: 4347625870656351357
+    second: EnvSheet1_3
+  - first:
+      213: -7244955855123316199
+    second: EnvSheet1_31
+  - first:
+      213: -3557358903445621123
+    second: EnvSheet1_32
+  - first:
+      213: -2065223721920098472
+    second: EnvSheet1_33
+  - first:
+      213: -6804415579103460675
+    second: EnvSheet1_34
+  - first:
+      213: -2150328904676839554
+    second: EnvSheet1_35
+  - first:
+      213: 183582824899071550
+    second: EnvSheet1_36
+  - first:
+      213: 2277368765662116347
+    second: EnvSheet1_37
+  - first:
+      213: 5077415237374746359
+    second: EnvSheet1_38
+  - first:
+      213: 6283501277773939665
+    second: EnvSheet1_39
+  - first:
+      213: 5734292988526881501
+    second: EnvSheet1_40
+  - first:
+      213: -7263308938830789840
+    second: EnvSheet1_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +82,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -71,9 +113,330 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: EnvSheet1_1
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 823
+        width: 724
+        height: 406
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c550656e374c0960800000000000000
+      internalID: 7569503407017317830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_2
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 816
+        width: 643
+        height: 423
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9290420b697974d0800000000000000
+      internalID: -3136342164980591973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_3
+      rect:
+        serializedVersion: 2
+        x: 1655
+        y: 792
+        width: 842
+        height: 496
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7c25c4d1bed55c30800000000000000
+      internalID: 4347625870656351357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_31
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 602
+        height: 319
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9120df1090fb47b90800000000000000
+      internalID: -7244955855123316199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_32
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 2
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d76fc8dcce8b1aec0800000000000000
+      internalID: -3557358903445621123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_33
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 607
+        height: 317
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f0e3987f9d653e0800000000000000
+      internalID: -2065223721920098472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_34
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 0
+        width: 29
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db28767051cd191a0800000000000000
+      internalID: -6804415579103460675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_35
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 0
+        width: 602
+        height: 314
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7f6b7e014f7822e0800000000000000
+      internalID: -2150328904676839554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_36
+      rect:
+        serializedVersion: 2
+        x: 2012
+        y: 0
+        width: 29
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ec8f84b973c8200800000000000000
+      internalID: 183582824899071550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_37
+      rect:
+        serializedVersion: 2
+        x: 2105
+        y: 0
+        width: 595
+        height: 306
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf93cdb83d6da9f10800000000000000
+      internalID: 2277368765662116347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_39
+      rect:
+        serializedVersion: 2
+        x: 2779
+        y: 0
+        width: 597
+        height: 315
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d3cd67ee1b733750800000000000000
+      internalID: 6283501277773939665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_40
+      rect:
+        serializedVersion: 2
+        x: 3378
+        y: 0
+        width: 29
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda682b671d449f40800000000000000
+      internalID: 5734292988526881501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheet1_0
+      rect:
+        serializedVersion: 2
+        x: 2571
+        y: 770
+        width: 972
+        height: 574
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0334217b00b833b90800000000000000
+      internalID: -7263308938830789840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

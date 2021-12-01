@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 9189749906560964923}
   - component: {fileID: 9189749906560964920}
   - component: {fileID: 9189749906560964921}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: SonicWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9189749906560964922
 Transform:
   m_ObjectHideFlags: 0
@@ -70,9 +70,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -600640441
+  m_SortingLayer: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f70ac6b287fc67f4886e53406693c207, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626f07e8f46289e478213c88a2fea1e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
   boxCollider: {fileID: 9189749906560964920}
   hitMask:
     serializedVersion: 2

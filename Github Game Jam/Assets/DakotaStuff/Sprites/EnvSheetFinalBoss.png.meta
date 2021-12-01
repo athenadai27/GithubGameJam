@@ -1,0 +1,467 @@
+fileFormatVersion: 2
+guid: 1b477424233869f4c98c69438f885294
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1068654306199972657
+    second: EnvSheetFinalBoss_0
+  - first:
+      213: -4780233552604383167
+    second: EnvSheetFinalBoss_1
+  - first:
+      213: 1875110966694176965
+    second: EnvSheetFinalBoss_2
+  - first:
+      213: 4094157327885490821
+    second: EnvSheetFinalBoss_3
+  - first:
+      213: 5238751792617715759
+    second: EnvSheetFinalBoss_4
+  - first:
+      213: 9048189526547229428
+    second: EnvSheetFinalBoss_5
+  - first:
+      213: 1989138086100979663
+    second: EnvSheetFinalBoss_6
+  - first:
+      213: -995846046277662849
+    second: EnvSheetFinalBoss_9
+  - first:
+      213: 5236666201381349086
+    second: EnvSheetFinalBoss_10
+  - first:
+      213: -1362141250960004426
+    second: EnvSheetFinalBoss_11
+  - first:
+      213: 7589179251134768706
+    second: EnvSheetFinalBoss_13
+  - first:
+      213: 3657137322756466313
+    second: EnvSheetFinalBoss_14
+  - first:
+      213: 8999339901166330603
+    second: EnvSheetFinalBoss_15
+  - first:
+      213: -3825219245073838892
+    second: EnvSheetFinalBoss_16
+  - first:
+      213: 6191439566084096737
+    second: EnvSheetFinalBoss_17
+  - first:
+      213: -1061660783854256089
+    second: EnvSheetFinalBoss_18
+  - first:
+      213: -7520271023464122461
+    second: EnvSheetFinalBoss_19
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_0
+      rect:
+        serializedVersion: 2
+        x: 1342
+        y: 898
+        width: 459
+        height: 271
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc4524b02906b21f0800000000000000
+      internalID: -1068654306199972657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_1
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 807
+        width: 525
+        height: 513
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 148bc9129e239adb0800000000000000
+      internalID: -4780233552604383167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_2
+      rect:
+        serializedVersion: 2
+        x: 2272
+        y: 945
+        width: 715
+        height: 355
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c8ee3c4d7bb50a10800000000000000
+      internalID: 1875110966694176965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_3
+      rect:
+        serializedVersion: 2
+        x: 3088
+        y: 941
+        width: 997
+        height: 455
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a5d2fd56e51d830800000000000000
+      internalID: 4094157327885490821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_4
+      rect:
+        serializedVersion: 2
+        x: 2129
+        y: 413
+        width: 600
+        height: 317
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -266.7417, y: -156.28113}
+        - {x: -266.7417, y: 109.229065}
+        - {x: 265.63354, y: 109.229065}
+        - {x: 265.63354, y: -156.28113}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f287b61dff8c3b840800000000000000
+      internalID: 5238751792617715759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_5
+      rect:
+        serializedVersion: 2
+        x: 3068
+        y: 540
+        width: 26
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fae14e5f60a19d70800000000000000
+      internalID: 9048189526547229428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_6
+      rect:
+        serializedVersion: 2
+        x: 3226
+        y: 512
+        width: 66
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcfcf37ec86da9b10800000000000000
+      internalID: 1989138086100979663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_9
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 0
+        width: 602
+        height: 314
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -273.6866, y: -156.06146}
+        - {x: -273.6866, y: 101.73883}
+        - {x: 261.85297, y: 101.73883}
+        - {x: 261.85303, y: -156.06146}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7784a01c4b0e22f0800000000000000
+      internalID: -995846046277662849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_10
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 602
+        height: 314
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -273, y: -156}
+        - {x: -273, y: 102}
+        - {x: 260, y: 102}
+        - {x: 260, y: -156}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed621a44a206ca840800000000000000
+      internalID: 5236666201381349086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_11
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 0
+        width: 602
+        height: 314
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -269, y: -157}
+        - {x: -273.48938, y: 102}
+        - {x: 262, y: 102}
+        - {x: 266, y: -157}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ba6f9acfb3b81de0800000000000000
+      internalID: -1362141250960004426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_13
+      rect:
+        serializedVersion: 2
+        x: 2779
+        y: 0
+        width: 596
+        height: 316
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -298, y: -157.91705}
+        - {x: -296.44336, y: 153.72656}
+        - {x: 297.2417, y: 156.14215}
+        - {x: 294.82617, y: -157.11188}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24627a8d15e225960800000000000000
+      internalID: 7589179251134768706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnvSheetFinalBoss_18
+      rect:
+        serializedVersion: 2
+        x: 3478
+        y: 0
+        width: 596
+        height: 306
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -294.12476, y: -152.0759}
+        - {x: -294.12476, y: 149.06433}
+        - {x: 296.07788, y: 149.06433}
+        - {x: 296.07788, y: -152.0759}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 720876a54293441f0800000000000000
+      internalID: -1061660783854256089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

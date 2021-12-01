@@ -46,12 +46,25 @@ public class TextControllerV2 : MonoBehaviour
     Transform npcCanvasTransform;
 
     public List<WordBlockV2> newlyActivated = new List<WordBlockV2>();
+
+    public ActivateDeactivateTutorial activateDeactivate;
+    public bool activateAndDeactivateUponArrival;
+    public float waitTime;
+    public float waitTimeAdditional;
+    public bool waiting;
+    public bool stayActivated;
+    public bool hasBeenActivated;
     /// <summary>
     /// very dangerous and evil, delete after testing
     /// </summary>
     private void OnEnable()
     {
-        ShowLine(sentence);
+            ShowLine(sentence);
+        
+    }
+
+    private void OnDisable(){
+        FadeText();
     }
 
     public void ShowLine(string line)
@@ -59,15 +72,15 @@ public class TextControllerV2 : MonoBehaviour
         string[] words = line.Split(' ');
 
         newlyActivated.Clear();
-       
+
         // JIT creation of objects (might make some sense in terms of performance since NPCs repeate their speech)
-        for (int i = 0; i < words.Length;i++)
+        for (int i = 0; i < words.Length; i++)
         {
             string word = words[i];
             //if (idleBlockPool.Count <= 0)
             if (idleBlockList.Count <= 0)
             {
-                
+
                 GameObject newBlock = Instantiate(wordBlockPrefab);
                 newBlock.transform.SetParent(npcCanvasTransform);
                 WordBlockV2 newBlockScript = newBlock.GetComponent<WordBlockV2>();
@@ -144,18 +157,33 @@ public class TextControllerV2 : MonoBehaviour
         HashSet<WordBlockV2> encounters = new HashSet<WordBlockV2>();
 
         // while (activeBlockPool.Count > 0)
-        if(activeBlockList.Count > 0){
-            for(int i = 0; i < activeBlockList.Count;i++){
+        if (activeBlockList.Count > 0)
+        {
+            for (int i = 0; i < activeBlockList.Count; i++)
+            {
                 idleBlockList.Add(activeBlockList[i]);
             }
             activeBlockList.Clear();
         }
-
-        if (Input.GetKeyDown(KeyCode.H))
+        if (activateAndDeactivateUponArrival && !hasBeenActivated)
         {
-            for (int i = 0; i < idleBlockList.Count; i++)
+            if (CheckIfArrived() && !waiting)
             {
-                idleBlockList[i].gameObject.SetActive(false);
+                waitTime = Time.time + waitTimeAdditional;
+                waiting = true;
+
+            }
+            else if (waiting && Time.time > waitTime)
+            {
+                hasBeenActivated = true;
+                if (!stayActivated){
+                    FadeText();
+                    
+                } else{
+                    activateDeactivate.ActivateObjects(activateDeactivate.objectsToActivateWhenTextFinishedButNotDeactivated);
+                    activateDeactivate.DeactivateObjects(activateDeactivate.objectsToDeactivateWhenTextFinishedButNotDeactivated);
+                }
+
             }
         }
     }
@@ -185,16 +213,26 @@ public class TextControllerV2 : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public bool CheckIfArrived(){
-        if(idleBlockList.Count <= 0){
+    public bool CheckIfArrived()
+    {
+        if (idleBlockList.Count <= 0)
+        {
             return false;
         }
         bool hasArrived = true;
-        for(int i = 0; i < idleBlockList.Count;i++){
-            if(!idleBlockList[i].arrived){
+        for (int i = 0; i < idleBlockList.Count; i++)
+        {
+            if (!idleBlockList[i].arrived)
+            {
                 hasArrived = false;
             }
         }
         return hasArrived;
+    }
+
+    public void Reset(){
+        hasBeenActivated = false;
+        waiting = false;
+        
     }
 }
