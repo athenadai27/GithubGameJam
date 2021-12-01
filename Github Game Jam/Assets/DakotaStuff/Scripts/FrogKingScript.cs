@@ -822,4 +822,33 @@ public class FrogKingScript : MonoBehaviour
         leftFissure.SetActive(true);
         rightFissure.SetActive(true);
     }
+
+    public void Reset(int inPhase)
+    {
+        if (activeTextController != null)
+        {
+            activeTextController.SetActive(false);
+            activeTextController = null;
+        }
+        if (textControllerScript != null)
+        {
+            textControllerScript.FadeText();
+            textControllerScript = null;
+        }
+        for (int i = 0; i < oozeHolder.transform.childCount; i++)
+        {
+            oozeHolder.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        for (int i = 0; i < sonicWavesHolder.transform.childCount; i++)
+        {
+            sonicWavesHolder.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        cameraShaking = false;
+        currentPhase = (BossStates)inPhase;
+        bossState = (BossStates)inPhase;
+        myAnim.Rebind();
+        tongueScript.tongue.gameObject.SetActive(false);
+        resetting = false;
+    }
 }
