@@ -8,29 +8,32 @@ using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
-    public static MusicManager mPlayer;
+    public static MusicManager instance;
     
     [Serializable]
-    public struct SceneClipPair
+    public struct StringClipPair
     {
         public string sceneName;
         public AudioClip clip;
     }
 
     [SerializeField]
-    List<SceneClipPair> clipMappings;
+    List<StringClipPair> sceneClipMappings;
+
+    [SerializeField]
+    List<StringClipPair> areaClipMappings;
 
     AudioSource audioSource;
 
     void Awake()
     {
-        if (mPlayer != null)
+        if (instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            mPlayer = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -43,7 +46,7 @@ public class MusicManager : MonoBehaviour
     {
         AudioClip newClip = null;
 
-        foreach (var pair in clipMappings)
+        foreach (var pair in sceneClipMappings)
         {
             if (pair.sceneName == scene.name)
             {
@@ -63,4 +66,26 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    public void TriggerMusic(string key)
+    {
+        AudioClip newClip = null;
+
+        foreach (var pair in areaClipMappings)
+        {
+            if (pair.sceneName == key)
+            {
+                newClip = pair.clip;
+            }
+        }
+
+        if (newClip)
+        {
+            audioSource.clip = newClip;
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.Stop();
+        }
+    }
 }
